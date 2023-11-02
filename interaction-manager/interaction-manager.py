@@ -6,7 +6,7 @@ def main():
 	ag.PAUSE = 0.25
 	
 	window = get_window()
-	save()
+	battle_run()
 
 if __name__ == '__main__':
 	main()

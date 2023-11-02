@@ -25,6 +25,8 @@ def cv2_open_image_grayscale(img_path):
     return image_gray
 
 def find_on_screen(template_name):
+    treshold = 0.8
+    
     screenshot_path = screenshot_window()
     template_path = get_template_path(template_name)
     
@@ -32,11 +34,14 @@ def find_on_screen(template_name):
     template = cv2_open_image_grayscale(template_path)
 
     result = cv2.matchTemplate(screenshot, template, cv2.TM_CCOEFF_NORMED)
-    _, _, _, max_loc = cv2.minMaxLoc(result)
+    _, max_treshold, _, max_loc = cv2.minMaxLoc(result)
     top_left_coords = max_loc
-    print("Found " + template_name + " at " + str(top_left_coords))
+    print("Found " + template_name + " at " + str(top_left_coords) + ". " + str(max_treshold))
     
-    return top_left_coords
+    if max_treshold > treshold:
+        return top_left_coords
+    else:
+        return False
     
 def screenshot_window():
     offset = 30
