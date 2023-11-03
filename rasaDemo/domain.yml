@@ -1,41 +1,43 @@
 version: '3.1'
 intents:
-- greet
-- goodbye
+- walk
+- run
 - affirm
 - deny
-- light_switch
-- change_color
+- attack
+- run-away
+- save
+- throw
 entities:
-- place
-- switch
-- shape
-- color
+- direction
+- unit
+- attack
+- pokeball
 slots:
-  switch:
+  direction:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: switch
-  place:
+      entity: direction
+  unit:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: place
-  shape:
+      entity: unit
+  attack:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: shape
-  color:
+      entity: attack
+  pokeball:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: color
+      entity: pokeball
 responses:
   utter_greet:
   - text: Olá, como posso ajudar? Pode perguntar caso não saiba as funcionalidades disponíveis.
