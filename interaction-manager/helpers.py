@@ -1,6 +1,6 @@
-import pygetwindow, pyautogui as ag, pydirectinput as di
+import pygetwindow
 import cv2, PIL
-import time, os
+import os
 
 # KEYS
 A = 'c'
@@ -25,7 +25,7 @@ def cv2_open_image_grayscale(img_path):
     return image_gray
 
 def find_on_screen(template_name):
-    treshold = 0.8
+    treshold = 0.82
     
     screenshot_path = screenshot_window()
     template_path = get_template_path(template_name)
@@ -36,7 +36,7 @@ def find_on_screen(template_name):
     result = cv2.matchTemplate(screenshot, template, cv2.TM_CCOEFF_NORMED)
     _, max_treshold, _, max_loc = cv2.minMaxLoc(result)
     top_left_coords = max_loc
-    print("Found " + template_name + " at " + str(top_left_coords) + ". " + str(max_treshold))
+    print(template_name + " at " + str(top_left_coords) + " - " + str(max_treshold))
     
     if max_treshold > treshold:
         return top_left_coords
