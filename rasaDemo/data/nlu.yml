@@ -4,41 +4,50 @@ nlu:
   examples: |
     - Anda [quatro](unit) para a [esquerda](direction)
     - Anda [dois](unit) passos para [cima](direction) 
+    - Dá [cinco](unit) passos para [baixo](direction) 
+    - Vai [um](unit) para a [direita](direction)
     
 - intent: run
   examples: |
     - Corre para a [direita](direction) 
+    - Corre para [baixo](direction)
+    - Anda rápido para [cima](direction)  
+    - Anda rápido para a [esquerda](direction) 
 
 - intent: affirm
   examples: |
     - Sim
     - Okay
     - Ok
-    - sim
     - Ya
 
 - intent: deny
   examples: |
     - Não
     - Nope
+    - Nop  
 
-- intent: attack
+- intent: choose-attack
   examples: |
-    - Usa o ataque [um](attack)
-    - Ataque [dois](attack)
+    - Usa o ataque [1](attack)
+    - Ataque [2](attack)
+    - Usa o ataque [3](attack)
+    - Ataque [4](attack)
 
-- intent: run-away
+- intent: run-away-from-battle
   examples: |
     - Corre
     - Foge daí
     - Sai
 
-- intent: save
+- intent: save-game
   examples: |
     - Guarda o jogo
     - Guarda
+    - Guardar
+    - Salvar
 
-- intent: throw
+- intent: throw-pokeball
   examples: |
     - Atira uma [pokebola](pokeball)
     - [ULTRABOLA](pokeball)

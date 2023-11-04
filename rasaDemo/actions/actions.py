@@ -128,3 +128,14 @@ class ActionNegar(Action):
         
         return []
     
+class ActionSearchAttack(Action):
+    
+    def name(self) -> Text:
+        return "action_search_attack"
+    
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        attack = tracker.get_slot("attack")
+    

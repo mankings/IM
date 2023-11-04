@@ -2,23 +2,23 @@ version: "3.1"
 
 rules:
 
-- rule:
+- rule: Choose attack
   steps:
-  - intent: greet
-  - action: utter_greet
+  - intent: choose-attack
+  - action: action_search_attack
+  - response: utter_attack
 
-- rule: Goodbye
+- rule: Run Away
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: run-away
+  - action: utter_run-away
 
-- rule: switchonofflights
+- rule: Save Game
   steps:
-  - intent: light_switch
-  - action: action_switch_lights
-
-# - rule: Add_reminder to calendar
-#   steps:
-#   - intent: add_reminder
-#   - action: action_create_event
-#   - action: utter_anyelse
+  - intent: save-game
+  - action: utter_save-game
+  
+- rule: Throw Pokeball
+  steps:
+  - intent: throw-pokeball
+  - action: utter_throw-pokeball
