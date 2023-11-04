@@ -162,7 +162,7 @@ cython_debug/
 
 # project dependencies
 CAroot.crt
-WebAppAssistantV2/
+WebAppAssistantV2_old/
 mmiframeworkV2/
 FusionEngine/
 rasaDemo/.rasa/

@@ -6,7 +6,6 @@ rules:
   steps:
   - intent: choose-attack
   - action: action_search_attack
-  - response: utter_attack
 
 - rule: Run Away
   steps:

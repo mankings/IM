@@ -1,28 +1,34 @@
 import pygetwindow
+from pygetwindow import PyGetWindowException
+
 import cv2, PIL
 import os
 
 # KEYS
-A = 'c'
-B = 'x'
-L = 's'
-R = 'd'
-UP = 'up'
-DOWN = 'down'
-LEFT = 'left'
-RIGHT = 'right'
-START = 'enter'
-SELECT = 'backspace'
-FASTFORWARD = 'space'
+from enum import Enum
+class Keys(Enum):
+    A = 'c'
+    B = 'x'
+    L = 's'
+    R = 'd'
+    UP = 'up'
+    DOWN = 'down'
+    LEFT = 'left'
+    RIGHT = 'right'
+    START = 'enter'
+    SELECT = 'backspace'
+    FASTFORWARD = 'space'
 
 # GAME WINDOW INFO
 WINDOW_TITLE = "Pokemon - Leaf Green Version (U) (V1.1) - VisualBoyAdvance-M 2.1.7"
-
-def cv2_open_image_grayscale(img_path):
-    image = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
-    image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+def get_window():
+    try:
+        window = pygetwindow.getWindowsWithTitle(WINDOW_TITLE)[0]
+        window.activate()
+    except PyGetWindowException:
+        pass
     
-    return image_gray
+    return window
 
 def find_on_screen(template_name):
     treshold = 0.82
@@ -48,16 +54,15 @@ def screenshot_window():
         
     window = get_window()
     screenshot = PIL.ImageGrab.grab(bbox=(window.left, window.top + offset * 2, window.left + window.width, window.top + window.height - offset))		
-    img_path = os.path.join('interaction-manager', 'screenshot.png')
-    screenshot.save(img_path)
+    screenshot.save('screenshot.png')
     
-    return img_path
-
-def get_window():
-    window = pygetwindow.getWindowsWithTitle(WINDOW_TITLE)[0]
-    window.activate()
-    
-    return window
+    return 'screenshot.png'
 
 def get_template_path(file_name):
-    return os.path.join('interaction-manager', 'templates', file_name + '.png')
+    return os.path.join('templates', file_name + '.png')
+
+def cv2_open_image_grayscale(img_path):
+    image = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)
+    image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
+    return image_gray

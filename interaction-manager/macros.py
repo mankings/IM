@@ -3,26 +3,27 @@ from helpers import *
 import pyautogui as ag, pydirectinput as di
 import time
 
-def save_game():
-	# check if overworld
-	if game_state() != "overworld":
-		print("not in overworld!")
-		return
+#
+# movement
+#
+def player_move(direction, steps):
+	for n in range(steps):
+		di.press(direction)
 
-	# open start menu
-	if not find_on_screen('start_menu'):
-		di.press(START)
+def player_run(direction):
+	di.keyDown(direction)
+	# TODO discover why not runnig
+	di.keyDown(Keys.B)
 	
-	# go to correct option
-	navigate_menu('menu_pointer', 'save_btn', navigation="vertical")
-	
-	# accept all
-	di.press('c')
-	di.press('c')
-	time.sleep(1)
-	di.press('c')
-	di.press('c')
+def player_stop():
+	# TODO discover why not stopping
+	for key in [Keys.UP, Keys.DOWN, Keys.LEFT, Keys.RIGHT, Keys.B]:
+		print(key)
+		di.keyUp(key)
 
+#
+# battle
+#
 def battle_throwball(ball_type: str):
 	# check if battle
 	if game_state() != "battle":
@@ -34,12 +35,12 @@ def battle_throwball(ball_type: str):
 	navigate_menu('menu_pointer', 'bag_btn', navigation="vertical")
 	
 	# open bag
-	di.press('c')
+	di.press(Keys.A)
 
 	# go to correct pocket
 	if not find_on_screen('bag_pokeballs'):
-		di.press(RIGHT)
-		di.press(RIGHT)
+		di.press(Keys.RIGHT)
+		di.press(Keys.RIGHT)
 
 	# select correct pokeball type
 	if ball_type == 'pokeball':
@@ -52,37 +53,56 @@ def battle_throwball(ball_type: str):
 		print('Pokeball type not found.')
 	
 	# throw pokeball
-	di.press('c')
-	di.press('c')
+	di.press(Keys.A)
+	di.press(Keys.A)
 	
-	accept_all()
+	accept_all_dialogue()
 	
 def battle_run():
 	# go to correct option
 	navigate_menu('menu_pointer', 'run_btn', navigation="horizontal")
 	navigate_menu('menu_pointer', 'run_btn', navigation="vertical")
 		
-	accept_all()
+	# TODO check if sucessful
+	# accept_all()
+
+#
+# misc
+#
+def save_game():
+	# check if overworld
+	if game_state() != "overworld":
+		print("not in overworld!")
+		return False
+
+	# open start menu
+	if not find_on_screen('start_menu'):
+		di.press(Keys.START)
 	
-def accept_all():
+	# go to correct option
+	navigate_menu('menu_pointer', 'save_btn', navigation="vertical")
+	
+	# accept all
+	di.press(Keys.A)
+	di.press(Keys.A)
+	time.sleep(1)
+	di.press(Keys.A)
+	di.press(Keys.A)
+	
+	return True
+	
+def accept_all_dialogue():
 	pointer = find_on_screen('speech_pointer')
 	while(pointer):
-		di.press(A)
+		di.press(Keys.A)
 		pointer = find_on_screen('speech_pointer')
 
-def deny_all():
+def deny_all_dialogue():
 	pointer = find_on_screen('speech_pointer')
 	while(pointer):
-		di.press(B)
+		di.press(Keys.B)
 		pointer = find_on_screen('speech_pointer')
 		
-
-	# accept all
-	# di.press('k')
-	# time.sleep(1)
-	# di.press('k')
-	
-# check if battle, if bag, if pokemon screen, if overworld
 def game_state():
 	# search for player; if player on screen, on overworld
 	player = find_on_screen('player_up') or find_on_screen('player_down') or find_on_screen('player_left') or find_on_screen('player_right')
@@ -111,9 +131,9 @@ def navigate_menu(pointer_name, btn_name, navigation="vertical"):
 		print(abs(pointer_coord - btn_coord))
 
 		if (pointer_coord + tolerance) < btn_coord:
-			di.press(DOWN) if navigation == "vertical" else di.press(RIGHT)
+			di.press(Keys.DOWN) if navigation == "vertical" else di.press(Keys.RIGHT)
 		elif (pointer_coord - tolerance) > btn_coord:
-			di.press(UP) if navigation == "vertical" else di.press(LEFT)
+			di.press(Keys.UP) if navigation == "vertical" else di.press(Keys.LEFT)
 	
 		pointer = find_on_screen(pointer_name)
 		pointer_coord = pointer[1] if navigation == "vertical" else pointer[0]
