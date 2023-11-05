@@ -10,30 +10,50 @@ def player_move(direction, steps):
 	for n in range(steps):
 		di.press(direction)
 
-def player_run(direction):
-	di.keyDown(direction)
-	# TODO discover why not runnig
-	di.keyDown(Keys.B)
-	
-def player_stop():
-	# TODO discover why not stopping
-	for key in [Keys.UP, Keys.DOWN, Keys.LEFT, Keys.RIGHT, Keys.B]:
-		print(key)
-		di.keyUp(key)
+# def player_run(direction):
+# 	di.keyDown(direction)
+# 	# TODO discover why not runnig
+# 	di.keyDown(Keys.B)
+
+# def player_stop():
+# 	# TODO discover why not stopping
+# 	for key in [Keys.UP, Keys.DOWN, Keys.LEFT, Keys.RIGHT, Keys.B]:
+# 		print(key)
+# 		di.keyUp(key)
 
 #
 # battle
 #
-def battle_throwball(ball_type: str):
+def battle_attack():
+	# check if battle
+    if game_state() != "battle":
+        print("not in a battle!")
+        return
+    
+    # go to correct option
+    navigate_menu('menu_pointer', 'attack_btn', navigation="horizontal")
+    navigate_menu('menu_pointer', 'attack_btn', navigation="vertical")
+    di.press(Keys.A)
+
+def battle_choose_attack(attack_number):
+	# check if attacking
+	if game_state() != "attacking":
+		print("not attacking!")
+		return # todo return value
+	
+	# TODO go to correct option
+	
+
+def battle_throw_ball(ball_type: str):
 	# check if battle
 	if game_state() != "battle":
 		print("not in a battle!")
-		return
+		return # todo return value
 	
 	# go to correct option
 	navigate_menu('menu_pointer', 'bag_btn', navigation="horizontal")
 	navigate_menu('menu_pointer', 'bag_btn', navigation="vertical")
-	
+
 	# open bag
 	di.press(Keys.A)
 
@@ -51,13 +71,13 @@ def battle_throwball(ball_type: str):
 		navigate_menu('menu_pointer', 'ultraball_label', navigation="vertical")
 	else:
 		print('Pokeball type not found.')
-	
+
 	# throw pokeball
 	di.press(Keys.A)
 	di.press(Keys.A)
 	
 	accept_all_dialogue()
-	
+
 def battle_run():
 	# go to correct option
 	navigate_menu('menu_pointer', 'run_btn', navigation="horizontal")
