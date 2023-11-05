@@ -27,27 +27,27 @@ nlu:
     - Nope
     - Nop  
 
-- intent: choose-attack
+- intent: choose_attack
   examples: |
     - Usa o ataque [1](attack)
     - Ataque [2](attack)
     - Usa o ataque [3](attack)
     - Ataque [4](attack)
 
-- intent: run-away-from-battle
+- intent: run_away_from_battle
   examples: |
     - Corre
     - Foge daí
     - Sai
 
-- intent: save-game
+- intent: save_game
   examples: |
     - Guarda o jogo
     - Guarda
     - Guardar
     - Salvar
 
-- intent: throw-pokeball
+- intent: throw_pokeball
   examples: |
     - Atira uma [pokebola](pokeball)
     - [ULTRABOLA](pokeball)

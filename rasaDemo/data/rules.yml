@@ -14,10 +14,11 @@ rules:
 
 - rule: Save Game
   steps:
-  - intent: save-game
+  - intent: save_game
   - action: action_save_game
+  - response: utter_save_game
   
 - rule: Throw Pokeball
   steps:
-  - intent: throw-pokeball
-  - action: utter_throw-pokeball
+  - intent: throw_pokeball
+  - action: utter_throw_pokeball
