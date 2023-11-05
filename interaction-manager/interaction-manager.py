@@ -8,7 +8,7 @@ from pydantic import BaseModel
 app = FastAPI()
 @app.post("/")
 def root():
-	return {"message": "Hello World. Be prepared to play Pokémon Leaf Green!"}
+	return {"message": "Hello World. Be prepared to play PokÃ©mon Leaf Green!"}
 
 
 class PlayerMoveBody(BaseModel):

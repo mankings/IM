@@ -2,20 +2,20 @@ version: "3.1"
 
 rules:
 
-- rule: Choose attack
-  steps:
-  - intent: choose-attack
-  - action: action_search_attack
+# - rule: Choose attack
+#   steps:
+#   - intent: choose-attack
+#   - action: action_search_attack
 
-- rule: Run Away
-  steps:
-  - intent: run-away
-  - action: utter_run-away
+# - rule: Run Away
+#   steps:
+#   - intent: run-away-from-battle
+#   - action: utter_run-away
 
 - rule: Save Game
   steps:
   - intent: save-game
-  - action: utter_save-game
+  - action: action_save_game
   
 - rule: Throw Pokeball
   steps:

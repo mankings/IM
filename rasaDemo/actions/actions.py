@@ -33,6 +33,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, UserUtteranceReverted
 
 import json
+import requests
 
 
 def write_log(text):
@@ -66,76 +67,81 @@ class ActionDefaultFallback(Action):
         
         # Revert user message which led to fallback.
         return [UserUtteranceReverted()]
-
-class SwitchLightsAction(Action):
-    def name(self) -> Text:
-        return "action_switch_lights"
+    
+class ActionSaveGame(Action):
+   def name(self) -> Text:
+       return "action_save_game"
    
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+   async def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+       write_log("Actions: " + "Save_game: " + "enter\n")
+        
+       api_url = "http://localhost:5000/misc/save_game"
        
-        print(tracker.get_slot("switch") + "--" + tracker.get_slot("place"))   
-        #tracker.lastest_message["entities"]  [0] - entity - value
-        print("Confiança: ", tracker.latest_message["intent"].get("confidence"))          
-        if tracker.latest_message["intent"].get("confidence") < 0.8:
-            dispatcher.utter_message(response="utter_default")
-            return [UserUtteranceReverted()]
-        """
-        switcher = homecontrol.SwitchLights(lightsimulator)
-        message = switcher.switchlight(tracker.get_slot("switch"), tracker.get_slot("place"))
-        dispatcher.utter_message(message)
-        return [SlotSet("place", None), SlotSet("switch", None)]
-         """
+       data = {}
+       
+       try:
+           response = requests.post(api_url, json=data)
+           response_data = response.json()
+           dispatcher.utter_message(f"API response: {response_data}")
+       except Exception as e:
+           dispatcher.utter_message("An error occurred while connecting to the API.")
 
-class ActionAfirmar(Action):
-    
-    def name(self) -> Text:
-        return "action_afirmar"
-    
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+       return []
         
-        write_log("Actions: " + "Afirmar: " + "enter\n")
-        print("Confiança: ", tracker.latest_message["intent"].get("confidence"))
-        write_log("Confiança: " + str(tracker.latest_message["intent"].get("confidence")) + "\n")
-        
-        msg = {"comando": "confirmar"}
-    #    publish.single(topic="comandos/voz/UI", payload=json.dumps(msg), hostname="localhost")
-        
-        write_log("Actions: " + "Afirmar: " + "exit\n")
-        
-        return []
 
-class ActionNegar(Action):
+# class ActionAfirmar(Action):
     
-    def name(self) -> Text:
-        return "action_negar"
+#     def name(self) -> Text:
+#         return "action_afirmar"
     
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        write_log("Actions: " + "Negar: " + "enter\n")
-        print("Confiança: ", tracker.latest_message["intent"].get("confidence"))
-        write_log("Confiança: " + str(tracker.latest_message["intent"].get("confidence")) + "\n")
+#         write_log("Actions: " + "Afirmar: " + "enter\n")
+#         print("Confiança: ", tracker.latest_message["intent"].get("confidence"))
+#         write_log("Confiança: " + str(tracker.latest_message["intent"].get("confidence")) + "\n")
         
-        msg = {"comando": "negar"}
-        #publish.single(topic="comandos/voz/UI", payload=json.dumps(msg), hostname="localhost")
+#         msg = {"comando": "confirmar"}
+#     #    publish.single(topic="comandos/voz/UI", payload=json.dumps(msg), hostname="localhost")
         
-        write_log("Actions: " + "Negar: " + "exit\n")
+#         write_log("Actions: " + "Afirmar: " + "exit\n")
         
-        return []
+#         return []
+
+# class ActionNegar(Action):
     
-class ActionSearchAttack(Action):
+#     def name(self) -> Text:
+#         return "action_negar"
     
-    def name(self) -> Text:
-        return "action_search_attack"
-    
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        attack = tracker.get_slot("attack")
+#         write_log("Actions: " + "Negar: " + "enter\n")
+#         print("Confiança: ", tracker.latest_message["intent"].get("confidence"))
+#         write_log("Confiança: " + str(tracker.latest_message["intent"].get("confidence")) + "\n")
+        
+#         msg = {"comando": "negar"}
+#         #publish.single(topic="comandos/voz/UI", payload=json.dumps(msg), hostname="localhost")
+        
+#         write_log("Actions: " + "Negar: " + "exit\n")
+        
+#         return []
+    
+# class ActionSearchAttack(Action):
+    
+#     def name(self) -> Text:
+#         return "action_search_attack"
+    
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+#         attack = tracker.get_slot("attack")
     

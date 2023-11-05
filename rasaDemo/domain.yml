@@ -5,7 +5,7 @@ intents:
 - affirm
 - deny
 - choose-attack
-- run-away
+- run-away-from-battle
 - save-game
 - throw-pokeball
 entities:
@@ -53,7 +53,7 @@ responses:
   
 actions:
 - action_greet_user
-- action_switch_lights
+- action_save_game
 
 session_config:
   session_expiration_time: 60
