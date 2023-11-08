@@ -109,4 +109,4 @@ def save_game():
     get_window()
     result = macros.save_game()
     
-    return {"result": result}
+    return {"result": result[0], "text": result[1]}

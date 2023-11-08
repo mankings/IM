@@ -53,7 +53,11 @@
 <body>
     <h1 style="background-color: red; margin: 0; padding: 10px; text-align: center; ">VOICE ACTIVATED POKÉMON LEAF GREEN</h1>
 
-    <button id="test-btn">Test</button>
+    <button class="test-btns">Guarda o jogo.</button>
+    <button class="test-btns">Sim.</button>
+    <button class="test-btns">Não.</button>
+    <button class="test-btns">Anda um para cima.</button>
+    <button class="test-btns">Guarda o jogo.</button>
     <!--<p>Click the button below and start speaking.</p>
     <button id="start-btn">Start</button>-->
 
@@ -411,8 +415,15 @@
         var POKEMON_API_URL = "http://127.0.0.1:5000/"
         var RASA_URL = "http://127.0.0.1:5005/model/parse"
 
-        document.getElementById("test-btn").addEventListener('click', function () {
-            sendMMI("guarda o jogo.")
+        // Get all elements with the "test-btns" class
+        const elements = document.querySelectorAll(".test-btns");
+
+        // Loop through the elements and attach a click event listener to each
+        elements.forEach((element) => {
+            element.addEventListener('click', function () {
+                // Call the sendMMI function with the HTML content of the clicked element
+                sendMMI(this.textContent);
+            });
         });
 
 
@@ -443,17 +454,25 @@
                     //        setValue(JSON.stringify(result))));
 
                 } else if (data.intent.name == 'save_game') {
-                    console.log("save_game")
+                    console.log("save_game intent")
                     $.post(POKEMON_API_URL + "misc/save_game", JSON.stringify(new Object()), function (response) {
                         console.log(response)
+                        feedback(response.text)
                     })
-
                 }
             });
+        }
 
-            /*
+        function feedback(feedback) {
+            $("#response").html(feedback);
+            $("#response").addClass("container");
+            $("#response").addClass("responseText");
 
-                      */
+            setTimeout(function () {
+                $("#response").html("");
+                $("#response").removeClass("container");
+                $("#response").removeClass("responseText");
+            }, 3000);
         }
         // sendMMI("mudar para verde o circulo");
 

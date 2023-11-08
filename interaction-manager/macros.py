@@ -92,11 +92,16 @@ def save_game():
 	# check if overworld
 	if game_state() != "overworld":
 		print("not in overworld!")
-		return False
+		return (False, "Nao e possivel guardar o jogo de momento.")
 
 	# open start menu
-	if not find_on_screen('start_menu'):
-		di.press('enter')
+	tries = 0
+	while not find_on_screen('start_menu'):
+			di.press('enter')
+			tries += 1
+			if tries > 3:
+				print("can't open start menu")
+				return (False, "Nao foi possivel abrir o menu.")
 	
 	# go to correct option
 	navigate_menu('menu_pointer', 'save_btn', navigation="vertical")
@@ -107,8 +112,11 @@ def save_game():
 	time.sleep(1)
 	di.press(KEY_A)
 	di.press(KEY_A)
+	time.sleep(1)
+	di.press(KEY_A)
+	di.press(KEY_A)
 	
-	return True
+	return (True, "O jogo foi guardado com sucesso.")
 	
 def accept_all_dialogue():
 	pointer = find_on_screen('speech_pointer')
