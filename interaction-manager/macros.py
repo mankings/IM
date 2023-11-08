@@ -13,11 +13,11 @@ def player_move(direction, steps):
 # def player_run(direction):
 # 	di.keyDown(direction)
 # 	# TODO discover why not runnig
-# 	di.keyDown(Keys.B)
+# 	di.keyDown(KEY_B)
 
 # def player_stop():
 # 	# TODO discover why not stopping
-# 	for key in [Keys.UP, Keys.DOWN, Keys.LEFT, Keys.RIGHT, Keys.B]:
+# 	for key in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_B]:
 # 		print(key)
 # 		di.keyUp(key)
 
@@ -33,7 +33,7 @@ def battle_attack():
     # go to correct option
     navigate_menu('menu_pointer', 'attack_btn', navigation="horizontal")
     navigate_menu('menu_pointer', 'attack_btn', navigation="vertical")
-    di.press(Keys.A)
+    di.press(KEY_A)
 
 def battle_choose_attack(attack_number):
 	# check if attacking
@@ -42,7 +42,6 @@ def battle_choose_attack(attack_number):
 		return # todo return value
 	
 	# TODO go to correct option
-	
 
 def battle_throw_ball(ball_type: str):
 	# check if battle
@@ -55,12 +54,12 @@ def battle_throw_ball(ball_type: str):
 	navigate_menu('menu_pointer', 'bag_btn', navigation="vertical")
 
 	# open bag
-	di.press(Keys.A)
+	di.press(KEY_A)
 
 	# go to correct pocket
 	if not find_on_screen('bag_pokeballs'):
-		di.press(Keys.RIGHT)
-		di.press(Keys.RIGHT)
+		di.press(KEY_RIGHT)
+		di.press(KEY_RIGHT)
 
 	# select correct pokeball type
 	if ball_type == 'pokeball':
@@ -73,8 +72,8 @@ def battle_throw_ball(ball_type: str):
 		print('Pokeball type not found.')
 
 	# throw pokeball
-	di.press(Keys.A)
-	di.press(Keys.A)
+	di.press(KEY_A)
+	di.press(KEY_A)
 	
 	accept_all_dialogue()
 
@@ -97,30 +96,30 @@ def save_game():
 
 	# open start menu
 	if not find_on_screen('start_menu'):
-		di.press(Keys.START)
+		di.press('enter')
 	
 	# go to correct option
 	navigate_menu('menu_pointer', 'save_btn', navigation="vertical")
 	
 	# accept all
-	di.press(Keys.A)
-	di.press(Keys.A)
+	di.press(KEY_A)
+	di.press(KEY_A)
 	time.sleep(1)
-	di.press(Keys.A)
-	di.press(Keys.A)
+	di.press(KEY_A)
+	di.press(KEY_A)
 	
 	return True
 	
 def accept_all_dialogue():
 	pointer = find_on_screen('speech_pointer')
 	while(pointer):
-		di.press(Keys.A)
+		di.press(KEY_A)
 		pointer = find_on_screen('speech_pointer')
 
 def deny_all_dialogue():
 	pointer = find_on_screen('speech_pointer')
 	while(pointer):
-		di.press(Keys.B)
+		di.press(KEY_B)
 		pointer = find_on_screen('speech_pointer')
 		
 def game_state():
@@ -151,9 +150,9 @@ def navigate_menu(pointer_name, btn_name, navigation="vertical"):
 		print(abs(pointer_coord - btn_coord))
 
 		if (pointer_coord + tolerance) < btn_coord:
-			di.press(Keys.DOWN) if navigation == "vertical" else di.press(Keys.RIGHT)
+			di.press(KEY_DOWN) if navigation == "vertical" else di.press(KEY_RIGHT)
 		elif (pointer_coord - tolerance) > btn_coord:
-			di.press(Keys.UP) if navigation == "vertical" else di.press(Keys.LEFT)
+			di.press(KEY_UP) if navigation == "vertical" else di.press(KEY_LEFT)
 	
 		pointer = find_on_screen(pointer_name)
 		pointer_coord = pointer[1] if navigation == "vertical" else pointer[0]

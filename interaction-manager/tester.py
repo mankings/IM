@@ -1,9 +1,17 @@
 import requests
+import json
 from time import sleep
 
 if __name__ == '__main__':
-    # Replace this URL with the URL of your dummy API
-    api_url = "http://localhost:5000/"
-    # Send a GET request to the API
-    response = requests.get(api_url + "player_move")
-    print(response)
+    api_url = "http://localhost:5000/misc/save_game"
+    
+    body = {
+        "text": "Guarda o jogo"
+    }
+    
+    response = requests.post(api_url, json={})
+    
+    for key in response.json():
+        print(key)
+        print(response.json()[key])
+        

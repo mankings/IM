@@ -5,19 +5,17 @@ import cv2, PIL
 import os
 
 # KEYS
-from enum import Enum
-class Keys(Enum):
-    A = 'c'
-    B = 'x'
-    L = 's'
-    R = 'd'
-    UP = 'up'
-    DOWN = 'down'
-    LEFT = 'left'
-    RIGHT = 'right'
-    START = 'enter'
-    SELECT = 'backspace'
-    FASTFORWARD = 'space'
+KEY_A = 'c'
+KEY_B = 'x'
+KEY_L = 's'
+KEY_R = 'd'
+KEY_UP = 'up'
+KEY_DOWN = 'down'
+KEY_LEFT = 'left'
+KEY_RIGHT = 'right'
+KEY_START = 'enter'
+KEY_SELECT = 'backspace'
+KEY_FASTFORWARD = 'space'
 
 # GAME WINDOW INFO
 WINDOW_TITLE = "Pokemon - Leaf Green Version (U) (V1.1) - VisualBoyAdvance-M 2.1.7"

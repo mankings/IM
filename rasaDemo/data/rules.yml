@@ -16,7 +16,7 @@ rules:
   steps:
   - intent: save_game
   - action: action_save_game
-  - response: utter_save_game
+  - action: utter_save_game
   
 - rule: Throw Pokeball
   steps:

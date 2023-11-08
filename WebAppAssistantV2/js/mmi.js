@@ -154,15 +154,15 @@ var MMIClient = (function () {
         cli.getter.open('GET', this.IMAdd, true);
         cli.getter.onreadystatechange = function () {
             if (cli.getter.readyState == 4 && cli.getter.response != "") {
-//                clearInterval(call);
+                //                clearInterval(call);
                 var xml = cli.getter.response;
                 cli.onArrive.trigger(xml);
                 cli.startPoolIM();
             }
         };
-//        var call = setInterval(function () {
-//            // console.log('start ready?');
-//        }, 1000);
+        //        var call = setInterval(function () {
+        //            // console.log('start ready?');
+        //        }, 1000);
         cli.getter.send();
 
         console.log("GET SENT TO " + this.IMAdd)
@@ -189,7 +189,7 @@ var MMIClientSocket = (function () {
     MMIClientSocket.prototype.sendToIM = function (lce) {
         console.log(lce.toString())
 
-        if(this.socket !== null)
+        if (this.socket !== null)
             this.socket.send(lce.toString());
 
         console.log("MESSAGE SENT TO " + this.address);
@@ -205,7 +205,7 @@ var MMIClientSocket = (function () {
         };
     };
     MMIClientSocket.prototype.closeSocket = function () {
-        if(this.socket !== null)
+        if (this.socket !== null)
             this.socket.close();
     };
     return MMIClientSocket;
