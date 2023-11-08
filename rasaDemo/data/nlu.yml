@@ -1,11 +1,15 @@
 version: "3.1"
 nlu:
+- regex: unit
+  examples: |
+    - \d{1,2}
+
 - intent: walk
   examples: |
-    - Anda [quatro](unit) para a [esquerda](direction)
-    - Anda [dois](unit) passos para [cima](direction) 
-    - Dá [cinco](unit) passos para [baixo](direction) 
-    - Vai [um](unit) para a [direita](direction)
+    - Anda [44](unit) para a [esquerda](direction)
+    - Anda [15](unit) passos para [cima](direction) 
+    - Dá [2](unit) passos para [baixo](direction) 
+    - Vai [1](unit) para a [direita](direction)
     
 - intent: run
   examples: |

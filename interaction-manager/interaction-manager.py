@@ -27,11 +27,11 @@ def root():
 
 class PlayerMoveBody(BaseModel):
     direction: str
-    steps: int
+    unit: int
 @app.post("/movement/player_move")
 def player_move(body: PlayerMoveBody):
 	get_window()
-	macros.player_move(body.direction, body.steps)
+	macros.player_move(body.direction, body.unit)
 	
 	return {"result": "yes"}
 

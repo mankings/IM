@@ -56,7 +56,7 @@
     <button class="test-btns">Guarda o jogo.</button>
     <button class="test-btns">Sim.</button>
     <button class="test-btns">Não.</button>
-    <button class="test-btns">Anda um para cima.</button>
+    <button class="test-btns">Anda um passo para cima.</button>
     <button class="test-btns">Guarda o jogo.</button>
     <!--<p>Click the button below and start speaking.</p>
     <button id="start-btn">Start</button>-->
@@ -409,15 +409,11 @@
         /////////////////////////////////////////
 
 
-        //var mmiCli_1 = null;
-        //mmiCli_1 = new MMIClient(null, mmi_fusion + "SPEECHIN");
-
         var POKEMON_API_URL = "http://127.0.0.1:5000/"
         var RASA_URL = "http://127.0.0.1:5005/model/parse"
 
         // Get all elements with the "test-btns" class
         const elements = document.querySelectorAll(".test-btns");
-
         // Loop through the elements and attach a click event listener to each
         elements.forEach((element) => {
             element.addEventListener('click', function () {
@@ -426,7 +422,6 @@
             });
         });
 
-
         function sendMMI(final_transcript) {
 
             var obj = new Object();
@@ -434,32 +429,35 @@
             $.post(RASA_URL, JSON.stringify(obj), function (data) {
                 console.log(data);
 
+                switch (data.intent.name) {
+                    case 'save_game':
+                        $.post(POKEMON_API_URL + "misc/save_game", JSON.stringify(new Object()), function (response) {
+                            console.log(response)
+                            feedback(response.text)
+                        })
+                    case 'confirm':
+                        $.post(POKEMON_API_URL + "misc/confirm", JSON.stringify(new Object()), function (response) {
+                            console.log(response)
+                            //feedback(response.text)
+                        })
+                    case 'deny':
+                        $.post(POKEMON_API_URL + "misc/deny", JSON.stringify(new Object()), function (response) {
+                            console.log(response)
+                            //feedback(response.text)
+                        })
+                    case 'walk':
+                        var body = new Object()
+                        for (var i = 0; i < data.entities.length; i++) {
+                            body[data.entities[i].entity] = data.entities[i].value
+                        }
+                        console.log(body)
 
-                if (data.intent.name == 'change_color') {
-                    //var shape = '';
-                    //var color = '';
-
-                    //for (let i = 0; i < data.entities.length; i++) {
-                    //    if (data.entities[i].entity == 'shape')
-                    //        shape = data.entities[i].value;
-                    //    if (data.entities[i].entity == 'color')
-                    //        color = data.entities[i].value;
-                    //}
-
-                    //var message = { 'intent': 'change_color', 'shape': shape, 'color': color }
-                    //var messaget = btoa(unescape(encodeURIComponent(final_transcript)));
-                    //var result = { "recognized": ["SPEECH", "SPEECHIN", "APP"], "text": messaget, "nlu": message };
-                    //mmiCli_1.sendToIM(new LifeCycleEvent("SPEECHIN", "IM", "text-1", "ctx-1").
-                    //    doExtensionNotification(new EMMA("text-", "text", "command", 1, 0).
-                    //        setValue(JSON.stringify(result))));
-
-                } else if (data.intent.name == 'save_game') {
-                    console.log("save_game intent")
-                    $.post(POKEMON_API_URL + "misc/save_game", JSON.stringify(new Object()), function (response) {
-                        console.log(response)
-                        feedback(response.text)
-                    })
+                        $.post(POKEMON_API_URL + "movement/player_move", JSON.stringify(body), function (response) {
+                            console.log(response)
+                            feedback(response.text)
+                        })
                 }
+
             });
         }
 
@@ -472,7 +470,7 @@
                 $("#response").html("");
                 $("#response").removeClass("container");
                 $("#response").removeClass("responseText");
-            }, 3000);
+            }, 5000);
         }
         // sendMMI("mudar para verde o circulo");
 

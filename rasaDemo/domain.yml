@@ -21,7 +21,7 @@ slots:
     - type: from_entity
       entity: direction
   unit:
-    type: text
+    type: float
     influence_conversation: true
     mappings:
     - type: from_entity
