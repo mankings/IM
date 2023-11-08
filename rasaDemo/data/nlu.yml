@@ -6,8 +6,8 @@ nlu:
 
 - intent: walk
   examples: |
-    - Anda [44](unit) para a [esquerda](direction)
-    - Anda [15](unit) passos para [cima](direction) 
+    - Anda [3](unit) para a [esquerda](direction)
+    - Anda [4](unit) passos para [cima](direction) 
     - Dá [2](unit) passos para [baixo](direction) 
     - Vai [1](unit) para a [direita](direction)
     

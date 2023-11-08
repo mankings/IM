@@ -7,8 +7,16 @@ import time
 # movement
 #
 def player_move(direction, steps):
+	if direction not in ['up', 'down', 'left', 'right']:
+		if direction == 'cima': direction == 'up'
+		elif direction == 'baixo': direction == 'down'
+		elif direction == 'esquerda': direction == 'left'
+		elif direction == 'direita': direction == 'right'
+		else: return (False, "Direcao invalida.")
+		
 	for n in range(steps):
 		di.press(direction)
+	return (True, "Movimento executado com sucesso.")
 
 # def player_run(direction):
 # 	di.keyDown(direction)
@@ -117,6 +125,12 @@ def save_game():
 	di.press(KEY_A)
 	
 	return (True, "O jogo foi guardado com sucesso.")
+
+def accept():
+	di.press(KEY_A)
+
+def refuse():
+	di.press(KEY_B)
 	
 def accept_all_dialogue():
 	pointer = find_on_screen('speech_pointer')

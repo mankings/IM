@@ -56,7 +56,10 @@
     <button class="test-btns">Guarda o jogo.</button>
     <button class="test-btns">Sim.</button>
     <button class="test-btns">Não.</button>
-    <button class="test-btns">Anda um passo para cima.</button>
+    <button class="test-btns">Anda 1 passo para cima.</button>
+    <button class="test-btns">Anda 1 passo para baixo.</button>
+    <button class="test-btns">Anda 1 passo para a esquerda.</button>
+    <button class="test-btns">Anda 1 passo para a direita.</button>
     <button class="test-btns">Guarda o jogo.</button>
     <!--<p>Click the button below and start speaking.</p>
     <button id="start-btn">Start</button>-->
@@ -428,36 +431,69 @@
             obj.text = final_transcript;
             $.post(RASA_URL, JSON.stringify(obj), function (data) {
                 console.log(data);
+                var path = ""
 
                 switch (data.intent.name) {
                     case 'save_game':
-                        $.post(POKEMON_API_URL + "misc/save_game", JSON.stringify(new Object()), function (response) {
-                            console.log(response)
-                            feedback(response.text)
-                        })
-                    case 'confirm':
-                        $.post(POKEMON_API_URL + "misc/confirm", JSON.stringify(new Object()), function (response) {
-                            console.log(response)
-                            //feedback(response.text)
-                        })
+                        path = "misc/save_game"
+                        postToAPI(path, new Object()).then(response => {
+                          console.log(response);
+                        }).catch(error => {
+                          console.error('Error:', error);
+                        });
+                        break;
+
+                    case 'affirm':
+                        path = "misc/confirm"
+                        postToAPI(path, new Object()).then(response => {
+                          console.log(response);
+                        }).catch(error => {
+                          console.error('Error:', error);
+                        });
+                        break;
+
                     case 'deny':
-                        $.post(POKEMON_API_URL + "misc/deny", JSON.stringify(new Object()), function (response) {
-                            console.log(response)
-                            //feedback(response.text)
-                        })
+                        path = "misc/deny"
+                        postToAPI(path, new Object()).then(response => {
+                          console.log(response);
+                        }).catch(error => {
+                          console.error('Error:', error);
+                        });
+                        break;
+
                     case 'walk':
-                        var body = new Object()
+                        path = "movement/player_move"
+                        var body = new Object();
                         for (var i = 0; i < data.entities.length; i++) {
-                            body[data.entities[i].entity] = data.entities[i].value
+                            body[data.entities[i].entity] = data.entities[i].value;
                         }
-                        console.log(body)
+                        body['unit'] = 1
 
-                        $.post(POKEMON_API_URL + "movement/player_move", JSON.stringify(body), function (response) {
-                            console.log(response)
-                            feedback(response.text)
-                        })
+                        postToAPI(path, body).then(response => {
+                          console.log(response);
+                        }).catch(error => {
+                          console.error('Error:', error);
+                        });
                 }
+                console.log("path: " + path)
+            });
+        }
 
+        async function postToAPI(path, body) {
+          const headers = new Headers();
+          headers.append('Content-Type', 'application/json');
+
+          const requestOptions = {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+          };
+
+          return fetch(POKEMON_API_URL + path, requestOptions)
+            .then(response => response.json())
+            .catch(error => {
+              console.error('Error:', error);
+              throw error;
             });
         }
 
@@ -472,7 +508,6 @@
                 $("#response").removeClass("responseText");
             }, 5000);
         }
-        // sendMMI("mudar para verde o circulo");
 
 
         //var mmiCli_Out_add = "wss://" + host + ":8005/IM/USER1/";

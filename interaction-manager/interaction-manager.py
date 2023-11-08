@@ -31,9 +31,9 @@ class PlayerMoveBody(BaseModel):
 @app.post("/movement/player_move")
 def player_move(body: PlayerMoveBody):
 	get_window()
-	macros.player_move(body.direction, body.unit)
+	result = macros.player_move(body.direction, body.unit)
 	
-	return {"result": "yes"}
+	return {"result": result[0], "text": result[1]}
 
 
 # @app.post("/movement/player_run")
@@ -99,7 +99,7 @@ def confirm():
 @app.post("/misc/deny")
 def deny():
     get_window()
-    result = macros.deny()
+    result = macros.refuse()
     
     return {"result": result}
 
