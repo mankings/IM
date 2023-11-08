@@ -7,15 +7,18 @@ import time
 # movement
 #
 def player_move(direction, steps):
-	if direction not in ['up', 'down', 'left', 'right']:
-		if direction == 'cima': direction == 'up'
-		elif direction == 'baixo': direction == 'down'
-		elif direction == 'esquerda': direction == 'left'
-		elif direction == 'direita': direction == 'right'
+	direc = direction
+	print("1", direc, steps)
+	if direction not in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT]:
+		if direction == "cima": direc = KEY_UP
+		elif direction == "baixo": direc = KEY_DOWN
+		elif direction == "esquerda": direc = KEY_LEFT
+		elif direction == "direita": direc = KEY_RIGHT
 		else: return (False, "Direcao invalida.")
 		
 	for n in range(steps):
-		di.press(direction)
+		print("2", direc, steps)
+		di.press(direc)
 	return (True, "Movimento executado com sucesso.")
 
 # def player_run(direction):

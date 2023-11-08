@@ -6,8 +6,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 
-
-
 app = FastAPI()
 
 origins = ["*"] 
@@ -30,10 +28,10 @@ class PlayerMoveBody(BaseModel):
     unit: int
 @app.post("/movement/player_move")
 def player_move(body: PlayerMoveBody):
-	get_window()
-	result = macros.player_move(body.direction, body.unit)
+    get_window()
+    result = macros.player_move(body.direction, body.unit)
 	
-	return {"result": result[0], "text": result[1]}
+    return {"result": result[0], "text": result[1]}
 
 
 # @app.post("/movement/player_run")
