@@ -1,15 +1,17 @@
 version: "3.1"
 nlu:
-- regex: unit
-  examples: |
-    - \d{1,2}
-
 - intent: walk
   examples: |
-    - Anda [3](unit) para a [esquerda](direction)
-    - Anda [4](unit) passos para [cima](direction) 
-    - Dá [2](unit) passos para [baixo](direction) 
-    - Vai [1](unit) para a [direita](direction)
+    - Anda [um](unit) para a [esquerda](direction)
+    - Anda [dois](unit) passos para [cima](direction) 
+    - Dá [três](unit) passos para [baixo](direction) 
+    - Vai [quatro](unit) para a [direita](direction)
+    - Anda [cinco](unit) para a [esquerda](direction)
+    - Anda [seis](unit) passos para [cima](direction) 
+    - Dá [sete](unit) passos para [baixo](direction) 
+    - Vai [oito](unit) para a [direita](direction)
+    - Dá [nove](unit) passos para [baixo](direction) 
+    - Vai [dez](unit) para a [direita](direction)
     
 - intent: run
   examples: |
@@ -33,10 +35,10 @@ nlu:
 
 - intent: choose_attack
   examples: |
-    - Usa o ataque [1](attack)
-    - Ataque [2](attack)
-    - Usa o ataque [3](attack)
-    - Ataque [4](attack)
+    - Usa o ataque [um](attack)
+    - Ataque [dois](attack)
+    - Usa o ataque [três](attack)
+    - Ataque [quatro](attack)
 
 - intent: run_away_from_battle
   examples: |

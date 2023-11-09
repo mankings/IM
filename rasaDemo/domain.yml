@@ -21,13 +21,13 @@ slots:
     - type: from_entity
       entity: direction
   unit:
-    type: float
+    type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: unit
   attack:
-    type: float
+    type: text
     influence_conversation: true
     mappings:
     - type: from_entity
