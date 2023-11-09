@@ -71,28 +71,46 @@ def battle_choose_attack(attack_number):
 		
 def battle_pokemon():
 	# check if battle
-    if game_state() != "battle":
-        print("not in a battle!")
-        return
+    # if game_state() != "battle":
+    #     print("not in a battle!")
+    #     return
     
-    # go to correct option
-    navigate_menu('menu_pointer', 'pkmn_btn', navigation="horizontal")
-    navigate_menu('menu_pointer', 'pkmn_btn', navigation="vertical")
-    di.press(KEY_A)
+	if game_state() == "battle": 
+		navigate_menu('menu_pointer', 'pkmn_btn', navigation="horizontal")
+		navigate_menu('menu_pointer', 'pkmn_btn', navigation="vertical")
+		di.press(KEY_A)
+	elif game_state() == "overworld":
+		di.press(KEY_START)
+		navigate_menu('menu_pointer', 'pkmn_btn', navigation="vertical")
+		di.press(KEY_A)
 
-def battle_choose_pokemon(pokemon_number):
+def choose_pokemon(pokemon_number):
 	pokemon_number = pokemon_number.lower()
 	
-	if game_state() == "battle": 
-		if pokemon_number in ['2', "segundo"]:
-			di.press(KEY_DOWN)
-	
+	# Ações comuns a battle e overworld
+	if pokemon_number in ['2', "segundo"]:
 		di.press(KEY_DOWN)
-		di.press(KEY_A)
-		di.press(KEY_A)
 	
-	elif game_state() == "overworld":
-		pass
+	di.press(KEY_DOWN)
+	di.press(KEY_A)
+	
+	# Ações para overworld
+	if find_on_screen('switch_btn'):
+		navigate_menu('menu_pointer', 'switch_btn', navigation="vertical")
+		di.press(KEY_A)
+		di.press(KEY_LEFT)
+		di.press(KEY_A)
+		di.press(KEY_UP)
+		di.press(KEY_A)
+		di.prees(KEY_B)
+		# navigate_menu('menu_pointer', 'exit_btn', navigation="vertical")
+		# di.press(KEY_A)
+	
+	# Ação para battle
+	else: di.press(KEY_A)
+	
+	
+	
 		
 
 def battle_throw_ball(ball_type: str):

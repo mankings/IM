@@ -77,9 +77,9 @@ def battle_pokemon():
 class ChoosePokemonBody(BaseModel):
     pokemon_number: str
 @app.post("/battle/choose_pokemon")
-def battle_choose_pokemon(body: ChoosePokemonBody):
+def choose_pokemon(body: ChoosePokemonBody):
     get_window()
-    macros.battle_choose_pokemon(body.pokemon_number)
+    macros.choose_pokemon(body.pokemon_number)
     
     return {"result": "yes"}
 
