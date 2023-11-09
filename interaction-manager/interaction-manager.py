@@ -25,7 +25,7 @@ def root():
 
 class PlayerMoveBody(BaseModel):
     direction: str
-    unit: int
+    unit: str
 @app.post("/movement/player_move")
 def player_move(body: PlayerMoveBody):
     get_window()
@@ -59,11 +59,27 @@ def battle_attack():
 
 
 class ChooseAttackBody(BaseModel):
-    attack_number: int
+    attack_number: str
 @app.post("/battle/choose_attack")
 def battle_choose_attack(body: ChooseAttackBody):
     get_window()
     macros.battle_choose_attack(body.attack_number)
+    
+    return {"result": "yes"}
+
+@app.post("/battle/pokemon")
+def battle_pokemon():
+    get_window()
+    macros.battle_pokemon()
+    
+    return {"result": "yes"}
+
+class ChoosePokemonBody(BaseModel):
+    pokemon_number: str
+@app.post("/battle/choose_pokemon")
+def battle_choose_pokemon(body: ChoosePokemonBody):
+    get_window()
+    macros.battle_choose_pokemon(body.pokemon_number)
     
     return {"result": "yes"}
 
@@ -78,18 +94,18 @@ def battle_throw_ball(body: ThrowBallBody):
     return {"result": "yes"}
 
 
-@app.post("/battle/run")
+@app.post("/battle/run_away")
 def battle_run():
     get_window()
-    macros.battle_run()
+    result = macros.battle_run()
     
-    return {"result": "yes"}
+    return {"result": result}
 
 
 @app.post("/misc/confirm")
 def confirm():
     get_window()
-    result = macros.confirm()
+    result = macros.accept()
     
     return {"result": result}
 
@@ -106,5 +122,12 @@ def deny():
 def save_game():
     get_window()
     result = macros.save_game()
+    
+    return {"result": result[0], "text": result[1]}
+
+@app.post("/misc/skip_dialogue")
+def skip_dialogue():
+    get_window()
+    result = macros.deny_all_dialogue()
     
     return {"result": result[0], "text": result[1]}

@@ -1,17 +1,20 @@
 version: '3.1'
 intents:
 - walk
-- run
 - affirm
 - deny
 - choose_attack
+- choose_pokemon
 - run_away_from_battle
 - save_game
 - throw_pokeball
+- battle_attack
+- battle_pokemon
 entities:
 - direction
 - unit
 - attack
+- pokemon
 - pokeball
 slots:
   direction:
@@ -32,6 +35,12 @@ slots:
     mappings:
     - type: from_entity
       entity: attack
+  pokemon:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pokemon
   pokeball:
     type: text
     influence_conversation: true

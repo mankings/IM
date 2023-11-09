@@ -1,161 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>CASA VIVA + Assistant</title>
+/* BEGIN EXTERNAL SOURCE */
 
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-    <style>
-        body {
-            --indicator-color: black;
-            /*background: #fff;*/ /*radial-gradient(#fff 75%, var(--indicator-color));*/
-            background-image: url('/images/starters.png');
-            background-color: beige;
-            background-repeat: no-repeat;
-            background-size: auto;
-            background-position: center;
-            min-height: 100vh;
-            color: whitesmoke;
-            font-family: Poppins;
-            margin: 0;
-            padding: 0;
-        }
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-        .mic {
-            width: 150px;
-        }
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            border-radius: 10px;
-            background-color: #f0f0f0;
-        }
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-        .responseText {
-            border: solid 2px #8ea7cf;
-            margin: 2%;
-            color: #41683a;
-        }
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-        .bottomNav {
-            position: absolute;
-            bottom: 2%;
-            width: 95%;
-        }
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-        .recognized {
-            font-size: x-large;
-        }
-    </style>
-</head>
-<body>
-    <h1 style="background-color: darkslategrey; margin: 0; padding: 10px; text-align: center; ">VOICE ACTIVATED POKÉMON LEAF GREEN</h1>
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-    <button class="test-btns">Guarda o jogo.</button>
-    <button class="test-btns">Sim.</button>
-    <button class="test-btns">Não.</button>
-    <button class="test-btns">Anda um passo para cima.</button>
-    <button class="test-btns">Anda um passo para baixo.</button>
-    <button class="test-btns">Anda um passo para a esquerda.</button>
-    <button class="test-btns">Anda um passo para a direita.</button>
-    <button class="test-btns">Atira uma pokébola.</button>
-    <button class="test-btns">Atira uma great bola.</button>
-    <button class="test-btns">Atira uma ultra bola.</button>
-    <button class="test-btns">Ataca.</button>
-    <button class="test-btns">Primeiro ataque.</button>
-    <button class="test-btns">Segundo ataque.</button>
-    <button class="test-btns">Terceiro ataque.</button>
-    <button class="test-btns">Quarto ataque.</button>
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-    <!--<p>Click the button below and start speaking.</p>
-    <button id="start-btn">Start</button>-->
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-    <div class="bottomNav">
-        <div id="response" class="" style="">d</div>
-        <div class="container" style="border: solid 2px black; margin: 2%; background-color: darkslategrey;">
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
 
-            <svg class="mic" id="mic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
-            <style type="text/css">
-                .st01 {
-                    fill: #4F5D73;
-                }
-
-                .st1 {
-                    opacity: 0.2;
-                }
-
-                .st2 {
-                    fill: #231F20;
-                }
-
-                .st3 {
-                    fill: #4F5D73;
-                }
-
-                .st4 {
-                    fill: #FFFFFF;
-                }
-            </style>
-            
-            <defs><filter id="f1" x="0" y="0">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
-            </filter></defs>
-
-            <circle class="st0" cx="50" cy="50" r="32" />
-            <g id="Layer_1" transform="translate(18,18)">
-            <g class="st1">
-            <path class="st2" d="M32,41.5c3.3,0,6-2.7,6-6v-18c0-3.3-2.7-6-6-6s-6,2.7-6,6v18C26,38.8,28.7,41.5,32,41.5z" />
-                 </g>
-            <g class="st1">
-            <path class="st2" d="M32,48.2c-7.2,0-13-5.8-13-13v-3.8c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v3.8c0,5.5,4.5,10,10,10
-                       s10-4.5,10-10v-3.8c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v3.8C45,42.4,39.2,48.2,32,48.2z" />
-                </g>
-            <g class="st1">
-            <path class="st2" d="M32,55c-0.8,0-1.5-0.7-1.5-1.5v-6c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v6C33.5,54.3,32.8,55,32,55z" />
-                 </g>
-            <g class="st1">
-            <path class="st2" d="M37,56H27c-0.8,0-1.5-0.7-1.5-1.5S26.2,53,27,53h10c0.8,0,1.5,0.7,1.5,1.5S37.8,56,37,56z" />
-                </g>
-            <path class="st3" d="M32,39.5c3.3,0,6-2.7,6-6v-18c0-3.3-2.7-6-6-6s-6,2.7-6,6v18C26,36.8,28.7,39.5,32,39.5z" />
-            <path class="st4" d="M32,46.2c-7.2,0-13-5.8-13-13v-3.8c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v3.8c0,5.5,4.5,10,10,10
-                 s10-4.5,10-10v-3.8c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v3.8C45,40.4,39.2,46.2,32,46.2z" />
-            <path class="st4" d="M32,53c-0.8,0-1.5-0.7-1.5-1.5v-6c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v6C33.5,52.3,32.8,53,32,53z" />
-            <path class="st4" d="M37,54H27c-0.8,0-1.5-0.7-1.5-1.5S26.2,51,27,51h10c0.8,0,1.5,0.7,1.5,1.5S37.8,54,37,54z" />
-            </g>
-            </svg>
-
-
-            <div class="recognized" style="display: inline; vertical-align: central; top: auto;bottom: auto; width: 600px;" id="transcript"></div>
-        </div>
-    </div>
-
-
-
-    <div id="energy"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@latest/dist/svg.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@ricky0123/vad-web@0.0.7/dist/bundle.min.js"></script>
-    <script src="js/mmi.js"></script>
-    <script src="js/globals.js"></script>
-    <script src="js/jquery-3.6.4.min.js"></script>
-    <script src="js/webtoolkit.utf8.js"></script>
-
-
-    <script type="text/javascript" src="js/recorder.js"></script>
-    <script type="text/javascript" src="js/microphone.js"></script>
-    <script type="text/javascript" src="kws__/edge-impulse-standalone.js"></script>
-    <script type="text/javascript" src="kws__/run-impulse.js"></script>
-
-    <script type="module">
 
         var isOnKWS = false;
         const sensor = new MicrophoneSensor();
@@ -314,7 +191,7 @@
                         //startkws();
 
                     } else {
-                        transcriptDiv.innerHTML = "<span style='color:#ff9494'><b>Desculpa, não consegui ententer.</b></span>";
+                        transcriptDiv.innerHTML = "<span style='color:#ff9494'><b>Desculpa, n�o consegui ententer.</b></span>";
                     }
 
                     resetfunc = setTimeout(function () {
@@ -357,7 +234,7 @@
                     setTimeout(function () {
                         if (speechActive) recognition.stop();
                         speechActive = false;
-                    }, 10000);
+                    }, 3000);
                 },
                 onSpeechStart: () => {
                     //transcriptDiv.textContent += " ->";
@@ -400,9 +277,12 @@
                     console.log(voices[i]);
                     if (voices[i].name.includes("Duarte")) ttsSpeaker = voices[i];
                 }
-                console.log(ttsSpeaker);
-            };
-        }
+
+
+            }
+
+            console.log(ttsSpeaker);
+        };
 
         function speak(text) {
 
@@ -413,7 +293,8 @@
             msg.volume = parseFloat(1);
             msg.rate = parseFloat(1.1);
             msg.pitch = parseFloat(1);
-            ttsSpeaker;
+
+            msg.voice = ttsSpeaker;
 
             window.speechSynthesis.speak(msg);
         }
@@ -447,121 +328,41 @@
                         postToAPI(path, new Object()).then(response => {
                             console.log(response);
                             feedback(response.text);
-                            speak(response.text);
                         }).catch(error => {
-                            console.error('Error:', error);
+                          console.error('Error:', error);
                         });
                         break;
 
                     case 'affirm':
                         path = "misc/confirm"
                         postToAPI(path, new Object()).then(response => {
-                            console.log(response);
+                          console.log(response);
                         }).catch(error => {
-                            console.error('Error:', error);
+                          console.error('Error:', error);
                         });
                         break;
 
                     case 'deny':
                         path = "misc/deny"
                         postToAPI(path, new Object()).then(response => {
-                            console.log(response);
+                          console.log(response);
                         }).catch(error => {
-                            console.error('Error:', error);
+                          console.error('Error:', error);
                         });
                         break;
 
                     case 'walk':
                         path = "movement/player_move"
                         var body = new Object();
-                        body.unit = "1"
                         for (var i = 0; i < data.entities.length; i++) {
                             body[data.entities[i].entity] = data.entities[i].value;
                         }
-                        console.log(body)
+                        body['unit'] = 1
 
                         postToAPI(path, body).then(response => {
-                            console.log(response);
-                            if (!response.result) {
-                                speak(response.text)
-                            }
+                          console.log(response);
                         }).catch(error => {
-                            console.error('Error:', error);
-                        });
-                        break;
-
-                    case 'run_away_from_battle':
-                        path = "battle/run_away"
-                        postToAPI(path, new Object()).then(response => {
-                            console.log(response);
-                        }).catch(error => {
-                            console.error('Error:', error);
-                        });
-                        break;
-
-                    case 'throw_pokeball':
-                        path = "battle/throw_ball"
-                        var body = new Object();
-                        body.ball_type = data.entities[0].value
-                        if (body.ball_type == 'pokébola') {
-                            body.ball_type = 'pokebola'
-                        }
-
-                        postToAPI(path, body).then(response => {
-                            console.log(response);
-                        }).catch(error => {
-                            console.error('Error:', error);
-                        });
-                        break;
-
-                    case 'battle_attack':
-                        path = "battle/attack"
-                        postToAPI(path, new Object()).then(response => {
-                            console.log(response);
-                        }).catch(error => {
-                            console.error('Error:', error);
-                        });
-                        break;
-
-                    case 'choose_attack':
-                        path = "battle/choose_attack"
-                        var body = new Object();
-                        body.attack_number = data.entities[0].value
-
-                        postToAPI(path, body).then(response => {
-                            console.log(response);
-                        }).catch(error => {
-                            console.error('Error:', error);
-                        });
-                        break;
-
-                    case 'battle_pokemon':
-                        path = "battle/pokemon"
-                        postToAPI(path, new Object()).then(response => {
-                            console.log(response);
-                        }).catch(error => {
-                            console.error('Error:', error);
-                        });
-                        break;
-
-                    case 'choose_pokemon':
-                        path = "battle/choose_pokemon"
-                        var body = new Object();
-                        body.pokemon_number = data.entities[0].value
-
-                        postToAPI(path, body).then(response => {
-                            console.log(response);
-                        }).catch(error => {
-                            console.error('Error:', error);
-                        });
-                        break;
-                    case 'skip_dialogue':
-                        path = "misc/skip_dialogue"
-
-                        postToAPI(path, new Object()).then(response => {
-                            console.log(response);
-                        }).catch(error => {
-                            console.error('Error:', error);
+                          console.error('Error:', error);
                         });
                 }
                 console.log("path: " + path)
@@ -569,21 +370,21 @@
         }
 
         async function postToAPI(path, body) {
-            const headers = new Headers();
-            headers.append('Content-Type', 'application/json');
+          const headers = new Headers();
+          headers.append('Content-Type', 'application/json');
 
-            const requestOptions = {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(body)
-            };
+          const requestOptions = {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+          };
 
-            return fetch(POKEMON_API_URL + path, requestOptions)
-                .then(response => response.json())
-                .catch(error => {
-                    console.error('Error:', error);
-                    throw error;
-                });
+          return fetch(POKEMON_API_URL + path, requestOptions)
+            .then(response => response.json())
+            .catch(error => {
+              console.error('Error:', error);
+              throw error;
+            });
         }
 
         function feedback(feedback) {
@@ -598,6 +399,67 @@
                 $("#response").removeClass("responseText");
             }, 5000);
         }
-    </script>
-</body>
-</html>
+
+
+        //var mmiCli_Out_add = "wss://" + host + ":8005/IM/USER1/";
+        //var mmiCli_Out = null;
+        //mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "SPEECHOUT");
+        //mmiCli_Out.onMessage.on(im1MessageHandler);
+        //mmiCli_Out.onOpen.on(socketOpenHandler);
+        //mmiCli_Out.openSocket();
+
+
+        function socketOpenHandler(event) {
+            console.log("---------------openSocketHandler---------------")
+
+            if (mmiCli_Out.socket.readyState !== WebSocket.OPEN) {
+                return;
+            }
+        }
+
+        function im1MessageHandler(data) {
+
+            console.log("--------------im1MessageHandler---------------");
+
+            if (data != null && data != "RENEW" && data != "OK") {
+
+                console.log(data);
+
+                var content = $(data).find("emma\\:interpretation").first().text().trim();
+
+                if (typeof content == 'string') {
+                    try {
+                        // Try to parse XML
+                        var xml = $.parseXML(content.replace(/\\"/g, "\"").slice(1, -1));
+
+                        // Extract sentence
+                        let text = $(xml).find("p").text();
+                        //let text = Utf8.decode(atob(sentence.slice(2,-1)));
+
+                        console.log(text);
+                        speak(text);
+
+                        $("#response").html(text);
+                        $("#response").addClass("container");
+                        $("#response").addClass("responseText");
+
+                        setTimeout(function () {
+                            $("#response").html("");
+                            $("#response").removeClass("container");
+                            $("#response").removeClass("responseText");
+                        }, 3000);
+
+                    }
+                    catch (e) { console.log(e); }
+
+                }
+            }
+        }
+
+            /////////////////////////////////////////
+
+
+            //sendMMI("Ligar as luzes")
+
+    
+/* END EXTERNAL SOURCE */

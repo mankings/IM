@@ -52,6 +52,7 @@ def find_on_screen(template_name):
     print(template_name + " at " + str(top_left_coords) + " - " + str(max_treshold))
     
     if max_treshold > treshold:
+        print("found", template_name, "treshold:", max_treshold)
         return top_left_coords
     else:
         return False

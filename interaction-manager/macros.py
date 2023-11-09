@@ -7,18 +7,18 @@ import time
 # movement
 #
 def player_move(direction, steps):
-	direc = direction
-	print("1", direc, steps)
 	if direction not in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT]:
-		if direction == "cima": direc = KEY_UP
-		elif direction == "baixo": direc = KEY_DOWN
-		elif direction == "esquerda": direc = KEY_LEFT
-		elif direction == "direita": direc = KEY_RIGHT
-		else: return (False, "Direcao invalida.")
+		if direction == "cima": direction = KEY_UP
+		elif direction == "baixo": direction = KEY_DOWN
+		elif direction == "esquerda": direction = KEY_LEFT
+		elif direction == "direita": direction = KEY_RIGHT
+		else: return (False, "Nao consegui perceber a direcao.")
+
+	if steps == "um": steps = 1
+	else: steps = int(steps)
 		
 	for n in range(steps):
-		print("2", direc, steps)
-		di.press(direc)
+		di.press(direction)
 	return (True, "Movimento executado com sucesso.")
 
 # def player_run(direction):
@@ -42,20 +42,62 @@ def battle_attack():
         return
     
     # go to correct option
-    navigate_menu('menu_pointer', 'attack_btn', navigation="horizontal")
-    navigate_menu('menu_pointer', 'attack_btn', navigation="vertical")
+    navigate_menu('menu_pointer', 'fight_btn', navigation="horizontal")
+    navigate_menu('menu_pointer', 'fight_btn', navigation="vertical")
     di.press(KEY_A)
 
 def battle_choose_attack(attack_number):
-	# check if attacking
-	if game_state() != "attacking":
-		print("not attacking!")
-		return # todo return value
+	if game_state() == "battle":
+		navigate_menu('menu_pointer', 'fight_btn', navigation="horizontal")
+		navigate_menu('menu_pointer', 'fight_btn', navigation="vertical")
+		di.press(KEY_A)
+
+		
+	attack_number = attack_number.lower()
+	if attack_number in ['1', "um", "primeiro"]:
+		di.press(KEY_UP)
+		di.press(KEY_LEFT)
+	elif attack_number in ['2', "segundo"]:
+		di.press(KEY_RIGHT)
+		di.press(KEY_UP)
+	elif attack_number in ['3', "terceiro"]:
+		di.press(KEY_DOWN)
+		di.press(KEY_LEFT)
+	elif attack_number in ['4', "quarto"]:
+		di.press(KEY_RIGHT)
+		di.press(KEY_DOWN)
+		
+	di.press(KEY_A)
+		
+def battle_pokemon():
+	# check if battle
+    if game_state() != "battle":
+        print("not in a battle!")
+        return
+    
+    # go to correct option
+    navigate_menu('menu_pointer', 'pkmn_btn', navigation="horizontal")
+    navigate_menu('menu_pointer', 'pkmn_btn', navigation="vertical")
+    di.press(KEY_A)
+
+def battle_choose_pokemon(pokemon_number):
+	pokemon_number = pokemon_number.lower()
 	
-	# TODO go to correct option
+	if game_state() == "battle": 
+		if pokemon_number in ['2', "segundo"]:
+			di.press(KEY_DOWN)
+	
+		di.press(KEY_DOWN)
+		di.press(KEY_A)
+		di.press(KEY_A)
+	
+	elif game_state() == "overworld":
+		pass
+		
 
 def battle_throw_ball(ball_type: str):
 	# check if battle
+	print(game_state())
 	if game_state() != "battle":
 		print("not in a battle!")
 		return # todo return value
@@ -66,21 +108,26 @@ def battle_throw_ball(ball_type: str):
 
 	# open bag
 	di.press(KEY_A)
+	time.sleep(1)
 
+	
 	# go to correct pocket
 	if not find_on_screen('bag_pokeballs'):
 		di.press(KEY_RIGHT)
 		di.press(KEY_RIGHT)
 
+
 	# select correct pokeball type
-	if ball_type == 'pokeball':
+	ball_type = ball_type.lower()
+	if ball_type in ['pokeball', 'pokebola']:
 		navigate_menu('menu_pointer', 'pokeball_label', navigation="vertical")
-	elif ball_type == 'greatball':
+	elif ball_type in ['greatball', 'great bola', 'great']:
 		navigate_menu('menu_pointer', 'greatball_label', navigation="vertical")
-	elif ball_type == 'ultraball':
+	elif ball_type in ['ultraball', 'ultra bola', 'ultra']:
 		navigate_menu('menu_pointer', 'ultraball_label', navigation="vertical")
 	else:
 		print('Pokeball type not found.')
+		return (False, "Nao foi possivel encontrar a pokebola.")
 
 	# throw pokeball
 	di.press(KEY_A)
@@ -94,7 +141,7 @@ def battle_run():
 	navigate_menu('menu_pointer', 'run_btn', navigation="vertical")
 		
 	# TODO check if sucessful
-	# accept_all()
+	accept_all_dialogue()
 
 #
 # misc
@@ -118,14 +165,7 @@ def save_game():
 	navigate_menu('menu_pointer', 'save_btn', navigation="vertical")
 	
 	# accept all
-	di.press(KEY_A)
-	di.press(KEY_A)
-	time.sleep(1)
-	di.press(KEY_A)
-	di.press(KEY_A)
-	time.sleep(1)
-	di.press(KEY_A)
-	di.press(KEY_A)
+	accept_all_dialogue()
 	
 	return (True, "O jogo foi guardado com sucesso.")
 
@@ -136,16 +176,25 @@ def refuse():
 	di.press(KEY_B)
 	
 def accept_all_dialogue():
-	pointer = find_on_screen('speech_pointer')
+	di.PAUSE = 1
+	di.press(KEY_A)
+	pointer = find_on_screen('speech_pointer') or find_on_screen('menu_pointer')
 	while(pointer):
 		di.press(KEY_A)
-		pointer = find_on_screen('speech_pointer')
+		pointer = find_on_screen('speech_pointer') or find_on_screen('menu_pointer')
+	di.press(KEY_A)
+	di.PAUSE = 0.25
 
 def deny_all_dialogue():
-	pointer = find_on_screen('speech_pointer')
+	di.PAUSE = 1
+	di.press(KEY_B)
+	pointer = find_on_screen('speech_pointer') or find_on_screen('menu_pointer')
 	while(pointer):
 		di.press(KEY_B)
-		pointer = find_on_screen('speech_pointer')
+		pointer = find_on_screen('speech_pointer') or find_on_screen('menu_pointer')
+	di.press(KEY_B)
+	
+	di.PAUSE = 0.25
 		
 def game_state():
 	# search for player; if player on screen, on overworld

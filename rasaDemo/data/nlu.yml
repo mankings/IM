@@ -8,17 +8,12 @@ nlu:
     - Vai [quatro](unit) para a [direita](direction)
     - Anda [cinco](unit) para a [esquerda](direction)
     - Anda [seis](unit) passos para [cima](direction) 
-    - Dá [sete](unit) passos para [baixo](direction) 
-    - Vai [oito](unit) para a [direita](direction)
-    - Dá [nove](unit) passos para [baixo](direction) 
+    - [Sete](unit) para [baixo](direction) 
+    - [Oito](unit) para a [direita](direction)
+    - [Nove](unit) para [baixo](direction) 
     - Vai [dez](unit) para a [direita](direction)
-    
-- intent: run
-  examples: |
-    - Corre para a [direita](direction) 
-    - Corre para [baixo](direction)
-    - Anda rápido para [cima](direction)  
-    - Anda rápido para a [esquerda](direction) 
+    - Anda para a [direita](direction)
+    - Vai para [cima](direction) 
 
 - intent: affirm
   examples: |
@@ -36,9 +31,20 @@ nlu:
 - intent: choose_attack
   examples: |
     - Usa o ataque [um](attack)
+    - Usa o [primeiro](attack) ataque 
     - Ataque [dois](attack)
+    - [Segundo](attack) ataque
     - Usa o ataque [três](attack)
+    - Usa o [terceiro](attack) ataque
     - Ataque [quatro](attack)
+    - [Quarto](attack) ataque
+
+- intent: choose_pokemon
+  examples: |
+    - Usa o pokemon [um](pokemon)
+    - Usa o [primeiro](pokemon) pokemon 
+    - pokemon [dois](pokemon)
+    - [Segundo](pokemon) pokemon
 
 - intent: run_away_from_battle
   examples: |
@@ -56,6 +62,26 @@ nlu:
 - intent: throw_pokeball
   examples: |
     - Atira uma [pokebola](pokeball)
-    - [ULTRABOLA](pokeball)
+    - Atira uma [poke bola](pokeball)
+    - Atira uma [ultra bola](pokeball)
+    - [Ultraball](pokeball)
     - Usa a [Greatball](pokeball) 
-    - [Greatbola](pokeball) 
+    - [Great bola](pokeball) 
+
+- intent: battle_attack
+  examples: |
+    - Atacar
+    - Escolher ataque
+    - Ataca
+    
+- intent: battle_pokemon
+  examples: |
+    - Escolher pokemon    
+    - Pokemons
+    - Ver pokemons
+
+- intent: skip_dialogue
+  examples: |
+    - Passa o diálogo
+    - Passa o diálogo à frente
+    - Skip
