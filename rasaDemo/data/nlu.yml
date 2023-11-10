@@ -15,6 +15,18 @@ nlu:
     - Anda para a [direita](direction)
     - Vai para [cima](direction)
 
+- regex: unit
+  examples: |
+    - \b(?:[1-9]|1[0-9]|20)\b
+
+ 
+- regex: direction
+  examples: |
+    - esquerda
+    - direita
+    - cima
+    - baixo
+- 
 - intent: affirm
   examples: |
     - Sim
@@ -89,3 +101,6 @@ nlu:
     - Passa o diálogo
     - Passa o diálogo à frente
     - Skip
+    - Passa à frente
+    - Passa tudo
+    - Não quero saber 

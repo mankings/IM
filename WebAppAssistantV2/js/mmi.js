@@ -139,12 +139,12 @@ var MMIClient = (function () {
         var cli = this;
         sender.onload = function () {
             if (sender.status == 200) {
-                // console.log('send response: '+ sender.responseText);
+                console.log('send response: '+ sender.responseText);
                 cli.result = sender.responseText;
                 cli.onResponse.trigger(sender.responseText);
-            }
+            }        sender.send(lce.toString());
+
         };
-        sender.send(lce.toString());
 
         console.log("POST SENT TO " + this.FusionAdd)
     };
