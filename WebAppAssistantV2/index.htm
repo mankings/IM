@@ -441,6 +441,18 @@
             obj.text = final_transcript;
             $.post(RASA_URL, JSON.stringify(obj), function (data) {
                 console.log(data);
+                if (data.intent.confidence < 0.82) {
+                    var messages = [
+                        "Desculpa, nao consegui perceber.",
+                        "Não percebi, podes repetir?",
+                        "Acho que nao foste claro.",
+                        "Fala direito, pa!"
+                    ]
+                    var randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                    feedback(randomMessage);
+                    return;
+                }
+
                 var path = ""
 
                 switch (data.intent.name) {
@@ -449,7 +461,6 @@
                         postToAPI(path, new Object()).then(response => {
                             console.log(response);
                             feedback(response.text);
-                            speak(response.text);
                         }).catch(error => {
                             console.error('Error:', error);
                         });
@@ -485,7 +496,7 @@
                         postToAPI(path, body).then(response => {
                             console.log(response);
                             if (!response.result) {
-                                speak(response.text)
+                                feedback(response.text)
                             }
                         }).catch(error => {
                             console.error('Error:', error);
@@ -511,6 +522,7 @@
 
                         postToAPI(path, body).then(response => {
                             console.log(response);
+                            feedback(response.text)
                         }).catch(error => {
                             console.error('Error:', error);
                         });
@@ -520,6 +532,7 @@
                         path = "battle/attack"
                         postToAPI(path, new Object()).then(response => {
                             console.log(response);
+                            feedback(response.text)
                         }).catch(error => {
                             console.error('Error:', error);
                         });
@@ -532,6 +545,9 @@
 
                         postToAPI(path, body).then(response => {
                             console.log(response);
+                            if (!response.result) {
+                                feedback(response.text)
+                            }
                         }).catch(error => {
                             console.error('Error:', error);
                         });
@@ -541,6 +557,7 @@
                         path = "battle/pokemon"
                         postToAPI(path, new Object()).then(response => {
                             console.log(response);
+                            feedback(response.text)
                         }).catch(error => {
                             console.error('Error:', error);
                         });
@@ -553,6 +570,7 @@
 
                         postToAPI(path, body).then(response => {
                             console.log(response);
+                            feedback(response.text)
                         }).catch(error => {
                             console.error('Error:', error);
                         });

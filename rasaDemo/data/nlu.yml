@@ -13,7 +13,7 @@ nlu:
     - [Nove](unit) para [baixo](direction) 
     - Vai [dez](unit) para a [direita](direction)
     - Anda para a [direita](direction)
-    - Vai para [cima](direction) 
+    - Vai para [cima](direction)
 
 - intent: affirm
   examples: |
@@ -21,12 +21,16 @@ nlu:
     - Okay
     - Ok
     - Ya
+    - Confirma
+    - Carrega
 
 - intent: deny
   examples: |
     - Não
     - Nope
-    - Nop  
+    - Nop
+    - Cancela
+    - Volta para trás
 
 - intent: choose_attack
   examples: |

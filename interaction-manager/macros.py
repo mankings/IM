@@ -7,6 +7,9 @@ import time
 # movement
 #
 def player_move(direction, steps):
+	if game_state()	!= "overworld": 
+		return (False, "Nao e possivel mover o jogador de momento.")
+
 	if direction not in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT]:
 		if direction == "cima": direction = KEY_UP
 		elif direction == "baixo": direction = KEY_DOWN
@@ -21,17 +24,6 @@ def player_move(direction, steps):
 		di.press(direction)
 	return (True, "Movimento executado com sucesso.")
 
-# def player_run(direction):
-# 	di.keyDown(direction)
-# 	# TODO discover why not runnig
-# 	di.keyDown(KEY_B)
-
-# def player_stop():
-# 	# TODO discover why not stopping
-# 	for key in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_B]:
-# 		print(key)
-# 		di.keyUp(key)
-
 #
 # battle
 #
@@ -39,20 +31,23 @@ def battle_attack():
 	# check if battle
     if game_state() != "battle":
         print("not in a battle!")
-        return
+        return (False, "Nao estamos numa batalha!")
     
     # go to correct option
     navigate_menu('menu_pointer', 'fight_btn', navigation="horizontal")
     navigate_menu('menu_pointer', 'fight_btn', navigation="vertical")
     di.press(KEY_A)
+    return (True, "Que ataque devo escolher?")
 
 def battle_choose_attack(attack_number):
+	if game_state() == "overworld":
+		return (False, "Nao estamos numa batalha!")
+
 	if game_state() == "battle":
 		navigate_menu('menu_pointer', 'fight_btn', navigation="horizontal")
 		navigate_menu('menu_pointer', 'fight_btn', navigation="vertical")
 		di.press(KEY_A)
 
-		
 	attack_number = attack_number.lower()
 	if attack_number in ['1', "um", "primeiro"]:
 		di.press(KEY_UP)
@@ -68,13 +63,9 @@ def battle_choose_attack(attack_number):
 		di.press(KEY_DOWN)
 		
 	di.press(KEY_A)
+	return (True, "Ataque executado com sucesso.")
 		
 def battle_pokemon():
-	# check if battle
-    # if game_state() != "battle":
-    #     print("not in a battle!")
-    #     return
-    
 	if game_state() == "battle": 
 		navigate_menu('menu_pointer', 'pkmn_btn', navigation="horizontal")
 		navigate_menu('menu_pointer', 'pkmn_btn', navigation="vertical")
@@ -83,9 +74,18 @@ def battle_pokemon():
 		di.press(KEY_START)
 		navigate_menu('menu_pointer', 'pkmn_btn', navigation="vertical")
 		di.press(KEY_A)
+	return (True, "Que Pokemon devo escolher?")
+		
 
 def choose_pokemon(pokemon_number):
+	msg = ""
 	pokemon_number = pokemon_number.lower()
+
+	if game_state() == "overworld":
+		msg = "Mudei o Pokemon que comeca as batalhas."
+		di.press(KEY_START)
+		navigate_menu('menu_pointer', 'pkmn_btn', navigation="vertical")
+		di.press(KEY_A)
 	
 	# Ações comuns a battle e overworld
 	if pokemon_number in ['2', "segundo"]:
@@ -107,18 +107,18 @@ def choose_pokemon(pokemon_number):
 		# di.press(KEY_A)
 	
 	# Ação para battle
-	else: di.press(KEY_A)
+	else: 
+		msg = "Isso! Vai!"
+		di.press(KEY_A)
+	
+	return (True, msg)
 	
 	
-	
-		
-
 def battle_throw_ball(ball_type: str):
 	# check if battle
 	print(game_state())
 	if game_state() != "battle":
-		print("not in a battle!")
-		return # todo return value
+		return (False, "Nao estamos numa batalha!")
 	
 	# go to correct option
 	navigate_menu('menu_pointer', 'bag_btn', navigation="horizontal")
@@ -127,13 +127,11 @@ def battle_throw_ball(ball_type: str):
 	# open bag
 	di.press(KEY_A)
 	time.sleep(1)
-
 	
 	# go to correct pocket
 	if not find_on_screen('bag_pokeballs'):
 		di.press(KEY_RIGHT)
 		di.press(KEY_RIGHT)
-
 
 	# select correct pokeball type
 	ball_type = ball_type.lower()
@@ -152,6 +150,7 @@ def battle_throw_ball(ball_type: str):
 	di.press(KEY_A)
 	
 	accept_all_dialogue()
+	return (True, f'Lancei uma {ball_type}.')
 
 def battle_run():
 	# go to correct option
@@ -186,6 +185,15 @@ def save_game():
 	accept_all_dialogue()
 	
 	return (True, "O jogo foi guardado com sucesso.")
+
+def direction(direction):
+	direction = direction.lower()
+	if direction == 'direita': di.press(KEY_RIGHT)
+	elif direction == 'esquerda': di.press(KEY_LEFT)
+	elif direction == 'cima': di.press(KEY_UP)
+	elif direction == 'baixo': di.press(KEY_DOWN)
+	
+	return (True, "")
 
 def accept():
 	di.press(KEY_A)

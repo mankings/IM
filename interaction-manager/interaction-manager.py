@@ -34,28 +34,12 @@ def player_move(body: PlayerMoveBody):
     return {"result": result[0], "text": result[1]}
 
 
-# @app.post("/movement/player_run")
-# def player_run():
-# 	get_window()
-# 	macros.player_run('right')
-	
-# 	return {"result": "yes"}
-
-
-# @app.post("/movement/player_stop")
-# def player_stop():
-# 	get_window()
-# 	macros.player_stop()
-	
-# 	return {"result": "yes"}
-
-
 @app.post("/battle/attack")
 def battle_attack():
     get_window()
-    macros.battle_attack()
+    result = macros.battle_attack()
     
-    return {"result": "yes"}
+    return {"result": result[0], "text": result[1]}
 
 
 class ChooseAttackBody(BaseModel):
@@ -63,25 +47,26 @@ class ChooseAttackBody(BaseModel):
 @app.post("/battle/choose_attack")
 def battle_choose_attack(body: ChooseAttackBody):
     get_window()
-    macros.battle_choose_attack(body.attack_number)
+    result = macros.battle_choose_attack(body.attack_number)
     
-    return {"result": "yes"}
+    return {"result": result[0], "text": result[1]}
 
 @app.post("/battle/pokemon")
 def battle_pokemon():
     get_window()
-    macros.battle_pokemon()
+    result = macros.battle_pokemon()
     
-    return {"result": "yes"}
+    return {"result": result[0], "text": result[1]}
+
 
 class ChoosePokemonBody(BaseModel):
     pokemon_number: str
 @app.post("/battle/choose_pokemon")
 def choose_pokemon(body: ChoosePokemonBody):
     get_window()
-    macros.choose_pokemon(body.pokemon_number)
+    result = macros.choose_pokemon(body.pokemon_number)
     
-    return {"result": "yes"}
+    return {"result": result[0], "text": result[1]}
 
 
 class ThrowBallBody(BaseModel):
@@ -89,9 +74,9 @@ class ThrowBallBody(BaseModel):
 @app.post("/battle/throw_ball")
 def battle_throw_ball(body: ThrowBallBody):
     get_window()
-    macros.battle_throw_ball(body.ball_type)
+    result = macros.battle_throw_ball(body.ball_type)
     
-    return {"result": "yes"}
+    return {"result": result[0], "text": result[1]}
 
 
 @app.post("/battle/run_away")
@@ -122,6 +107,15 @@ def deny():
 def save_game():
     get_window()
     result = macros.save_game()
+    
+    return {"result": result[0], "text": result[1]}
+
+class DirectionBody(BaseModel): 
+    direction: str
+@app.post("/misc/direction")
+def direction(body: DirectionBody):
+    get_window()
+    result = macros.direction(body.direction)
     
     return {"result": result[0], "text": result[1]}
 
