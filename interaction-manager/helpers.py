@@ -1,4 +1,5 @@
 import pygetwindow
+import subprocess
 from pygetwindow import PyGetWindowException
 
 import cv2, PIL
@@ -18,7 +19,7 @@ KEY_SELECT = 'backspace'
 KEY_FASTFORWARD = 'space'
 
 # GAME WINDOW INFO
-WINDOW_TITLE = "Pokemon - Leaf Green Version (U) (V1.1) - VisualBoyAdvance-M 2.1.7"
+WINDOW_TITLE = "leaf-green - VisualBoyAdvance-M 2.1.7"
 def get_window():
     try:
         window = pygetwindow.getWindowsWithTitle(WINDOW_TITLE)[0]
@@ -66,6 +67,14 @@ def cv2_open_image_grayscale(img_path):
 def get_template_path(file_name):
     return os.path.join('templates', file_name + '.png')
 
+def start_window():
+    emulator_path = "pokemon/visualboyadvance-m.exe"  # Replace with the actual path to VisualBoyAdvance-M
+    rom_path = "pokemon/leaf-green.gba"  # Replace with the actual path to your GBA ROM file
 
+    try:
+        subprocess.Popen([emulator_path, rom_path])
 
-
+    except Exception as e:
+        print(f"Error: {e}")
+    
+    

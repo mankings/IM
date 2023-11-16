@@ -100,11 +100,8 @@ def choose_pokemon(pokemon_number):
 		di.press(KEY_A)
 		di.press(KEY_LEFT)
 		di.press(KEY_A)
-		di.press(KEY_UP)
-		di.press(KEY_A)
+		di.press(KEY_B)
 		di.prees(KEY_B)
-		# navigate_menu('menu_pointer', 'exit_btn', navigation="vertical")
-		# di.press(KEY_A)
 	
 	# Ação para battle
 	else: 
@@ -262,3 +259,11 @@ def navigate_menu(pointer_name, btn_name, navigation="vertical"):
 		pointer_coord = pointer[1] if navigation == "vertical" else pointer[0]
 		btn = find_on_screen(btn_name)
 		btn_coord = btn[1] if navigation == "vertical" else btn[0]
+		
+
+def start_game():
+	start_window()
+	time.sleep(3)
+	di.press('f1')
+	
+	return (True, 'Consegui abrir o jogo, agora podemos jogar!')
