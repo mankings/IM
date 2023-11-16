@@ -75,6 +75,7 @@
     <button class="test-btns">Quarto ataque.</button>
     <button class="test-btns">Escolher pokemon.</button>
     <button class="test-btns">Segundo pokemon.</button>
+    <button class="test-btns">Ok agora cala-te.</button>
     <button class="test-btns">Ganza ganza ganza.</button>
 
 
@@ -437,6 +438,7 @@
                 console.log(data);
                 if (data.intent.name == "stop_listening") {
                     recognition.stop();
+                    feedback("Ok, não digo mais nada.")
                 }
 
 
