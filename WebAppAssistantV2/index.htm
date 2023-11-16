@@ -58,15 +58,15 @@
 <body>
     <h1 style="background-color: darkslategrey; margin: 0; padding: 10px; text-align: center; ">VOICE ACTIVATED POKÉMON LEAF GREEN</h1>
 
+    <button class="test-btns">Liga o jogo.</button>
     <button class="test-btns">Guarda o jogo.</button>
-    <button class="test-btns">Sim.</button>
-    <button class="test-btns">Não.</button>
-    <button class="test-btns">Anda um passo para cima.</button>
-    <button class="test-btns">Anda um passo para baixo.</button>
-    <button class="test-btns">Anda um passo para a esquerda.</button>
-    <button class="test-btns">Anda um passo para a direita.</button>
+    <button class="test-btns">Anda cinco passos para cima.</button>
+    <button class="test-btns">Anda dois passos para baixo.</button>
+    <button class="test-btns">Anda para a esquerda.</button>
+    <button class="test-btns">Um passo para a direita.</button>
     <button class="test-btns">Atira uma pokébola.</button>
     <button class="test-btns">Atira uma great bola.</button>
+    <button class="test-btns">Captura esse Pokémon</button>
     <button class="test-btns">Atira uma ultra bola.</button>
     <button class="test-btns">Ataca.</button>
     <button class="test-btns">Primeiro ataque.</button>
@@ -76,6 +76,7 @@
     <button class="test-btns">Escolher pokemon.</button>
     <button class="test-btns">Segundo pokemon.</button>
     <button class="test-btns">Ganza ganza ganza.</button>
+
 
     <!--<p>Click the button below and start speaking.</p>
     <button id="start-btn">Start</button>-->
@@ -434,6 +435,10 @@
             obj.text = final_transcript;
             $.post("http://127.0.0.1:5005/model/parse", JSON.stringify(obj), function (data) {
                 console.log(data);
+                if (data.intent.name == "stop_listening") {
+                    recognition.stop();
+                }
+
 
                 var message = { 'intent': data.intent.name, 'confidence': data.intent.confidence, 'entities': data.entities }
                 var messaget = btoa(unescape(encodeURIComponent(final_transcript)));

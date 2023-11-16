@@ -1,5 +1,6 @@
 import pygetwindow
 import subprocess
+import time
 from pygetwindow import PyGetWindowException
 
 import cv2, PIL
@@ -57,6 +58,15 @@ def find_on_screen(template_name):
         return top_left_coords
     else:
         return False
+    
+def wait_for(template_name, timeout=10):
+    for i in range(timeout):
+        if find_on_screen(template_name):
+            return True
+        else:
+            print("waiting for", template_name)
+            time.sleep(1)
+    return False
     
 def cv2_open_image_grayscale(img_path):
     image = cv2.imread(img_path, cv2.IMREAD_UNCHANGED)

@@ -3,6 +3,8 @@ from helpers import *
 import pyautogui as ag, pydirectinput as di
 import time
 
+di.pause = 0.5
+
 #
 # movement
 #
@@ -17,6 +19,7 @@ def player_move(direction, steps):
 		elif direction == "direita": direction = KEY_RIGHT
 		else: return (False, "Nao consegui perceber a direcao.")
 
+	print(steps)
 	if steps == "um": steps = 1
 	else: steps = int(steps)
 		
@@ -82,27 +85,36 @@ def choose_pokemon(pokemon_number):
 	pokemon_number = pokemon_number.lower()
 
 	if game_state() == "overworld":
-		msg = "Mudei o Pokemon que comeca as batalhas."
 		di.press(KEY_START)
 		navigate_menu('menu_pointer', 'pkmn_btn', navigation="vertical")
 		di.press(KEY_A)
 	
+	di.press(KEY_RIGHT)
 	# Ações comuns a battle e overworld
 	if pokemon_number in ['2', "segundo"]:
 		di.press(KEY_DOWN)
+	if pokemon_number in ['3', "terceiro"]:
+		di.press(KEY_DOWN)
+		di.press(KEY_DOWN)
+		
 	
-	di.press(KEY_DOWN)
+	
 	di.press(KEY_A)
+	wait_for('menu_pointer')
 	
 	# Ações para overworld
 	if find_on_screen('switch_btn'):
+		msg = "Mudei o Pokemon que comeca as batalhas."
 		navigate_menu('menu_pointer', 'switch_btn', navigation="vertical")
 		di.press(KEY_A)
 		di.press(KEY_LEFT)
 		di.press(KEY_A)
+		
+		time.sleep(1.5)
 		di.press(KEY_B)
-		di.prees(KEY_B)
-	
+		wait_for('start_menu')
+		di.press(KEY_B)
+		
 	# Ação para battle
 	else: 
 		msg = "Isso! Vai!"
@@ -163,11 +175,19 @@ def battle_run():
 #
 # misc
 #
+def start_game():
+	start_window()
+	time.sleep(3)
+	get_window()
+	di.press('f1')
+	
+	return (True, 'Consegui abrir o jogo, agora podemos jogar!')
+
 def save_game():
 	# check if overworld
 	if game_state() != "overworld":
 		print("not in overworld!")
-		return (False, "Nao e possivel guardar o jogo de momento.")
+		return (False, "Nao consigo guardar o jogo de momento.")
 
 	# open start menu
 	tries = 0
@@ -259,11 +279,3 @@ def navigate_menu(pointer_name, btn_name, navigation="vertical"):
 		pointer_coord = pointer[1] if navigation == "vertical" else pointer[0]
 		btn = find_on_screen(btn_name)
 		btn_coord = btn[1] if navigation == "vertical" else btn[0]
-		
-
-def start_game():
-	start_window()
-	time.sleep(3)
-	di.press('f1')
-	
-	return (True, 'Consegui abrir o jogo, agora podemos jogar!')

@@ -6,10 +6,12 @@ intents:
 - choose_attack
 - choose_pokemon
 - run_away_from_battle
+- launch_game
 - save_game
 - throw_pokeball
 - battle_attack
 - battle_pokemon
+- stop_listening
 entities:
 - direction
 - unit
@@ -49,20 +51,15 @@ slots:
       entity: pokeball
 
 responses:
-  utter_default:
-  - text: Desculpe, não percebi. Pode repetir?
   utter_attack:
-  - text: Ataque utilizado.
-  utter_run_away:
-  - text: Batalha terminada.
+  - text: Tadinho.
   utter_save_game:
-  - text: Jogo guardado com sucesso!
+  - text: Ok, vou tentar guardar o jogo.
   utter_throw_pokeball:
-  - text: Pokebola atirada!
+  - text: Já cá canta!
+  utter_launch_game:
+  - text: Certo, vou ligar o jogo.
   
-actions:
-- action_save_game
-
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

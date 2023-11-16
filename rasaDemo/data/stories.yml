@@ -1,2 +1,21 @@
 version: "3.1"
 stories:
+- story: launch game
+  steps:
+  - intent: launch_game
+  - action: utter_launch_game
+  
+- story: save game
+  steps:
+  - intent: save_game
+  - action: utter_save_game
+  
+- story: throw pokeball
+  steps:
+  - intent: throw_pokeball
+  - action: utter_throw_pokeball
+  
+- story: attack
+  steps:
+  - intent: attack
+  - action: utter_attack

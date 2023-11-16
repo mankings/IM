@@ -10,18 +10,8 @@ nlu:
     - [Nove](unit) para [baixo](direction) 
     - Anda para a [direita](direction)
     - Vai para [cima](direction)
+  
 
-- regex: unit
-  examples: |
-    - \b(?:[1-9]|1[0-9]|20)\b
- 
-- regex: direction
-  examples: |
-    - esquerda
-    - direita
-    - cima
-    - baixo
-- 
 - intent: affirm
   examples: |
     - Sim
@@ -31,6 +21,7 @@ nlu:
     - Confirma
     - Carrega
 
+
 - intent: deny
   examples: |
     - Não
@@ -38,6 +29,7 @@ nlu:
     - Nop
     - Cancela
     - Volta para trás
+
 
 - intent: choose_attack
   examples: |
@@ -50,6 +42,7 @@ nlu:
     - Ataque [quatro](attack)
     - [Quarto](attack) ataque
 
+
 - intent: choose_pokemon
   examples: |
     - Usa o pokemon [um](pokemon)
@@ -57,18 +50,30 @@ nlu:
     - pokemon [dois](pokemon)
     - [Segundo](pokemon) pokemon
 
+
 - intent: run_away_from_battle
   examples: |
     - Corre
     - Foge daí
     - Sai
+    - Vai-te embora
+
+
+- intent: launch_game
+  examples: |
+    - Liga o jogo
+    - Quero começar a jogar
+    - Siga jogar pokemon
+
 
 - intent: save_game
   examples: |
     - Guarda o jogo
-    - Guarda
     - Guardar
     - Salvar
+    - Quero jogar mais logo
+    - Quero guardar o jogo
+
 
 - intent: throw_pokeball
   examples: |
@@ -78,18 +83,24 @@ nlu:
     - [Ultraball](pokeball)
     - Usa a [Greatball](pokeball) 
     - [Great bola](pokeball) 
+    - Apanha esse pokemon
+
 
 - intent: battle_attack
   examples: |
     - Atacar
     - Escolher ataque
     - Ataca
+    - Estoura com ele
+
     
 - intent: battle_pokemon
   examples: |
     - Escolher pokemon    
     - Pokemons
     - Ver pokemons
+    - Quero usar outro pokémon
+
 
 - intent: skip_dialogue
   examples: |
@@ -98,4 +109,14 @@ nlu:
     - Skip
     - Passa à frente
     - Passa tudo
-    - Não quero saber 
+    - Não quero saber
+    - Não quero ler
+
+- intent: stop_listening
+  examples: |
+    - Está um bocado calado
+    - Deixa-me em silêncio
+    - Cala-te
+    - Não quero falar mais contigo
+    - Xau 
+    - Até logo
