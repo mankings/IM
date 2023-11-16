@@ -75,6 +75,7 @@
     <button class="test-btns">Quarto ataque.</button>
     <button class="test-btns">Escolher pokemon.</button>
     <button class="test-btns">Segundo pokemon.</button>
+    <button class="test-btns">Ganza ganza ganza.</button>
 
     <!--<p>Click the button below and start speaking.</p>
     <button id="start-btn">Start</button>-->
@@ -399,10 +400,10 @@
             ttsSpeaker = voices[0];
             for (let i = 0; i < voices.length; i++) {
                 if (voices[i].lang == "pt-PT") {
-                    console.log(voices[i]);
+                    //console.log(voices[i]);
                     if (voices[i].name.includes("Duarte")) ttsSpeaker = voices[i];
                 }
-                console.log(ttsSpeaker);
+                //console.log(ttsSpeaker);
             };
         }
 
@@ -421,8 +422,11 @@
         }
         /////////////////////////////////////////
 
+
+        var interaction_manager = "http://" + host + ":5000/";
+
         var mmiCli_1 = null;
-        mmiCli_1 = new MMIClient(null, mmi_fusion + "SPEECHIN");
+        mmiCli_1 = new MMIClient(interaction_manager, mmi_fusion + "SPEECHIN");
 
         function sendMMI(final_transcript) {
 
@@ -431,13 +435,15 @@
             $.post("http://127.0.0.1:5005/model/parse", JSON.stringify(obj), function (data) {
                 console.log(data);
 
-                var message = { 'intent': data.intent.name, 'shape': '1', 'color': '1' }
+                var message = { 'intent': data.intent.name, 'confidence': data.intent.confidence, 'entities': data.entities }
                 var messaget = btoa(unescape(encodeURIComponent(final_transcript)));
                 var result = { "recognized": ["SPEECH", "SPEECHIN", "APP"], "text": messaget, "nlu": message };
 
-                mmiCli_1.sendToIM(new LifeCycleEvent("SPEECHIN", "IM", "text-1", "ctx-1").
+                var lce = new LifeCycleEvent("SPEECHIN", "IM", "text-1", "ctx-1").
                     doExtensionNotification(new EMMA("text-", "text", "command", 1, 0).
-                        setValue(JSON.stringify(result))));
+                        setValue(JSON.stringify(result)));
+
+                mmiCli_1.sendToIM(lce);
             });
         }
         // sendMMI("mudar para verde o circulo");
@@ -500,8 +506,6 @@
         // //////////////////////////////
 
 
-        var POKEMON_API_URL = "http://127.0.0.1:5000/"
-        var RASA_URL = "http://127.0.0.1:5005/model/parse"
 
         // Get all elements with the "test-btns" class
         const elements = document.querySelectorAll(".test-btns");
@@ -665,24 +669,6 @@
                 }
                 console.log("path: " + path)
             });
-        }
-
-        async function postToAPI(path, body) {
-            const headers = new Headers();
-            headers.append('Content-Type', 'application/json');
-
-            const requestOptions = {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(body)
-            };
-
-            return fetch(POKEMON_API_URL + path, requestOptions)
-                .then(response => response.json())
-                .catch(error => {
-                    console.error('Error:', error);
-                    throw error;
-                });
         }
 
         function feedback(feedback) {

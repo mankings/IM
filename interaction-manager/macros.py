@@ -8,7 +8,7 @@ import time
 #
 def player_move(direction, steps):
 	if game_state()	!= "overworld": 
-		return (False, "Nao e possivel mover o jogador de momento.")
+		return (False, "Nao consigo mover o jogador de momento.")
 
 	if direction not in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT]:
 		if direction == "cima": direction = KEY_UP
@@ -22,7 +22,7 @@ def player_move(direction, steps):
 		
 	for n in range(steps):
 		di.press(direction)
-	return (True, "Movimento executado com sucesso.")
+	return (True, "Cheguei ao destino!")
 
 #
 # battle
@@ -63,7 +63,7 @@ def battle_choose_attack(attack_number):
 		di.press(KEY_DOWN)
 		
 	di.press(KEY_A)
-	return (True, "Ataque executado com sucesso.")
+	return (True, "Estourei-o todo.")
 		
 def battle_pokemon():
 	if game_state() == "battle": 
@@ -126,24 +126,27 @@ def battle_throw_ball(ball_type: str):
 
 	# open bag
 	di.press(KEY_A)
-	time.sleep(1)
+	time.sleep(0.5)
 	
 	# go to correct pocket
 	if not find_on_screen('bag_pokeballs'):
 		di.press(KEY_RIGHT)
 		di.press(KEY_RIGHT)
+		
+	time.sleep(0.5)
 
 	# select correct pokeball type
 	ball_type = ball_type.lower()
-	if ball_type in ['pokeball', 'pokebola']:
+	if ball_type in ['pokeball', 'pokebola'] and find_on_screen('pokeball_label'):
 		navigate_menu('menu_pointer', 'pokeball_label', navigation="vertical")
-	elif ball_type in ['greatball', 'great bola', 'great']:
+	elif ball_type in ['greatball', 'great bola', 'great'] and find_on_screen('greatball_label'):
 		navigate_menu('menu_pointer', 'greatball_label', navigation="vertical")
-	elif ball_type in ['ultraball', 'ultra bola', 'ultra']:
+	elif ball_type in ['ultraball', 'ultra bola', 'ultra'] and find_on_screen('ultraball_label'):
 		navigate_menu('menu_pointer', 'ultraball_label', navigation="vertical")
 	else:
 		print('Pokeball type not found.')
-		return (False, "Nao foi possivel encontrar a pokebola.")
+		di.press(KEY_B)
+		return (False, "Nao temos dessas pokebolas. Vai comprar seu roto!")
 
 	# throw pokeball
 	di.press(KEY_A)
@@ -209,6 +212,7 @@ def accept_all_dialogue():
 		di.press(KEY_A)
 		pointer = find_on_screen('speech_pointer') or find_on_screen('menu_pointer')
 	di.press(KEY_A)
+	
 	di.PAUSE = 0.25
 
 def deny_all_dialogue():

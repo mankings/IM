@@ -1,3 +1,4 @@
+from turtle import undobufferentries
 import macros
 from helpers import *
 
@@ -123,5 +124,16 @@ def direction(body: DirectionBody):
 def skip_dialogue():
     get_window()
     result = macros.deny_all_dialogue()
+    
+    return {"result": result[0], "text": result[1]}
+
+
+class GlobalActionBody(BaseModel):
+    intent: str
+    body: dict
+@app.post("/global")
+def global_action(body: GlobalActionBody):
+    get_window()
+    result = macros.global_action(body.intent, body.body)
     
     return {"result": result[0], "text": result[1]}

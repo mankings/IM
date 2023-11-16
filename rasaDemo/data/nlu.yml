@@ -6,19 +6,14 @@ nlu:
     - Anda [dois](unit) passos para [cima](direction) 
     - Dá [três](unit) passos para [baixo](direction) 
     - Vai [quatro](unit) para a [direita](direction)
-    - Anda [cinco](unit) para a [esquerda](direction)
-    - Anda [seis](unit) passos para [cima](direction) 
-    - [Sete](unit) para [baixo](direction) 
     - [Oito](unit) para a [direita](direction)
     - [Nove](unit) para [baixo](direction) 
-    - Vai [dez](unit) para a [direita](direction)
     - Anda para a [direita](direction)
     - Vai para [cima](direction)
 
 - regex: unit
   examples: |
     - \b(?:[1-9]|1[0-9]|20)\b
-
  
 - regex: direction
   examples: |

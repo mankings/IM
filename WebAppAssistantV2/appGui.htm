@@ -12,9 +12,14 @@
     <style>
         body {
             --indicator-color: black;
-            background: #fff; /*radial-gradient(#fff 75%, var(--indicator-color));*/
+            /*background: #fff;*/ /*radial-gradient(#fff 75%, var(--indicator-color));*/
+            background-image: url('/images/starters.png');
+            background-color: beige;
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-position: center;
             min-height: 100vh;
-            color: burlywood;
+            color: whitesmoke;
             font-family: Poppins;
             margin: 0;
             padding: 0;
@@ -51,22 +56,24 @@
     </style>
 </head>
 <body>
-    <h1 style="background-color: #4F5D73; margin: 0;">CASA VIVA + APP GUI</h1>
+    <h1 style="background-color: darkslategrey; margin: 0; padding: 10px; text-align: center; ">VOICE ACTIVATED POKÉMON LEAF GREEN</h1>
+
+    <button class="test-btns">Melhor do mundo</button>
+    <button class="test-btns">Melhor do mundo</button>
 
 
+    <div id="response" class="" style=""></div>
 
-    <div id="response" class="" style="">d</div>
-
-    <div style="width: 500px;">
+    <!--<div style="width: 500px;">
 
 
         <svg class="a" id="a" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 320 100" style="enable-background:new 0 0 320 100;" xml:space="preserve">
-        <polygon points="50, 0, 0,100,100,100" class="triangle" />
-        <rect x="110" width="100" height="100" class="square" />
-        <circle cx="270" cy="50" r="50" class="circle" />
-    </svg>
-    </div>
+            <polygon points="50, 0, 0,100,100,100" class="triangle" />
+            <rect x="110" width="100" height="100" class="square" />
+            <circle cx="270" cy="50" r="50" class="circle" />
+        </svg>
+    </div>-->
 
     <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@latest/dist/svg.min.js"></script>
     <script src="js/mmi.js"></script>
@@ -79,126 +86,230 @@
     <script type="module">
 
 
-  var mmiCli_Out_add = "wss://"+host+":8005/IM/USER1/";
-  var mmiCli_Out = null;
-  mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "APP");
-  mmiCli_Out.onMessage.on(im1MessageHandler);
-  mmiCli_Out.onOpen.on(socketOpenHandler);
-	mmiCli_Out.openSocket();
+        var mmiCli_Out_add = "wss://" + host + ":8005/IM/USER1/";
+        var mmiCli_Out = null;
+        mmiCli_Out = new MMIClientSocket(mmiCli_Out_add + "APP");
+        mmiCli_Out.onMessage.on(im1MessageHandler);
+        mmiCli_Out.onOpen.on(socketOpenHandler);
+        mmiCli_Out.openSocket();
 
+        // Get all elements with the "test-btns" class
+        const elements = document.querySelectorAll(".test-btns");
+        // Loop through the elements and attach a click event listener to each
+        elements.forEach((element) => {
+            element.addEventListener('click', function () {
+                // Call the sendMMI function with the HTML content of the clicked element
+                sendToVoice(this.textContent);
+            });
+        });
 
-  function socketOpenHandler(event) {
-    console.log("---------------openSocketHandler---------------")
+        function socketOpenHandler(event) {
+            console.log("---------------openSocketHandler---------------")
 
-    if(mmiCli_Out.socket.readyState !== WebSocket.OPEN)
-    {
-        return;
-    }
-  }
-
-
-  let circle = SVG.find('.circle');
-  let square = SVG.find('.square');
-  let triangle = SVG.find('.triangle');
-
-  circle.animate().attr({fill:'#ccc'});
-  square.animate().attr({fill:'#ccc'});
-  triangle.animate().attr({fill:'#ccc'});
-
-
-  function im1MessageHandler(data) {
-
-    console.log("--------------im1MessageHandler---------------");
-
-    if(data != null && data!="RENEW" && data!="OK") {
-      console.log(data);
-      var content = $(data).find("emma\\:interpretation").first().text().trim();
-      if (typeof content == 'string') {
-        try {
-          // Try to parse XML
-          console.log(content);
-
-          //$("#response").html(content);
-          //$("#response").addClass("container");
-          //$("#response").addClass("responseText");
-
-          let c = JSON.parse(content);
-          let shape;
-          let color;
-          if (c.hasOwnProperty("nlu") && c.nlu.intent=="change_color") {
-            switch(c.nlu.shape.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')){
-              case 'triangulo': shape = triangle; break;
-              case 'quadrado': shape = square; break;
-              case 'circulo': shape = circle; break;
+            if (mmiCli_Out.socket.readyState !== WebSocket.OPEN) {
+                return;
             }
-
-            switch(c.nlu.color.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')){
-              case 'azul': color = "#3333FF"; break;
-              case 'verde': color = "#33FF33"; break;
-              case 'cinzento': color = "#aaa"; break;
-              case 'vermelho': color = "#FF3333"; break;
-              case 'branco': color = "#fff"; break;
-              case 'rosa': color = "#ff66b2"; break;
-              case 'amarelo': color = "#ffff33"; break;
-              case 'preto': color = "#000"; break;
-              case 'laranja': color = "#FF9933"; break;
-            }
-
-
-
-            shape.animate().attr({ fill: color });
-            sendToVoice("Mudei o " + c.nlu.shape + " para a cor " + c.nlu.color);
-          }
-
-
-          /*setTimeout(function(){
-            $("#response").html("");
-            $("#response").removeClass("container");
-            $("#response").removeClass("responseText");
-          }, 3000);
-          */
         }
-        catch (e) { console.log(e); }
 
-      }
-    }
-  }
+        function im1MessageHandler(data) {
 
+            console.log("--------------im1MessageHandler---------------");
 
-/////
+            if (data != null && data != "RENEW" && data != "OK") {
+                var content = $(data).find("emma\\:interpretation").first().text().trim();
+                if (typeof content == 'string') {
+                    try {
+                        // Try to parse XML
+                        console.log(content);
 
-  var mmiCli_1 = null;
-  mmiCli_1 = new MMIClient(null, "https://"+host+":8000/IM/USER1/APPSPEECH");
+                        content = JSON.parse(content);
+                        console.log(content);
 
-  circle.on('click', function(){
-      console.log("circulo");
-      sendToVoice("circulo");
-  })
+                        var obj = new Object();
+                        var final_transcript = decodeURIComponent(escape(atob(content.text)));
+                        console.log(final_transcript);
 
-  square.on('click', function(){
-      console.log("quadrado");
-      sendToVoice("quadrado");
-  })
+                        if (content.nlu.confidence < 0.88) {
+                            var messages = [
+                                "Desculpa, nao consegui perceber.",
+                                "Não percebi, podes repetir?",
+                                "Acho que nao foste claro.",
+                                "Fala direito, pah!"
+                            ]
+                            var randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                            sendToVoice(randomMessage);
+                            return;
+                        }
 
-  triangle.on('click', function(){
-      console.log("triangulo");
-      sendToVoice("triangulo");
-  })
+                        var path = ""
 
-  function sendToVoice(texto){
-    //let speak = "&lt;speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"&gt;&lt;p&gt;" + "quadrado" + "&lt;/p&gt;&lt;/speak&gt";
-  let speak = "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"><p>"+texto+"</p></speak>";
-  var result = speak;
-      mmiCli_1.sendToIM(new LifeCycleEvent("APPSPEECH", "IM", "text-1", "ctx-1").
-          doStartRequest(new EMMA("text-", "text", "command", 1, 0).
-            setValue(JSON.stringify(result))));
-  }
+                        switch (content.nlu.intent) {
+                            case 'save_game':
+                                path = "misc/save_game"
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text);
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
 
+                            case 'affirm':
+                                path = "misc/confirm"
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
 
+                            case 'deny':
+                                path = "misc/deny"
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
 
+                            case 'walk':
+                                path = "movement/player_move"
+                                var body = new Object();
+                                for (var i = 0; i < content.nlu.entities.length; i++) {
+                                    body[content.nlu.entities[i].entity] = content.nlu.entities[i].value;
+                                }
+                                console.log(body)
 
-  /////////////////////////////////////////
+                                postToAPI(path, body).then(response => {
+                                    console.log(response);
+                                    if (!response.result) {
+                                        sendToVoice(response.text)
+                                    }
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
 
+                            case 'run_away_from_battle':
+                                path = "battle/run_away"
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'throw_pokeball':
+                                path = "battle/throw_ball"
+                                var body = new Object();
+                                body.ball_type = content.nlu.entities[0].value
+                                if (body.ball_type == 'pokébola') {
+                                    body.ball_type = 'pokebola'
+                                }
+
+                                postToAPI(path, body).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text)
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'battle_attack':
+                                path = "battle/attack"
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text)
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'choose_attack':
+                                path = "battle/choose_attack"
+                                var body = new Object();
+                                body.attack_number = content.nlu.entities[0].value
+
+                                postToAPI(path, body).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text)
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'battle_pokemon':
+                                path = "battle/pokemon"
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text)
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'choose_pokemon':
+                                path = "battle/choose_pokemon"
+                                var body = new Object();
+                                body.pokemon_number = content.nlu.entities[0].value
+
+                                postToAPI(path, body).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text)
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'skip_dialogue':
+                                path = "misc/skip_dialogue"
+
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+                        }
+                        console.log(path);
+                    }
+                    catch (e) { console.log(e); }
+                }
+            } else {
+                console.log("default handler.")
+            }
+        }
+
+        var POKEMON_API_URL = "http://127.0.0.1:5000/"
+        async function postToAPI(path, body) {
+            const headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
+            const requestOptions = {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(body)
+            };
+
+            return fetch(POKEMON_API_URL + path, requestOptions)
+                .then(response => response.json())
+                .catch(error => {
+                    console.error('Error:', error);
+                    throw error;
+                });
+        }
+
+        /////
+        var mmiCli_1 = null;
+        mmiCli_1 = new MMIClient(null, "https://" + host + ":8000/IM/USER1/APPSPEECH");
+
+        function sendToVoice(texto) {
+            let speak = "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.w3.org/2001/10/synthesis http://www.w3.org/TR/speech-synthesis/synthesis.xsd\" xml:lang=\"pt-PT\"><p>" + texto + "</p></speak>";
+            var result = speak;
+            mmiCli_1.sendToIM(new LifeCycleEvent("APPSPEECH", "IM", "text-1", "ctx-1").
+                doStartRequest(new EMMA("text-", "text", "command", 1, 0).
+                    setValue(JSON.stringify(result))));
+        }
     </script>
 </body>
 </html>

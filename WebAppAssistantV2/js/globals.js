@@ -3,8 +3,8 @@ var host = '127.0.0.1';
 //var host = '192.168.43.15';
 //var host = 'localhost';
 
-var mmi_im = "https://"+host+":8000/IM/USER1/";
-var mmi_fusion = "https://"+host+":8001/IM/USER1/";
+var mmi_im = "https://" + host + ":8000/IM/USER1/";
+var mmi_fusion = "https://" + host + ":8001/IM/USER1/";
 
 
 //var speech_service ="wss://"+host+":8888/Speech";

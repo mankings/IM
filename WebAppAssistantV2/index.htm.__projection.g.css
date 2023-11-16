@@ -2,6 +2,101 @@
 
         body {
             --indicator-color: black;
+            /*background: #fff;*/ /*radial-gradient(#fff 75%, var(--indicator-color));*/
+            background-image: url('/images/starters.png');
+            background-color: beige;
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-position: center;
+            min-height: 100vh;
+            color: whitesmoke;
+            font-family: Poppins;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mic {
+            width: 150px;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+        }
+
+        .responseText {
+            border: solid 2px #8ea7cf;
+            margin: 2%;
+            color: #41683a;
+        }
+
+        .bottomNav {
+            position: absolute;
+            bottom: 2%;
+            width: 95%;
+        }
+
+        .recognized {
+            font-size: x-large;
+        }
+    
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+h1 {
+background-color: darkslategrey; margin: 0; padding: 10px; text-align: center; 
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+div {
+
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+div {
+border: solid 2px black; margin: 2%; background-color: darkslategrey;
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+svg {
+enable-background:new 0 0 100 100;
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+                .st01 {
+                    fill: #4F5D73;
+                }
+
+                .st1 {
+                    opacity: 0.2;
+                }
+
+                .st2 {
+                    fill: #231F20;
+                }
+
+                .st3 {
+                    fill: #4F5D73;
+                }
+
+                .st4 {
+                    fill: #FFFFFF;
+                }
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+div {
+display: inline; vertical-align: central; top: auto;bottom: auto; width: 600px;
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+
+        body {
+            --indicator-color: black;
             background: #fff; /*radial-gradient(#fff 75%, var(--indicator-color));*/
             min-height: 100vh;
             color: whitesmoke;
