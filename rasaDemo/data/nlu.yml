@@ -2,14 +2,16 @@ version: "3.1"
 nlu:
 - intent: walk
   examples: |
-    - Anda [um](unit) para a [esquerda](direction)
-    - Anda [dois](unit) passos para [cima](direction) 
-    - Dá [três](unit) passos para [baixo](direction) 
-    - Vai [quatro](unit) para a [direita](direction)
-    - [Oito](unit) para a [direita](direction)
-    - [Nove](unit) para [baixo](direction) 
-    - Anda para a [direita](direction)
-    - Vai para [cima](direction)
+    - Anda [1](unit) para a [esquerda](direction)
+    - Anda [2](unit) passos para [cima](direction) 
+    - Dá [3](unit) passos para [baixo](direction) 
+    - Vai [4](unit) para a [direita](direction)
+    - Anda [5](unit) para a [esquerda](direction)
+    - Anda [6](unit) passos para [cima](direction) 
+    - Dá [7](unit) passos para [baixo](direction) 
+    - Vai [8](unit) para a [direita](direction)
+    - Dá [9](unit) passos para [baixo](direction) 
+    - Vai [10](unit) para a [direita](direction)
   
 
 - intent: affirm
