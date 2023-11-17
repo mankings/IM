@@ -44,11 +44,11 @@ def battle_attack():
 
 
 class ChooseAttackBody(BaseModel):
-    attack_number: str
+    attack: str
 @app.post("/battle/choose_attack")
 def battle_choose_attack(body: ChooseAttackBody):
     helpers.get_window()
-    result = macros.battle_choose_attack(body.attack_number)
+    result = macros.battle_choose_attack(body.attack)
     
     return {"result": result[0], "text": result[1]}
 
@@ -61,21 +61,21 @@ def battle_pokemon():
 
 
 class ChoosePokemonBody(BaseModel):
-    pokemon_number: str
+    pokemon: str
 @app.post("/battle/choose_pokemon")
 def choose_pokemon(body: ChoosePokemonBody):
     helpers.get_window()
-    result = macros.choose_pokemon(body.pokemon_number)
+    result = macros.choose_pokemon(body.pokemon)
     
     return {"result": result[0], "text": result[1]}
 
 
 class ThrowBallBody(BaseModel):
-    ball_type: str
+    pokeball: str
 @app.post("/battle/throw_ball")
 def battle_throw_ball(body: ThrowBallBody):
     helpers.get_window()
-    result = macros.battle_throw_ball(body.ball_type)
+    result = macros.battle_throw_ball(body.pokeball)
     
     return {"result": result[0], "text": result[1]}
 

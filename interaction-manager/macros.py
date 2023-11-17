@@ -90,7 +90,7 @@ def choose_pokemon(pokemon_number):
 		di.press(KEY_A)
 	
 	di.press(KEY_RIGHT)
-	# Ações comuns a battle e overworld
+	# Acoes comuns a battle e overworld
 	if pokemon_number in ['2', "segundo"]:
 		di.press(KEY_DOWN)
 	if pokemon_number in ['3', "terceiro"]:
@@ -102,7 +102,7 @@ def choose_pokemon(pokemon_number):
 	di.press(KEY_A)
 	wait_for('menu_pointer')
 	
-	# Ações para overworld
+	# Acoes para overworld
 	if find_on_screen('switch_btn'):
 		msg = "Mudei o Pokemon que comeca as batalhas."
 		navigate_menu('menu_pointer', 'switch_btn', navigation="vertical")
@@ -115,7 +115,7 @@ def choose_pokemon(pokemon_number):
 		wait_for('start_menu')
 		di.press(KEY_B)
 		
-	# Ação para battle
+	# Acao para battle
 	else: 
 		msg = "Isso! Vai!"
 		di.press(KEY_A)
@@ -142,7 +142,7 @@ def battle_throw_ball(ball_type: str):
 		di.press(KEY_RIGHT)
 		di.press(KEY_RIGHT)
 		
-	time.sleep(0.5)
+	time.sleep(1)
 
 	# select correct pokeball type
 	ball_type = ball_type.lower()
@@ -153,7 +153,6 @@ def battle_throw_ball(ball_type: str):
 	elif ball_type in ['ultraball', 'ultra bola', 'ultra'] and find_on_screen('ultraball_label'):
 		navigate_menu('menu_pointer', 'ultraball_label', navigation="vertical")
 	else:
-		print('Pokeball type not found.')
 		di.press(KEY_B)
 		return (False, "Nao temos dessas pokebolas. Vai comprar seu roto!")
 

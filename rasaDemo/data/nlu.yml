@@ -2,16 +2,16 @@ version: "3.1"
 nlu:
 - intent: walk
   examples: |
-    - Anda [1](unit) para a [esquerda](direction)
-    - Anda [2](unit) passos para [cima](direction) 
-    - Dá [3](unit) passos para [baixo](direction) 
-    - Vai [4](unit) para a [direita](direction)
-    - Anda [5](unit) para a [esquerda](direction)
-    - Anda [6](unit) passos para [cima](direction) 
-    - Dá [7](unit) passos para [baixo](direction) 
-    - Vai [8](unit) para a [direita](direction)
-    - Dá [9](unit) passos para [baixo](direction) 
-    - Vai [10](unit) para a [direita](direction)
+    - Vai [quatro](unit) para a [direita](direction)
+    - Anda [cinco](unit) para a [esquerda](direction)
+    - Anda [seis](unit) passos para [cima](direction) 
+    - Dá [sete](unit) passos para [baixo](direction) 
+    - Vai [oito](unit) para a [direita](direction)
+    - Dá [nove](unit) passos para [baixo](direction) 
+    - [Sete](unit) para [baixo](direction) 
+    - [Oito](unit) para a [direita](direction)
+    - [Nove](unit) para [baixo](direction) 
+    - Vai [dez](unit) para a [direita](direction)
   
 
 - intent: affirm
@@ -80,11 +80,11 @@ nlu:
 - intent: throw_pokeball
   examples: |
     - Atira uma [pokebola](pokeball)
-    - Atira uma [poke bola](pokeball)
-    - Atira uma [ultra bola](pokeball)
+    - Atira uma [poke] bola(pokeball)
+    - Atira uma [ultra] bola(pokeball)
     - [Ultraball](pokeball)
     - Usa a [Greatball](pokeball) 
-    - [Great bola](pokeball) 
+    - [Great] bola(pokeball) 
     - Apanha esse pokemon
 
 

@@ -58,8 +58,8 @@
 <body>
     <h1 style="background-color: darkslategrey; margin: 0; padding: 10px; text-align: center; ">VOICE ACTIVATED POKÉMON LEAF GREEN</h1>
 
-    <button class="test-btns">Melhor do mundo</button>
-    <button class="test-btns">SUUUUUUUUIIIIIIIIII</button>
+    <!--<button class="test-btns">Melhor do mundo</button>
+    <button class="test-btns">SUUUUUUUUIIIIIIIIII</button>-->
 
 
     <div id="response" class="" style=""></div>
@@ -215,6 +215,7 @@
                             case 'throw_pokeball':
                                 path = "battle/throw_ball"
                                 var body = entities;
+                                if (!body.pokeball || body.pokeball == "pokébola") body.pokeball = "pokebola"
 
                                 postToAPI(path, body).then(response => {
                                     console.log(response);
