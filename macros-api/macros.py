@@ -146,7 +146,7 @@ def battle_throw_ball(ball_type: str):
 
 	# select correct pokeball type
 	ball_type = ball_type.lower()
-	if ball_type in ['pokeball', 'pokebola'] and find_on_screen('pokeball_label'):
+	if ball_type in ['pokeball', 'pokebola', 'pokbola'] and find_on_screen('pokeball_label'):
 		navigate_menu('menu_pointer', 'pokeball_label', navigation="vertical")
 	elif ball_type in ['greatball', 'great bola', 'great'] and find_on_screen('greatball_label'):
 		navigate_menu('menu_pointer', 'greatball_label', navigation="vertical")
@@ -177,7 +177,7 @@ def battle_run():
 def start_game():
 	start_window()
 	time.sleep(3)
-	get_window()
+	get_window().maximize()
 	di.press('f1')
 	
 	return (True, 'Consegui abrir o jogo, agora podemos jogar!')

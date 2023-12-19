@@ -163,8 +163,8 @@ cython_debug/
 # project dependencies
 CAroot.crt
 WebAppAssistantV2_old/
-mmiframeworkV2/
-FusionEngine/
+mmiframeworkV2*/
+FusionEngine*/
 rasaDemo/.rasa/
 rasaDemo/models/
 .vs/
