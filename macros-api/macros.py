@@ -91,14 +91,12 @@ def choose_pokemon(pokemon_number):
 	
 	di.press(KEY_RIGHT)
 	# Acoes comuns a battle e overworld
-	if pokemon_number in ['2', "segundo"]:
+	if pokemon_number in ['2', "segundo", "2", 2]:
 		di.press(KEY_DOWN)
-	if pokemon_number in ['3', "terceiro"]:
+	if pokemon_number in ['3', "terceiro", "3", 3]:
 		di.press(KEY_DOWN)
 		di.press(KEY_DOWN)
 		
-	
-	
 	di.press(KEY_A)
 	wait_for('menu_pointer')
 	
@@ -120,6 +118,7 @@ def choose_pokemon(pokemon_number):
 		msg = "Isso! Vai!"
 		di.press(KEY_A)
 	
+	di.press(KEY_B)
 	return (True, msg)
 	
 	

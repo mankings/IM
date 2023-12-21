@@ -5,12 +5,12 @@ import helpers
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from apscheduler.schedulers.background import BackgroundScheduler
 
 
 app = FastAPI()
 
 origins = ["*"] 
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -19,9 +19,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+scheduler = BackgroundScheduler()
+scheduler.start()
+
 @app.post("/")
 def root():
 	return {"message": "Hello World. Be prepared to play Pokémon Leaf Green!"}
+
+def setup():
+    helpers.get_window()
+    job_name = "player_start_moving"
+    if (scheduler.get_job(job_name)):
+        scheduler.remove_job(job_name)
+    return True
 
 
 class PlayerMoveBody(BaseModel):
@@ -29,32 +39,46 @@ class PlayerMoveBody(BaseModel):
     unit: str
 @app.post("/movement/player_move")
 def player_move(body: PlayerMoveBody):
-    helpers.get_window()
+    setup()
     result = macros.player_move(body.direction, body.unit)
-	
+
     return {"result": result[0], "text": result[1]}
 
+@app.post("/movement/player_start_moving")
+def player_start_moving(body: PlayerMoveBody):
+    setup()
+
+    interval = 1
+    scheduler.add_job(macros.player_move, 'interval', [body.direction, body.unit], seconds=interval, id="player_start_moving")
+    
+    return {"result": True, "text": "Aqui vou eu!"}
+
+@app.post("/movement/player_stop_moving")
+def player_stop_moving():
+    setup()
+    
+    return {"result": True, "text": "Parei de me mexer."}
 
 @app.post("/battle/attack")
 def battle_attack():
-    helpers.get_window()
+    setup()
     result = macros.battle_attack()
     
-    return {"result": result[0], "text": result[1]}
+    return {"result": True, "text": result[1]}
 
 
 class ChooseAttackBody(BaseModel):
     attack: str
 @app.post("/battle/choose_attack")
 def battle_choose_attack(body: ChooseAttackBody):
-    helpers.get_window()
+    setup()
     result = macros.battle_choose_attack(body.attack)
     
     return {"result": result[0], "text": result[1]}
 
 @app.post("/battle/pokemon")
 def battle_pokemon():
-    helpers.get_window()
+    setup()
     result = macros.battle_pokemon()
     
     return {"result": result[0], "text": result[1]}
@@ -64,7 +88,7 @@ class ChoosePokemonBody(BaseModel):
     pokemon: str
 @app.post("/battle/choose_pokemon")
 def choose_pokemon(body: ChoosePokemonBody):
-    helpers.get_window()
+    setup()
     result = macros.choose_pokemon(body.pokemon)
     
     return {"result": result[0], "text": result[1]}
@@ -74,7 +98,7 @@ class ThrowBallBody(BaseModel):
     pokeball: str
 @app.post("/battle/throw_ball")
 def battle_throw_ball(body: ThrowBallBody):
-    helpers.get_window()
+    setup()
     result = macros.battle_throw_ball(body.pokeball)
     
     return {"result": result[0], "text": result[1]}
@@ -82,7 +106,7 @@ def battle_throw_ball(body: ThrowBallBody):
 
 @app.post("/battle/run_away")
 def battle_run():
-    helpers.get_window()
+    setup()
     result = macros.battle_run()
     
     return {"result": result}
@@ -90,7 +114,7 @@ def battle_run():
 
 @app.post("/misc/confirm")
 def confirm():
-    helpers.get_window()
+    setup()
     result = macros.accept()
     
     return {"result": result}
@@ -98,7 +122,7 @@ def confirm():
 
 @app.post("/misc/deny")
 def deny():
-    helpers.get_window()
+    setup()
     result = macros.refuse()
     
     return {"result": result}
@@ -106,7 +130,7 @@ def deny():
 
 @app.post("/misc/save_game")
 def save_game():
-    helpers.get_window()
+    setup()
     result = macros.save_game()
     
     return {"result": result[0], "text": result[1]}
@@ -115,14 +139,14 @@ class DirectionBody(BaseModel):
     direction: str
 @app.post("/misc/direction")
 def direction(body: DirectionBody):
-    helpers.get_window()
+    setup()
     result = macros.direction(body.direction)
     
     return {"result": result[0], "text": result[1]}
 
 @app.post("/misc/skip_dialogue")
 def skip_dialogue():
-    helpers.get_window()
+    setup()
     result = macros.deny_all_dialogue()
     
     return {"result": result[0], "text": result[1]}

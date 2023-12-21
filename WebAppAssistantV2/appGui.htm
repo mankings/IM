@@ -58,8 +58,8 @@
 <body>
     <h1 style="background-color: darkslategrey; margin: 0; padding: 10px; text-align: center; ">VOICE ACTIVATED POKÉMON LEAF GREEN</h1>
 
-    <!--<button class="test-btns">Melhor do mundo</button>
-    <button class="test-btns">SUUUUUUUUIIIIIIIIII</button>-->
+    <button class="test-btns">Melhor do mundo</button>
+    <button class="test-btns">SUUUUUUUUIIIIIIIIII</button>
 
 
     <div id="response" class="" style=""></div>
@@ -111,6 +111,13 @@
             }
         }
 
+        const fallbackMessages = [
+            "Desculpa, nao consegui perceber.",
+            "Não percebi, podes repetir?",
+            "Acho que nao foste claro.",
+            "Fala direito, pah!"
+        ]
+
         function im1MessageHandler(data) {
 
             console.log("--------------im1MessageHandler---------------");
@@ -120,36 +127,160 @@
                 if (typeof content == 'string') {
                     try {
                         // Try to parse XML
-                        console.log(content);
-
                         content = JSON.parse(content);
-                        console.log(content);
 
-                        //var final_transcript = decodeURIComponent(escape(atob(content.text)));
-                        //console.log(final_transcript);
+                        var intent = "";
+                        var body = {};
 
-                        if (content.nlu.confidence < 0.88) {
-                            var messages = [
-                                "Desculpa, nao consegui perceber.",
-                                "Não percebi, podes repetir?",
-                                "Acho que nao foste claro.",
-                                "Fala direito, pah!"
-                            ]
-                            var randomMessage = messages[Math.floor(Math.random() * messages.length)];
-                            sendToVoice(randomMessage);
-                            return;
+                        if (content.recognized[0] == 'SPEECH') {
+                            console.log(content);
+
+                            if (content.nlu.confidence < 0.88) {
+                                var randomMessage = fallbackMessages[Math.floor(Math.random() * messages.length)];
+                                sendToVoice(randomMessage);
+                                return;
+                            }
+
+                            intent = content.nlu.intent;
+                            content.nlu.entities.forEach(element => {
+                                body[element["entity"]] = removeNonUTF8Characters(element["value"]);
+                            });
+
+                        } else if (content.recognized[0] == 'GESTURES') {
+                            console.log(content.recognized)
+                            var gesture = content.recognized[1];
+
+                            switch (gesture) {
+                                case "SWIPEUP":
+                                    intent = "walk";
+                                    body.direction = "up";
+                                    break;
+                                case "SWIPELEFTL":
+                                    intent = "walk";
+                                    body.direction = "left";
+                                    break;
+                                case "SWIPERIGHTR":
+                                    intent = "walk";
+                                    body.direction = "right";
+                                    break;
+                                case "DOWN":
+                                    intent = "walk";
+                                    body.direction = "down";
+                                    break;
+                                case "STOP":
+                                    intent = "stop";
+                                    break;
+                                case "SWAP":
+                                    intent = "choose_pokemon";
+                                    break;
+                                case "SAVE":
+                                    intent = "save_game";
+                                    break;
+                                case "LIKE":
+                                    intent = "affirm";
+                                    break;
+                            }
                         }
 
-                        const entities = {}
-                        content.nlu.entities.forEach(element => {
-                            entities[element["entity"]] = removeNonUTF8Characters(element["value"]);
-                        });
+                        var path = "";
+                        switch (intent) {
+                            case 'walk':
+                                path = "movement/player_start_moving"
+                                if (!body.unit) body.unit = "1"
 
-                        console.log(entities)
+                                postToAPI(path, body).then(response => {
+                                    console.log(response);
+                                    if (!response.result) {
+                                        sendToVoice(response.text)
+                                    }
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
 
-                        var path = ""
+                            case 'stop':    
+                                path = "movement/player_stop_moving"
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
 
-                        switch (content.nlu.intent) {
+                            case 'battle_attack':
+                                path = "battle/attack"
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text)
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'choose_attack':
+                                path = "battle/choose_attack"
+
+                                postToAPI(path, body).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text)
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'throw_pokeball':
+                                path = "battle/throw_ball"
+                                if (!body.pokeball || body.pokeball == "pokébola") body.pokeball = "pokebola"
+
+                                postToAPI(path, body).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text)
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'run_away_from_battle':
+                                path = "battle/run_away"
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'battle_pokemon':
+                                path = "battle/pokemon"
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text)
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'choose_pokemon':
+                                path = "battle/choose_pokemon"
+                                body.pokemon = "2";
+
+                                postToAPI(path, body).then(response => {
+                                    console.log(response);
+                                    sendToVoice(response.text)
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
+                            case 'skip_dialogue':
+                                path = "misc/skip_dialogue"
+
+                                postToAPI(path, new Object()).then(response => {
+                                    console.log(response);
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                                break;
+
                             case 'launch_game':
                                 path = "misc/start_game"
                                 postToAPI(path, new Object()).then(response => {
@@ -181,97 +312,6 @@
 
                             case 'deny':
                                 path = "misc/deny"
-                                postToAPI(path, new Object()).then(response => {
-                                    console.log(response);
-                                }).catch(error => {
-                                    console.error('Error:', error);
-                                });
-                                break;
-
-                            case 'walk':
-                                path = "movement/player_move"
-                                var body = entities;
-                                if (!body.unit) body.unit = "1"
-
-                                postToAPI(path, body).then(response => {
-                                    console.log(response);
-                                    if (!response.result) {
-                                        sendToVoice(response.text)
-                                    }
-                                }).catch(error => {
-                                    console.error('Error:', error);
-                                });
-                                break;
-
-                            case 'run_away_from_battle':
-                                path = "battle/run_away"
-                                postToAPI(path, new Object()).then(response => {
-                                    console.log(response);
-                                }).catch(error => {
-                                    console.error('Error:', error);
-                                });
-                                break;
-
-                            case 'throw_pokeball':
-                                path = "battle/throw_ball"
-                                var body = entities;
-                                if (!body.pokeball || body.pokeball == "pokébola") body.pokeball = "pokebola"
-
-                                postToAPI(path, body).then(response => {
-                                    console.log(response);
-                                    sendToVoice(response.text)
-                                }).catch(error => {
-                                    console.error('Error:', error);
-                                });
-                                break;
-
-                            case 'battle_attack':
-                                path = "battle/attack"
-                                postToAPI(path, new Object()).then(response => {
-                                    console.log(response);
-                                    sendToVoice(response.text)
-                                }).catch(error => {
-                                    console.error('Error:', error);
-                                });
-                                break;
-
-                            case 'choose_attack':
-                                path = "battle/choose_attack"
-                                var body = entities;
-
-                                postToAPI(path, body).then(response => {
-                                    console.log(response);
-                                    sendToVoice(response.text)
-                                }).catch(error => {
-                                    console.error('Error:', error);
-                                });
-                                break;
-
-                            case 'battle_pokemon':
-                                path = "battle/pokemon"
-                                postToAPI(path, new Object()).then(response => {
-                                    console.log(response);
-                                    sendToVoice(response.text)
-                                }).catch(error => {
-                                    console.error('Error:', error);
-                                });
-                                break;
-
-                            case 'choose_pokemon':
-                                path = "battle/choose_pokemon"
-                                var body = entities;
-
-                                postToAPI(path, body).then(response => {
-                                    console.log(response);
-                                    sendToVoice(response.text)
-                                }).catch(error => {
-                                    console.error('Error:', error);
-                                });
-                                break;
-
-                            case 'skip_dialogue':
-                                path = "misc/skip_dialogue"
-
                                 postToAPI(path, new Object()).then(response => {
                                     console.log(response);
                                 }).catch(error => {
