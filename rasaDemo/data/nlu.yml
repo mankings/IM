@@ -1,17 +1,103 @@
 version: "3.1"
 nlu:
-- intent: walk
+- intent: units
   examples: |
-    - Vai [quatro](unit) para a [direita](direction)
-    - Anda [cinco](unit) para a [esquerda](direction)
-    - Anda [seis](unit) passos para [cima](direction) 
-    - Dá [sete](unit) passos para [baixo](direction) 
-    - Vai [oito](unit) para a [direita](direction)
-    - Dá [nove](unit) passos para [baixo](direction) 
-    - [Sete](unit) para [baixo](direction) 
-    - [Oito](unit) para a [direita](direction)
-    - [Nove](unit) para [baixo](direction) 
-    - Vai [dez](unit) para a [direita](direction)
+    - [Um](unit)
+    - [Dois](unit)
+    - [Três](unit)
+    - [Quatro](unit)
+    - [Cinco](unit)
+    - [Seis](unit)
+    - [Sete](unit)
+    - [Oito](unit)
+    - [Nove](unit)
+    - [Dez](unit)
+
+
+
+- synonym: "1"
+  examples: |
+    - um
+    - 1
+    - 1º
+    - primeiro
+
+- synonym: "2"
+  examples: |
+    - dois
+    - 2
+    - 2º
+    - segundo
+
+- synonym: "3"
+  examples: |
+    - três
+    - 3
+    - 3º
+    - terceiro
+
+- synonym: "4"
+  examples: |
+    - quatro
+    - 4
+    - 4º
+    - quarto	
+
+- synonym: "5"
+  examples: |
+    - cinco
+    - 5
+    - 5º
+    - quinto
+
+- synonym: "6"
+  examples: |
+    - seis
+    - 6
+    - 6º
+    - sexto
+
+- synonym: "7"
+  examples: |
+    - sete
+    - 7
+    - 7º
+    - sétimo
+
+- synonym: "8"
+  examples: |
+    - oito
+    - 8
+    - 8º
+    - oitavo
+
+- synonym: "9"
+  examples: |
+    - nove
+    - 9
+    - 9º
+    - nono
+
+- synonym: "10"
+  examples: |
+    - dez
+    - 10
+    - 10º
+    - décimo
+
+
+# - intent: walk
+#   examples: |
+#     - Vai [quatro](unit) para a [direita](direction)
+#     - Anda [cinco](unit) para a [esquerda](direction)
+#     - Anda [seis](unit) passos para [cima](direction) 
+#     - Dá [sete](unit) passos para [baixo](direction) 
+#     - Vai [oito](unit) para a [direita](direction)
+#     - Dá [nove](unit) passos para [baixo](direction) 
+#     - [Sete](unit) para [baixo](direction) 
+#     - [Oito](unit) para a [direita](direction)
+#     - [Nove](unit) para [baixo](direction) 
+#     - Vai [dez](unit) para a [direita](direction)
   
 
 - intent: affirm
@@ -45,12 +131,12 @@ nlu:
     - [Quarto](attack) ataque
 
 
-- intent: choose_pokemon
-  examples: |
-    - Usa o pokemon [um](pokemon)
-    - Usa o [primeiro](pokemon) pokemon 
-    - pokemon [dois](pokemon)
-    - [Segundo](pokemon) pokemon
+# - intent: choose_pokemon
+#   examples: |
+#     - Usa o pokemon [um](pokemon)
+#     - Usa o [primeiro](pokemon) pokemon 
+#     - pokemon [dois](pokemon)
+#     - [Segundo](pokemon) pokemon
 
 
 - intent: run_away_from_battle
@@ -122,3 +208,11 @@ nlu:
     - Não quero falar mais contigo
     - Xau 
     - Até logo
+
+- intent: stop_moving
+  examples: |
+    - Para de andar
+    - Está quieto
+    - Fica aí
+    - Fica no sítio
+    - Parou aí

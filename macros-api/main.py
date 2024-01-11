@@ -28,9 +28,7 @@ def root():
 
 def setup():
     helpers.get_window()
-    job_name = "player_start_moving"
-    if (scheduler.get_job(job_name)):
-        scheduler.remove_job(job_name)
+    scheduler.remove_all_jobs()
     return True
 
 
@@ -47,9 +45,8 @@ def player_move(body: PlayerMoveBody):
 @app.post("/movement/player_start_moving")
 def player_start_moving(body: PlayerMoveBody):
     setup()
-
     interval = 1
-    scheduler.add_job(macros.player_move, 'interval', [body.direction, body.unit], seconds=interval, id="player_start_moving")
+    scheduler.add_job(macros.player_move, 'interval', [body.direction, body.unit], seconds=interval, id="player_move")
     
     return {"result": True, "text": "Aqui vou eu!"}
 

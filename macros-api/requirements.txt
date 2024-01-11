@@ -55,7 +55,6 @@ websockets==12.0
 annotated-types==0.6.0
 anyio==3.7.1
 APScheduler==3.10.4
-backports.zoneinfo==0.2.1
 certifi==2023.7.22
 charset-normalizer==3.3.2
 click==8.1.7

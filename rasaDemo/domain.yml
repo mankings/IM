@@ -1,10 +1,10 @@
 version: '3.1'
 intents:
-- walk
+# - walk
 - affirm
 - deny
 - choose_attack
-- choose_pokemon
+# - choose_pokemon
 - run_away_from_battle
 - launch_game
 - save_game
@@ -12,6 +12,7 @@ intents:
 - battle_attack
 - battle_pokemon
 - stop_listening
+- stop_moving
 entities:
 - direction
 - unit

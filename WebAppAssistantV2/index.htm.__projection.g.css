@@ -3,7 +3,7 @@
         body {
             --indicator-color: black;
             /*background: #fff;*/ /*radial-gradient(#fff 75%, var(--indicator-color));*/
-            background-image: url('/images/starters.png');
+            background-image: url('/images/starters_last.png');
             background-color: beige;
             background-repeat: no-repeat;
             background-size: auto;

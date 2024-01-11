@@ -13,7 +13,7 @@
         body {
             --indicator-color: black;
             /*background: #fff;*/ /*radial-gradient(#fff 75%, var(--indicator-color));*/
-            background-image: url('/images/starters.png');
+            background-image: url('/images/starters_last.png');
             background-color: beige;
             background-repeat: no-repeat;
             background-size: auto;
@@ -76,6 +76,9 @@
     <button class="test-btns">Escolher pokemon.</button>
     <button class="test-btns">Segundo pokemon.</button>
     <button class="test-btns">Ok agora cala-te.</button>
+    <button class="test-btns">Dois.</button>
+    <button class="test-btns">Três.</button>
+    <button class="test-btns">Cinco.</button>
 
 
     <!--<p>Click the button below and start speaking.</p>
@@ -286,7 +289,7 @@
 
 
         recognition.onerror = function (event) {
-            console.error("REC ERROR" + event.error);
+            console.error("REC ERROR: " + event.error);
             transcriptDiv.innerHTML = firstSent;
             circle.animate(20, 0, 'now').attr({ fill: '#000' });
             //startkws();
@@ -401,9 +404,6 @@
             })
             //myvad.start()
 
-
-
-
         }
         //main()
 
@@ -440,10 +440,10 @@
         /////////////////////////////////////////
 
 
-        var interaction_manager = "http://" + host + ":5000/";
+        var app = "http://" + host + ":5000/";
 
         var mmiCli_1 = null;
-        mmiCli_1 = new MMIClient(interaction_manager, mmi_fusion + "SPEECHIN");
+        mmiCli_1 = new MMIClient(null, mmi_fusion + "SPEECHIN");
 
         function sendMMI(final_transcript) {
 
@@ -454,14 +454,20 @@
                 if (data.intent.name == "stop_listening") {
                     recognition.stop();
                     speechActive = false;
-                    feedback("Ok, não digo mais nada.")
+                    feedback("Ok, não digo mais nada.");
                 }
 
 
-                var message = { 'intent': data.intent.name, 'confidence': data.intent.confidence, 'entities': data.entities }
+                // var message = { 'intent': data.intent.name, 'entities': data.entities }
                 var messaget = btoa(unescape(encodeURIComponent(final_transcript)));
-                var result = { "recognized": ["SPEECH", "SPEECHIN", "APP"], "text": messaget, "nlu": message };
 
+                var recognized = data.entities.map(function (entity) {
+                    console.log(entity);
+                    return entity.value.toUpperCase();
+                });
+                recognized.unshift("SPEECH", data.intent.name.toUpperCase());
+
+                var result = { "recognized": recognized, "text": messaget, "confidence": data.intent.confidence };
                 var lce = new LifeCycleEvent("SPEECHIN", "IM", "text-1", "ctx-1").
                     doExtensionNotification(new EMMA("text-", "text", "command", 1, 0).
                         setValue(JSON.stringify(result)));

@@ -1,0 +1,1278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:commons="http://commons.apache.org/scxml" xmlns:emma="http://www.w3.org/2003/04/emma" xmlns:mmi="http://www.w3.org/2008/04/mmi-arch" xmlns:schemaLocation="http://www.w3.org/2005/07/scxml scxml.xsd http://commons.apache.org/scxml commons.xsd http://www.w3.org/2008/04/mmi-arch mmi.xsd http://www.w3.org/2003/04/emma emma.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" initialstate="init">
+  <datamodel>
+    <data name="data1" />
+    <data name="data2" />
+  </datamodel>
+  <state id="init">
+    <onentry>
+      <log label="[init]" expr="READY" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="main">
+    <onentry>
+      <log label="[main]" expr="READY" />
+    </onentry>
+    <transition target="stouch[gestures][swap]" event="[GESTURES][SWAP]" />
+    <transition target="sspeech[speech][units][8]" event="[SPEECH][UNITS][8]" />
+    <transition target="sspeech[speech][stop_moving]" event="[SPEECH][STOP_MOVING]" />
+    <transition target="stouch[gestures][save]" event="[GESTURES][SAVE]" />
+    <transition target="stouch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][3]" event="[SPEECH][UNITS][3]" />
+    <transition target="stouch[gestures][like]" event="[GESTURES][LIKE]" />
+    <transition target="sspeech[speech][units][2]" event="[SPEECH][UNITS][2]" />
+    <transition target="stouch[gestures][stop]" event="[GESTURES][STOP]" />
+    <transition target="sspeech[speech][units][10]" event="[SPEECH][UNITS][10]" />
+    <transition target="stouch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][4]" event="[SPEECH][UNITS][4]" />
+    <transition target="sspeech[speech][units][6]" event="[SPEECH][UNITS][6]" />
+    <transition target="stouch[gestures][down]" event="[GESTURES][DOWN]" />
+    <transition target="sspeech[speech][units][5]" event="[SPEECH][UNITS][5]" />
+    <transition target="sspeech[speech][units][1]" event="[SPEECH][UNITS][1]" />
+    <transition target="sspeech[speech][save_game]" event="[SPEECH][SAVE_GAME]" />
+    <transition target="stouch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][9]" event="[SPEECH][UNITS][9]" />
+    <transition target="sspeech[speech][skip_dialogue]" event="[SPEECH][SKIP_DIALOGUE]" />
+    <transition target="sspeech[speech][units][7]" event="[SPEECH][UNITS][7]" />
+  </state>
+  <state id="stouch[gestures][swap]">
+    <onentry>
+      <log label="[stouch[gestures][swap]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-stouch[gestures][swap]" event="timeout-stouch[gestures][swap]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-stouch[gestures][swap]" />
+    <transition target="stouch[gestures][swap]-speech[speech][units][1]" event="[SPEECH][UNITS][1]" />
+    <transition target="stouch[gestures][swap]-speech[speech][units][2]" event="[SPEECH][UNITS][2]" />
+    <transition target="stouch[gestures][swap]-speech[speech][units][3]" event="[SPEECH][UNITS][3]" />
+    <transition target="stouch[gestures][swap]-speech[speech][units][4]" event="[SPEECH][UNITS][4]" />
+    <transition target="stouch[gestures][swap]-speech[speech][units][5]" event="[SPEECH][UNITS][5]" />
+    <onexit>
+      <cancel sendid="state1-timer-stouch[gestures][swap]" />
+    </onexit>
+  </state>
+  <state id="stouch[gestures][swap]-speech[speech][units][1]">
+    <onentry>
+      <log label="[stouch[gestures][swap]-speech[speech][units][1]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWAP][1]')}" />
+      <send event="CHANGE_POKEMON_1" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swap]-speech[speech][units][2]">
+    <onentry>
+      <log label="[stouch[gestures][swap]-speech[speech][units][2]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWAP][2]')}" />
+      <send event="CHANGE_POKEMON_2" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swap]-speech[speech][units][3]">
+    <onentry>
+      <log label="[stouch[gestures][swap]-speech[speech][units][3]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWAP][3]')}" />
+      <send event="CHANGE_POKEMON_3" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swap]-speech[speech][units][4]">
+    <onentry>
+      <log label="[stouch[gestures][swap]-speech[speech][units][4]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWAP][4]')}" />
+      <send event="CHANGE_POKEMON_4" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swap]-speech[speech][units][5]">
+    <onentry>
+      <log label="[stouch[gestures][swap]-speech[speech][units][5]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWAP][5]')}" />
+      <send event="CHANGE_POKEMON_5" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][8]">
+    <onentry>
+      <log label="[sspeech[speech][units][8]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][units][8]" event="timeout-sspeech[speech][units][8]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[speech][units][8]" />
+    <transition target="sspeech[speech][units][8]-touch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][8]-touch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][8]-touch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][8]-touch[gestures][down]" event="[GESTURES][DOWN]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][units][8]" />
+    </onexit>
+  </state>
+  <state id="sspeech[speech][units][8]-touch[gestures][swipeup]">
+    <onentry>
+      <log label="[sspeech[speech][units][8]-touch[gestures][swipeup]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][8]')}" />
+      <send event="MOVE_UP_8" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][8]-touch[gestures][swiperightr]">
+    <onentry>
+      <log label="[sspeech[speech][units][8]-touch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][8]')}" />
+      <send event="MOVE_RIGHT_8" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][8]-touch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[sspeech[speech][units][8]-touch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][8]')}" />
+      <send event="MOVE_LEFT_8" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][8]-touch[gestures][down]">
+    <onentry>
+      <log label="[sspeech[speech][units][8]-touch[gestures][down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][8]')}" />
+      <send event="MOVE_DOWN_8" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][stop_moving]">
+    <onentry>
+      <log label="[sspeech[speech][stop_moving]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][stop_moving]" event="timeout-sspeech[speech][stop_moving]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="speech[speech][stop_moving]-final" event="timeout-sspeech[speech][stop_moving]" />
+    <transition target="sspeech[speech][stop_moving]-touch[gestures][stop]" event="[GESTURES][STOP]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][stop_moving]" />
+    </onexit>
+  </state>
+  <state id="speech[speech][stop_moving]-final">
+    <onentry>
+      <log label="[speech[speech][stop_moving]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[FUSION][STOP]')}" />
+      <send event="STOP" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][stop_moving]-touch[gestures][stop]">
+    <onentry>
+      <log label="[sspeech[speech][stop_moving]-touch[gestures][stop]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][STOP]')}" />
+      <send event="STOP" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][save]">
+    <onentry>
+      <log label="[stouch[gestures][save]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-stouch[gestures][save]" event="timeout-stouch[gestures][save]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="touch[gestures][save]-final" event="timeout-stouch[gestures][save]" />
+    <transition target="stouch[gestures][save]-speech[speech][save_game]" event="[SPEECH][SAVE_GAME]" />
+    <onexit>
+      <cancel sendid="state1-timer-stouch[gestures][save]" />
+    </onexit>
+  </state>
+  <state id="touch[gestures][save]-final">
+    <onentry>
+      <log label="[touch[gestures][save]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[FUSION][SAVE]')}" />
+      <send event="SAVE" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][save]-speech[speech][save_game]">
+    <onentry>
+      <log label="[stouch[gestures][save]-speech[speech][save_game]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SAVE]')}" />
+      <send event="SAVE" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-stouch[gestures][swipeleftl]" event="timeout-stouch[gestures][swipeleftl]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-stouch[gestures][swipeleftl]" />
+    <transition target="stouch[gestures][swipeleftl]-speech[speech][units][1]" event="[SPEECH][UNITS][1]" />
+    <transition target="stouch[gestures][swipeleftl]-speech[speech][units][2]" event="[SPEECH][UNITS][2]" />
+    <transition target="stouch[gestures][swipeleftl]-speech[speech][units][3]" event="[SPEECH][UNITS][3]" />
+    <transition target="stouch[gestures][swipeleftl]-speech[speech][units][4]" event="[SPEECH][UNITS][4]" />
+    <transition target="stouch[gestures][swipeleftl]-speech[speech][units][5]" event="[SPEECH][UNITS][5]" />
+    <transition target="stouch[gestures][swipeleftl]-speech[speech][units][6]" event="[SPEECH][UNITS][6]" />
+    <transition target="stouch[gestures][swipeleftl]-speech[speech][units][7]" event="[SPEECH][UNITS][7]" />
+    <transition target="stouch[gestures][swipeleftl]-speech[speech][units][8]" event="[SPEECH][UNITS][8]" />
+    <transition target="stouch[gestures][swipeleftl]-speech[speech][units][9]" event="[SPEECH][UNITS][9]" />
+    <transition target="stouch[gestures][swipeleftl]-speech[speech][units][10]" event="[SPEECH][UNITS][10]" />
+    <onexit>
+      <cancel sendid="state1-timer-stouch[gestures][swipeleftl]" />
+    </onexit>
+  </state>
+  <state id="stouch[gestures][swipeleftl]-speech[speech][units][1]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]-speech[speech][units][1]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][1]')}" />
+      <send event="MOVE_LEFT_1" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeleftl]-speech[speech][units][2]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]-speech[speech][units][2]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][2]')}" />
+      <send event="MOVE_LEFT_2" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeleftl]-speech[speech][units][3]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]-speech[speech][units][3]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][3]')}" />
+      <send event="MOVE_LEFT_3" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeleftl]-speech[speech][units][4]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]-speech[speech][units][4]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][4]')}" />
+      <send event="MOVE_LEFT_4" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeleftl]-speech[speech][units][5]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]-speech[speech][units][5]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][5]')}" />
+      <send event="MOVE_LEFT_5" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeleftl]-speech[speech][units][6]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]-speech[speech][units][6]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][6]')}" />
+      <send event="MOVE_LEFT_6" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeleftl]-speech[speech][units][7]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]-speech[speech][units][7]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][7]')}" />
+      <send event="MOVE_LEFT_7" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeleftl]-speech[speech][units][8]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]-speech[speech][units][8]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][8]')}" />
+      <send event="MOVE_LEFT_8" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeleftl]-speech[speech][units][9]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]-speech[speech][units][9]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][9]')}" />
+      <send event="MOVE_LEFT_9" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeleftl]-speech[speech][units][10]">
+    <onentry>
+      <log label="[stouch[gestures][swipeleftl]-speech[speech][units][10]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][10]')}" />
+      <send event="MOVE_LEFT_10" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][3]">
+    <onentry>
+      <log label="[sspeech[speech][units][3]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][units][3]" event="timeout-sspeech[speech][units][3]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[speech][units][3]" />
+    <transition target="sspeech[speech][units][3]-touch[gestures][swap]" event="[GESTURES][SWAP]" />
+    <transition target="sspeech[speech][units][3]-touch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][3]-touch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][3]-touch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][3]-touch[gestures][down]" event="[GESTURES][DOWN]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][units][3]" />
+    </onexit>
+  </state>
+  <state id="sspeech[speech][units][3]-touch[gestures][swap]">
+    <onentry>
+      <log label="[sspeech[speech][units][3]-touch[gestures][swap]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWAP][3]')}" />
+      <send event="CHANGE_POKEMON_3" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][3]-touch[gestures][swipeup]">
+    <onentry>
+      <log label="[sspeech[speech][units][3]-touch[gestures][swipeup]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][3]')}" />
+      <send event="MOVE_UP_3" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][3]-touch[gestures][swiperightr]">
+    <onentry>
+      <log label="[sspeech[speech][units][3]-touch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][3]')}" />
+      <send event="MOVE_RIGHT_3" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][3]-touch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[sspeech[speech][units][3]-touch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][3]')}" />
+      <send event="MOVE_LEFT_3" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][3]-touch[gestures][down]">
+    <onentry>
+      <log label="[sspeech[speech][units][3]-touch[gestures][down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][3]')}" />
+      <send event="MOVE_DOWN_3" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][like]">
+    <onentry>
+      <log label="[stouch[gestures][like]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-stouch[gestures][like]" event="timeout-stouch[gestures][like]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="touch[gestures][like]-final" event="timeout-stouch[gestures][like]" />
+    <transition target="stouch[gestures][like]-speech[speech][skip_dialogue]" event="[SPEECH][SKIP_DIALOGUE]" />
+    <onexit>
+      <cancel sendid="state1-timer-stouch[gestures][like]" />
+    </onexit>
+  </state>
+  <state id="touch[gestures][like]-final">
+    <onentry>
+      <log label="[touch[gestures][like]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[FUSION][LIKE]')}" />
+      <send event="LIKE" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][like]-speech[speech][skip_dialogue]">
+    <onentry>
+      <log label="[stouch[gestures][like]-speech[speech][skip_dialogue]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LIKE]')}" />
+      <send event="LIKE" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][2]">
+    <onentry>
+      <log label="[sspeech[speech][units][2]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][units][2]" event="timeout-sspeech[speech][units][2]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[speech][units][2]" />
+    <transition target="sspeech[speech][units][2]-touch[gestures][swap]" event="[GESTURES][SWAP]" />
+    <transition target="sspeech[speech][units][2]-touch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][2]-touch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][2]-touch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][2]-touch[gestures][down]" event="[GESTURES][DOWN]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][units][2]" />
+    </onexit>
+  </state>
+  <state id="sspeech[speech][units][2]-touch[gestures][swap]">
+    <onentry>
+      <log label="[sspeech[speech][units][2]-touch[gestures][swap]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWAP][2]')}" />
+      <send event="CHANGE_POKEMON_2" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][2]-touch[gestures][swipeup]">
+    <onentry>
+      <log label="[sspeech[speech][units][2]-touch[gestures][swipeup]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][2]')}" />
+      <send event="MOVE_UP_2" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][2]-touch[gestures][swiperightr]">
+    <onentry>
+      <log label="[sspeech[speech][units][2]-touch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][2]')}" />
+      <send event="MOVE_RIGHT_2" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][2]-touch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[sspeech[speech][units][2]-touch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][2]')}" />
+      <send event="MOVE_LEFT_2" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][2]-touch[gestures][down]">
+    <onentry>
+      <log label="[sspeech[speech][units][2]-touch[gestures][down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][2]')}" />
+      <send event="MOVE_DOWN_2" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][stop]">
+    <onentry>
+      <log label="[stouch[gestures][stop]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-stouch[gestures][stop]" event="timeout-stouch[gestures][stop]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="touch[gestures][stop]-final" event="timeout-stouch[gestures][stop]" />
+    <transition target="stouch[gestures][stop]-speech[speech][stop_moving]" event="[SPEECH][STOP_MOVING]" />
+    <onexit>
+      <cancel sendid="state1-timer-stouch[gestures][stop]" />
+    </onexit>
+  </state>
+  <state id="touch[gestures][stop]-final">
+    <onentry>
+      <log label="[touch[gestures][stop]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[FUSION][STOP]')}" />
+      <send event="STOP" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][stop]-speech[speech][stop_moving]">
+    <onentry>
+      <log label="[stouch[gestures][stop]-speech[speech][stop_moving]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][STOP]')}" />
+      <send event="STOP" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][10]">
+    <onentry>
+      <log label="[sspeech[speech][units][10]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][units][10]" event="timeout-sspeech[speech][units][10]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[speech][units][10]" />
+    <transition target="sspeech[speech][units][10]-touch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][10]-touch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][10]-touch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][10]-touch[gestures][down]" event="[GESTURES][DOWN]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][units][10]" />
+    </onexit>
+  </state>
+  <state id="sspeech[speech][units][10]-touch[gestures][swipeup]">
+    <onentry>
+      <log label="[sspeech[speech][units][10]-touch[gestures][swipeup]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][10]')}" />
+      <send event="MOVE_UP_10" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][10]-touch[gestures][swiperightr]">
+    <onentry>
+      <log label="[sspeech[speech][units][10]-touch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][10]')}" />
+      <send event="MOVE_RIGHT_10" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][10]-touch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[sspeech[speech][units][10]-touch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][10]')}" />
+      <send event="MOVE_LEFT_10" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][10]-touch[gestures][down]">
+    <onentry>
+      <log label="[sspeech[speech][units][10]-touch[gestures][down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][10]')}" />
+      <send event="MOVE_DOWN_10" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swiperightr]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-stouch[gestures][swiperightr]" event="timeout-stouch[gestures][swiperightr]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-stouch[gestures][swiperightr]" />
+    <transition target="stouch[gestures][swiperightr]-speech[speech][units][1]" event="[SPEECH][UNITS][1]" />
+    <transition target="stouch[gestures][swiperightr]-speech[speech][units][2]" event="[SPEECH][UNITS][2]" />
+    <transition target="stouch[gestures][swiperightr]-speech[speech][units][3]" event="[SPEECH][UNITS][3]" />
+    <transition target="stouch[gestures][swiperightr]-speech[speech][units][4]" event="[SPEECH][UNITS][4]" />
+    <transition target="stouch[gestures][swiperightr]-speech[speech][units][5]" event="[SPEECH][UNITS][5]" />
+    <transition target="stouch[gestures][swiperightr]-speech[speech][units][6]" event="[SPEECH][UNITS][6]" />
+    <transition target="stouch[gestures][swiperightr]-speech[speech][units][7]" event="[SPEECH][UNITS][7]" />
+    <transition target="stouch[gestures][swiperightr]-speech[speech][units][8]" event="[SPEECH][UNITS][8]" />
+    <transition target="stouch[gestures][swiperightr]-speech[speech][units][9]" event="[SPEECH][UNITS][9]" />
+    <transition target="stouch[gestures][swiperightr]-speech[speech][units][10]" event="[SPEECH][UNITS][10]" />
+    <onexit>
+      <cancel sendid="state1-timer-stouch[gestures][swiperightr]" />
+    </onexit>
+  </state>
+  <state id="stouch[gestures][swiperightr]-speech[speech][units][1]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]-speech[speech][units][1]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][1]')}" />
+      <send event="MOVE_RIGHT_1" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swiperightr]-speech[speech][units][2]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]-speech[speech][units][2]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][2]')}" />
+      <send event="MOVE_RIGHT_2" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swiperightr]-speech[speech][units][3]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]-speech[speech][units][3]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][3]')}" />
+      <send event="MOVE_RIGHT_3" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swiperightr]-speech[speech][units][4]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]-speech[speech][units][4]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][4]')}" />
+      <send event="MOVE_RIGHT_4" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swiperightr]-speech[speech][units][5]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]-speech[speech][units][5]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][5]')}" />
+      <send event="MOVE_RIGHT_5" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swiperightr]-speech[speech][units][6]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]-speech[speech][units][6]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][6]')}" />
+      <send event="MOVE_RIGHT_6" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swiperightr]-speech[speech][units][7]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]-speech[speech][units][7]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][7]')}" />
+      <send event="MOVE_RIGHT_7" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swiperightr]-speech[speech][units][8]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]-speech[speech][units][8]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][8]')}" />
+      <send event="MOVE_RIGHT_8" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swiperightr]-speech[speech][units][9]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]-speech[speech][units][9]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][9]')}" />
+      <send event="MOVE_RIGHT_9" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swiperightr]-speech[speech][units][10]">
+    <onentry>
+      <log label="[stouch[gestures][swiperightr]-speech[speech][units][10]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][10]')}" />
+      <send event="MOVE_RIGHT_10" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][4]">
+    <onentry>
+      <log label="[sspeech[speech][units][4]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][units][4]" event="timeout-sspeech[speech][units][4]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[speech][units][4]" />
+    <transition target="sspeech[speech][units][4]-touch[gestures][swap]" event="[GESTURES][SWAP]" />
+    <transition target="sspeech[speech][units][4]-touch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][4]-touch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][4]-touch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][4]-touch[gestures][down]" event="[GESTURES][DOWN]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][units][4]" />
+    </onexit>
+  </state>
+  <state id="sspeech[speech][units][4]-touch[gestures][swap]">
+    <onentry>
+      <log label="[sspeech[speech][units][4]-touch[gestures][swap]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWAP][4]')}" />
+      <send event="CHANGE_POKEMON_4" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][4]-touch[gestures][swipeup]">
+    <onentry>
+      <log label="[sspeech[speech][units][4]-touch[gestures][swipeup]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][4]')}" />
+      <send event="MOVE_UP_4" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][4]-touch[gestures][swiperightr]">
+    <onentry>
+      <log label="[sspeech[speech][units][4]-touch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][4]')}" />
+      <send event="MOVE_RIGHT_4" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][4]-touch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[sspeech[speech][units][4]-touch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][4]')}" />
+      <send event="MOVE_LEFT_4" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][4]-touch[gestures][down]">
+    <onentry>
+      <log label="[sspeech[speech][units][4]-touch[gestures][down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][4]')}" />
+      <send event="MOVE_DOWN_4" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][6]">
+    <onentry>
+      <log label="[sspeech[speech][units][6]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][units][6]" event="timeout-sspeech[speech][units][6]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[speech][units][6]" />
+    <transition target="sspeech[speech][units][6]-touch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][6]-touch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][6]-touch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][6]-touch[gestures][down]" event="[GESTURES][DOWN]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][units][6]" />
+    </onexit>
+  </state>
+  <state id="sspeech[speech][units][6]-touch[gestures][swipeup]">
+    <onentry>
+      <log label="[sspeech[speech][units][6]-touch[gestures][swipeup]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][6]')}" />
+      <send event="MOVE_UP_6" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][6]-touch[gestures][swiperightr]">
+    <onentry>
+      <log label="[sspeech[speech][units][6]-touch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][6]')}" />
+      <send event="MOVE_RIGHT_6" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][6]-touch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[sspeech[speech][units][6]-touch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][6]')}" />
+      <send event="MOVE_LEFT_6" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][6]-touch[gestures][down]">
+    <onentry>
+      <log label="[sspeech[speech][units][6]-touch[gestures][down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][6]')}" />
+      <send event="MOVE_DOWN_6" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][down]">
+    <onentry>
+      <log label="[stouch[gestures][down]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-stouch[gestures][down]" event="timeout-stouch[gestures][down]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-stouch[gestures][down]" />
+    <transition target="stouch[gestures][down]-speech[speech][units][1]" event="[SPEECH][UNITS][1]" />
+    <transition target="stouch[gestures][down]-speech[speech][units][2]" event="[SPEECH][UNITS][2]" />
+    <transition target="stouch[gestures][down]-speech[speech][units][3]" event="[SPEECH][UNITS][3]" />
+    <transition target="stouch[gestures][down]-speech[speech][units][4]" event="[SPEECH][UNITS][4]" />
+    <transition target="stouch[gestures][down]-speech[speech][units][5]" event="[SPEECH][UNITS][5]" />
+    <transition target="stouch[gestures][down]-speech[speech][units][6]" event="[SPEECH][UNITS][6]" />
+    <transition target="stouch[gestures][down]-speech[speech][units][7]" event="[SPEECH][UNITS][7]" />
+    <transition target="stouch[gestures][down]-speech[speech][units][8]" event="[SPEECH][UNITS][8]" />
+    <transition target="stouch[gestures][down]-speech[speech][units][9]" event="[SPEECH][UNITS][9]" />
+    <transition target="stouch[gestures][down]-speech[speech][units][10]" event="[SPEECH][UNITS][10]" />
+    <onexit>
+      <cancel sendid="state1-timer-stouch[gestures][down]" />
+    </onexit>
+  </state>
+  <state id="stouch[gestures][down]-speech[speech][units][1]">
+    <onentry>
+      <log label="[stouch[gestures][down]-speech[speech][units][1]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][1]')}" />
+      <send event="MOVE_DOWN_1" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][down]-speech[speech][units][2]">
+    <onentry>
+      <log label="[stouch[gestures][down]-speech[speech][units][2]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][2]')}" />
+      <send event="MOVE_DOWN_2" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][down]-speech[speech][units][3]">
+    <onentry>
+      <log label="[stouch[gestures][down]-speech[speech][units][3]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][3]')}" />
+      <send event="MOVE_DOWN_3" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][down]-speech[speech][units][4]">
+    <onentry>
+      <log label="[stouch[gestures][down]-speech[speech][units][4]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][4]')}" />
+      <send event="MOVE_DOWN_4" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][down]-speech[speech][units][5]">
+    <onentry>
+      <log label="[stouch[gestures][down]-speech[speech][units][5]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][5]')}" />
+      <send event="MOVE_DOWN_5" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][down]-speech[speech][units][6]">
+    <onentry>
+      <log label="[stouch[gestures][down]-speech[speech][units][6]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][6]')}" />
+      <send event="MOVE_DOWN_6" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][down]-speech[speech][units][7]">
+    <onentry>
+      <log label="[stouch[gestures][down]-speech[speech][units][7]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][7]')}" />
+      <send event="MOVE_DOWN_7" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][down]-speech[speech][units][8]">
+    <onentry>
+      <log label="[stouch[gestures][down]-speech[speech][units][8]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][8]')}" />
+      <send event="MOVE_DOWN_8" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][down]-speech[speech][units][9]">
+    <onentry>
+      <log label="[stouch[gestures][down]-speech[speech][units][9]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][9]')}" />
+      <send event="MOVE_DOWN_9" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][down]-speech[speech][units][10]">
+    <onentry>
+      <log label="[stouch[gestures][down]-speech[speech][units][10]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][10]')}" />
+      <send event="MOVE_DOWN_10" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][5]">
+    <onentry>
+      <log label="[sspeech[speech][units][5]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][units][5]" event="timeout-sspeech[speech][units][5]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[speech][units][5]" />
+    <transition target="sspeech[speech][units][5]-touch[gestures][swap]" event="[GESTURES][SWAP]" />
+    <transition target="sspeech[speech][units][5]-touch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][5]-touch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][5]-touch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][5]-touch[gestures][down]" event="[GESTURES][DOWN]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][units][5]" />
+    </onexit>
+  </state>
+  <state id="sspeech[speech][units][5]-touch[gestures][swap]">
+    <onentry>
+      <log label="[sspeech[speech][units][5]-touch[gestures][swap]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWAP][5]')}" />
+      <send event="CHANGE_POKEMON_5" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][5]-touch[gestures][swipeup]">
+    <onentry>
+      <log label="[sspeech[speech][units][5]-touch[gestures][swipeup]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][5]')}" />
+      <send event="MOVE_UP_5" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][5]-touch[gestures][swiperightr]">
+    <onentry>
+      <log label="[sspeech[speech][units][5]-touch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][5]')}" />
+      <send event="MOVE_RIGHT_5" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][5]-touch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[sspeech[speech][units][5]-touch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][5]')}" />
+      <send event="MOVE_LEFT_5" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][5]-touch[gestures][down]">
+    <onentry>
+      <log label="[sspeech[speech][units][5]-touch[gestures][down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][5]')}" />
+      <send event="MOVE_DOWN_5" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][1]">
+    <onentry>
+      <log label="[sspeech[speech][units][1]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][units][1]" event="timeout-sspeech[speech][units][1]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[speech][units][1]" />
+    <transition target="sspeech[speech][units][1]-touch[gestures][swap]" event="[GESTURES][SWAP]" />
+    <transition target="sspeech[speech][units][1]-touch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][1]-touch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][1]-touch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][1]-touch[gestures][down]" event="[GESTURES][DOWN]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][units][1]" />
+    </onexit>
+  </state>
+  <state id="sspeech[speech][units][1]-touch[gestures][swap]">
+    <onentry>
+      <log label="[sspeech[speech][units][1]-touch[gestures][swap]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWAP][1]')}" />
+      <send event="CHANGE_POKEMON_1" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][1]-touch[gestures][swipeup]">
+    <onentry>
+      <log label="[sspeech[speech][units][1]-touch[gestures][swipeup]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][1]')}" />
+      <send event="MOVE_UP_1" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][1]-touch[gestures][swiperightr]">
+    <onentry>
+      <log label="[sspeech[speech][units][1]-touch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][1]')}" />
+      <send event="MOVE_RIGHT_1" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][1]-touch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[sspeech[speech][units][1]-touch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][1]')}" />
+      <send event="MOVE_LEFT_1" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][1]-touch[gestures][down]">
+    <onentry>
+      <log label="[sspeech[speech][units][1]-touch[gestures][down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][1]')}" />
+      <send event="MOVE_DOWN_1" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][save_game]">
+    <onentry>
+      <log label="[sspeech[speech][save_game]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][save_game]" event="timeout-sspeech[speech][save_game]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="speech[speech][save_game]-final" event="timeout-sspeech[speech][save_game]" />
+    <transition target="sspeech[speech][save_game]-touch[gestures][save]" event="[GESTURES][SAVE]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][save_game]" />
+    </onexit>
+  </state>
+  <state id="speech[speech][save_game]-final">
+    <onentry>
+      <log label="[speech[speech][save_game]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[FUSION][SAVE]')}" />
+      <send event="SAVE" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][save_game]-touch[gestures][save]">
+    <onentry>
+      <log label="[sspeech[speech][save_game]-touch[gestures][save]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SAVE]')}" />
+      <send event="SAVE" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeup]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-stouch[gestures][swipeup]" event="timeout-stouch[gestures][swipeup]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-stouch[gestures][swipeup]" />
+    <transition target="stouch[gestures][swipeup]-speech[speech][units][1]" event="[SPEECH][UNITS][1]" />
+    <transition target="stouch[gestures][swipeup]-speech[speech][units][2]" event="[SPEECH][UNITS][2]" />
+    <transition target="stouch[gestures][swipeup]-speech[speech][units][3]" event="[SPEECH][UNITS][3]" />
+    <transition target="stouch[gestures][swipeup]-speech[speech][units][4]" event="[SPEECH][UNITS][4]" />
+    <transition target="stouch[gestures][swipeup]-speech[speech][units][5]" event="[SPEECH][UNITS][5]" />
+    <transition target="stouch[gestures][swipeup]-speech[speech][units][6]" event="[SPEECH][UNITS][6]" />
+    <transition target="stouch[gestures][swipeup]-speech[speech][units][7]" event="[SPEECH][UNITS][7]" />
+    <transition target="stouch[gestures][swipeup]-speech[speech][units][8]" event="[SPEECH][UNITS][8]" />
+    <transition target="stouch[gestures][swipeup]-speech[speech][units][9]" event="[SPEECH][UNITS][9]" />
+    <transition target="stouch[gestures][swipeup]-speech[speech][units][10]" event="[SPEECH][UNITS][10]" />
+    <onexit>
+      <cancel sendid="state1-timer-stouch[gestures][swipeup]" />
+    </onexit>
+  </state>
+  <state id="stouch[gestures][swipeup]-speech[speech][units][1]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]-speech[speech][units][1]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][1]')}" />
+      <send event="MOVE_UP_1" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeup]-speech[speech][units][2]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]-speech[speech][units][2]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][2]')}" />
+      <send event="MOVE_UP_2" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeup]-speech[speech][units][3]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]-speech[speech][units][3]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][3]')}" />
+      <send event="MOVE_UP_3" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeup]-speech[speech][units][4]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]-speech[speech][units][4]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][4]')}" />
+      <send event="MOVE_UP_4" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeup]-speech[speech][units][5]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]-speech[speech][units][5]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][5]')}" />
+      <send event="MOVE_UP_5" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeup]-speech[speech][units][6]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]-speech[speech][units][6]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][6]')}" />
+      <send event="MOVE_UP_6" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeup]-speech[speech][units][7]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]-speech[speech][units][7]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][7]')}" />
+      <send event="MOVE_UP_7" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeup]-speech[speech][units][8]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]-speech[speech][units][8]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][8]')}" />
+      <send event="MOVE_UP_8" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeup]-speech[speech][units][9]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]-speech[speech][units][9]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][9]')}" />
+      <send event="MOVE_UP_9" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="stouch[gestures][swipeup]-speech[speech][units][10]">
+    <onentry>
+      <log label="[stouch[gestures][swipeup]-speech[speech][units][10]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][10]')}" />
+      <send event="MOVE_UP_10" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][9]">
+    <onentry>
+      <log label="[sspeech[speech][units][9]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][units][9]" event="timeout-sspeech[speech][units][9]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[speech][units][9]" />
+    <transition target="sspeech[speech][units][9]-touch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][9]-touch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][9]-touch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][9]-touch[gestures][down]" event="[GESTURES][DOWN]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][units][9]" />
+    </onexit>
+  </state>
+  <state id="sspeech[speech][units][9]-touch[gestures][swipeup]">
+    <onentry>
+      <log label="[sspeech[speech][units][9]-touch[gestures][swipeup]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][9]')}" />
+      <send event="MOVE_UP_9" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][9]-touch[gestures][swiperightr]">
+    <onentry>
+      <log label="[sspeech[speech][units][9]-touch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][9]')}" />
+      <send event="MOVE_RIGHT_9" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][9]-touch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[sspeech[speech][units][9]-touch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][9]')}" />
+      <send event="MOVE_LEFT_9" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][9]-touch[gestures][down]">
+    <onentry>
+      <log label="[sspeech[speech][units][9]-touch[gestures][down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][9]')}" />
+      <send event="MOVE_DOWN_9" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][skip_dialogue]">
+    <onentry>
+      <log label="[sspeech[speech][skip_dialogue]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][skip_dialogue]" event="timeout-sspeech[speech][skip_dialogue]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="speech[speech][skip_dialogue]-final" event="timeout-sspeech[speech][skip_dialogue]" />
+    <transition target="sspeech[speech][skip_dialogue]-touch[gestures][like]" event="[GESTURES][LIKE]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][skip_dialogue]" />
+    </onexit>
+  </state>
+  <state id="speech[speech][skip_dialogue]-final">
+    <onentry>
+      <log label="[speech[speech][skip_dialogue]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[FUSION][LIKE]')}" />
+      <send event="LIKE" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][skip_dialogue]-touch[gestures][like]">
+    <onentry>
+      <log label="[sspeech[speech][skip_dialogue]-touch[gestures][like]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LIKE]')}" />
+      <send event="LIKE" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][7]">
+    <onentry>
+      <log label="[sspeech[speech][units][7]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[speech][units][7]" event="timeout-sspeech[speech][units][7]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[speech][units][7]" />
+    <transition target="sspeech[speech][units][7]-touch[gestures][swipeup]" event="[GESTURES][SWIPEUP]" />
+    <transition target="sspeech[speech][units][7]-touch[gestures][swiperightr]" event="[GESTURES][SWIPERIGHTR]" />
+    <transition target="sspeech[speech][units][7]-touch[gestures][swipeleftl]" event="[GESTURES][SWIPELEFTL]" />
+    <transition target="sspeech[speech][units][7]-touch[gestures][down]" event="[GESTURES][DOWN]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[speech][units][7]" />
+    </onexit>
+  </state>
+  <state id="sspeech[speech][units][7]-touch[gestures][swipeup]">
+    <onentry>
+      <log label="[sspeech[speech][units][7]-touch[gestures][swipeup]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][SWIPEUP][7]')}" />
+      <send event="MOVE_UP_7" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][7]-touch[gestures][swiperightr]">
+    <onentry>
+      <log label="[sspeech[speech][units][7]-touch[gestures][swiperightr]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][RIGHT][7]')}" />
+      <send event="MOVE_RIGHT_7" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][7]-touch[gestures][swipeleftl]">
+    <onentry>
+      <log label="[sspeech[speech][units][7]-touch[gestures][swipeleftl]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][LEFT][7]')}" />
+      <send event="MOVE_LEFT_7" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[speech][units][7]-touch[gestures][down]">
+    <onentry>
+      <log label="[sspeech[speech][units][7]-touch[gestures][down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[FUSION][DOWN][7]')}" />
+      <send event="MOVE_DOWN_7" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+</scxml>
