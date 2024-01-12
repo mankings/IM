@@ -83,8 +83,7 @@ def start_window():
 
     try:
         subprocess.Popen([emulator_path, rom_path])
+        return True
 
     except Exception as e:
         print(f"Error: {e}")
-    
-    

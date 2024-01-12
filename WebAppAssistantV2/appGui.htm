@@ -151,6 +151,26 @@
                                 case "SAVE":
                                     intent = "save_game";
                                     break;
+                                case "AFFIRM":
+                                    intent = "affirm";
+                                    break;
+                                case "DENY":
+                                    intent = "deny";
+                                    break;
+                                case "LAUNCH_GAME":
+                                    intent = "launch_game";
+                                    break;
+                                case "CHOOSE_ATTACK":
+                                    intent = "choose_attack";
+                                    body.attack = content.recognized[2];
+                                    break;
+                                case "THROW_POKEBALL":
+                                    intent = "throw_pokeball";
+                                    body.pokeball = content.recognized[2];
+                                    break;
+                                // case "RUN_AWAY_FROM_BATTLE":
+                                //     intent = "run_away_from_battle";
+                                //     break;
                             }
 
                         } else if (content.recognized[0] == 'GESTURES') {
@@ -192,13 +212,18 @@
                                 case "LIKE":
                                     intent = "affirm";
                                     break;
+                                case "WALK":
+                                    intent = "walk";
+                                    body.direction = content.recognized[2];
+                                    body.unit = content.recognized[3];
+                                    break;
                             }
                         }
 
                         var path = "";
                         switch (intent) {
                             case 'walk':
-                                path = "movement/player_start_moving"
+                                path = "movement/player_move"
                                 if (!body.unit) body.unit = "1"
 
                                 postToAPI(path, body).then(response => {
@@ -274,7 +299,6 @@
 
                             case 'choose_pokemon':
                                 path = "battle/choose_pokemon"
-                                body.pokemon = "2";
 
                                 postToAPI(path, body).then(response => {
                                     console.log(response);

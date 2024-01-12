@@ -39,7 +39,9 @@ class PlayerMoveBody(BaseModel):
 def player_move(body: PlayerMoveBody):
     setup()
     result = macros.player_move(body.direction, body.unit)
+    # scheduler.add_job(macros.player_move, 'interval', [body.direction, body.unit], seconds=1, id="player_move")
 
+    # return {"result": True, "text": "Aqui vou eu!"}
     return {"result": result[0], "text": result[1]}
 
 @app.post("/movement/player_start_moving")

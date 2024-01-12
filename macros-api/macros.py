@@ -12,18 +12,18 @@ def player_move(direction, steps):
 	if game_state()	!= "overworld": 
 		return (False, "Nao consigo mover o jogador de momento.")
 
+	direction = direction.lower()
 	if direction not in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT]:
-		if direction == "cima": direction = KEY_UP
-		elif direction == "baixo": direction = KEY_DOWN
-		elif direction == "esquerda": direction = KEY_LEFT
-		elif direction == "direita": direction = KEY_RIGHT
+		if direction == "up": direction = KEY_UP
+		elif direction == "down": direction = KEY_DOWN
+		elif direction == "left": direction = KEY_LEFT
+		elif direction == "right": direction = KEY_RIGHT
 		else: return (False, "Nao consegui perceber a direcao.")
 
 	print(steps)
-	if steps == "um": steps = 1
-	else: steps = int(steps)
+	steps = int(steps)
 		
-	for n in range(steps):
+	for _ in range(steps):
 		di.press(direction)
 	return (True, "Cheguei ao destino!")
 
@@ -164,10 +164,13 @@ def battle_throw_ball(ball_type: str):
 
 def battle_run():
 	# go to correct option
-	navigate_menu('menu_pointer', 'run_btn', navigation="horizontal")
-	navigate_menu('menu_pointer', 'run_btn', navigation="vertical")
-		
-	# TODO check if sucessful
+	# navigate_menu('menu_pointer', 'run_btn', navigation="horizontal")
+	# navigate_menu('menu_pointer', 'run_btn', navigation="vertical")
+	di.press(KEY_RIGHT)
+	time.sleep(0.5)
+	di.press(KEY_DOWN)
+	time.sleep(0.5)
+
 	accept_all_dialogue()
 
 #

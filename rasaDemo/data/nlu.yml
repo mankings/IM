@@ -12,7 +12,26 @@ nlu:
     - [Oito](unit)
     - [Nove](unit)
     - [Dez](unit)
-
+    - [1](unit)
+    - [2](unit)
+    - [3](unit)
+    - [4](unit)
+    - [5](unit)
+    - [6](unit)
+    - [7](unit)
+    - [8](unit)
+    - [9](unit)
+    - [10](unit)
+    - [Primeiro](unit)
+    - [Segundo](unit)
+    - [Terceiro](unit)
+    - [Quarto](unit)
+    - [Quinto](unit)
+    - [Sexto](unit)
+    - [Sétimo](unit)
+    - [Oitavo](unit)
+    - [Nono](unit)
+    - [Décimo](unit)
 
 
 - synonym: "1"
@@ -121,14 +140,12 @@ nlu:
 
 - intent: choose_attack
   examples: |
-    - Usa o ataque [um](attack)
-    - Usa o [primeiro](attack) ataque 
-    - Ataque [dois](attack)
-    - [Segundo](attack) ataque
-    - Usa o ataque [três](attack)
-    - Usa o [terceiro](attack) ataque
-    - Ataque [quatro](attack)
-    - [Quarto](attack) ataque
+    - Usa o ataque [um](unit)
+    - Usa o [primeiro](unit) ataque 
+    - Usa o ataque [três](unit)
+    - [Segundo](unit) ataque 
+    - Usa o [terceiro](unit) ataque
+    - Ataque [quatro](unit)
 
 
 # - intent: choose_pokemon

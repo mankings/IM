@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>LEAF GREEN VOICE ASSISTANT</title>
@@ -12,7 +13,8 @@
     <style>
         body {
             --indicator-color: black;
-            /*background: #fff;*/ /*radial-gradient(#fff 75%, var(--indicator-color));*/
+            /*background: #fff;*/
+            /*radial-gradient(#fff 75%, var(--indicator-color));*/
             background-image: url('/images/starters_last.png');
             background-color: beige;
             background-repeat: no-repeat;
@@ -55,18 +57,15 @@
         }
     </style>
 </head>
+
 <body>
-    <h1 style="background-color: darkslategrey; margin: 0; padding: 10px; text-align: center; ">VOICE ACTIVATED POKÉMON LEAF GREEN</h1>
+    <h1 style="background-color: darkslategrey; margin: 0; padding: 10px; text-align: center; ">VOICE ACTIVATED POKÉMON
+        LEAF GREEN</h1>
 
     <button class="test-btns">Liga o jogo.</button>
     <button class="test-btns">Guarda o jogo.</button>
-    <button class="test-btns">Anda cinco passos para cima.</button>
-    <button class="test-btns">Anda dois passos para baixo.</button>
-    <button class="test-btns">Anda para a esquerda.</button>
-    <button class="test-btns">Um passo para a direita.</button>
     <button class="test-btns">Atira uma pokébola.</button>
     <button class="test-btns">Atira uma great bola.</button>
-    <button class="test-btns">Captura esse Pokémon</button>
     <button class="test-btns">Atira uma ultra bola.</button>
     <button class="test-btns">Ataca.</button>
     <button class="test-btns">Primeiro ataque.</button>
@@ -76,6 +75,8 @@
     <button class="test-btns">Escolher pokemon.</button>
     <button class="test-btns">Segundo pokemon.</button>
     <button class="test-btns">Ok agora cala-te.</button>
+    <button class="test-btns">Sim.</button>
+    <button class="test-btns">Não.</button>
     <button class="test-btns">Dois.</button>
     <button class="test-btns">Três.</button>
     <button class="test-btns">Cinco.</button>
@@ -88,63 +89,74 @@
         <div id="response" class="" style="">d</div>
         <div class="container" style="border: solid 2px black; margin: 2%; background-color: darkslategrey;">
 
-            <svg class="mic" id="mic" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
-            <style type="text/css">
-                .st01 {
-                    fill: #4F5D73;
-                }
+            <svg class="mic" id="mic" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100"
+                style="enable-background:new 0 0 100 100;" xml:space="preserve">
+                <style type="text/css">
+                    .st01 {
+                        fill: #4F5D73;
+                    }
 
-                .st001 {
-                    fill: #cc1212;
-                }
+                    .st001 {
+                        fill: #cc1212;
+                    }
 
-                .st1 {
-                    opacity: 0.2;
-                }
+                    .st1 {
+                        opacity: 0.2;
+                    }
 
-                .st2 {
-                    fill: #231F20;
-                }
+                    .st2 {
+                        fill: #231F20;
+                    }
 
-                .st3 {
-                    fill: #4F5D73;
-                }
+                    .st3 {
+                        fill: #4F5D73;
+                    }
 
-                .st4 {
-                    fill: #FFFFFF;
-                }
-</style>
-            
-            <defs><filter id="f1" x="0" y="0">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
-            </filter></defs>
+                    .st4 {
+                        fill: #FFFFFF;
+                    }
+                </style>
 
-            <circle class="st1" cx="50" cy="50" r="32" />
-            <g id="Layer_1" transform="translate(18,18)">
-            <g class="st1">
-            <path class="st2" d="M32,41.5c3.3,0,6-2.7,6-6v-18c0-3.3-2.7-6-6-6s-6,2.7-6,6v18C26,38.8,28.7,41.5,32,41.5z" />
-                 </g>
-            <g class="st1">
-            <path class="st2" d="M32,48.2c-7.2,0-13-5.8-13-13v-3.8c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v3.8c0,5.5,4.5,10,10,10
+                <defs>
+                    <filter id="f1" x="0" y="0">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
+                    </filter>
+                </defs>
+
+                <circle class="st1" cx="50" cy="50" r="32" />
+                <g id="Layer_1" transform="translate(18,18)">
+                    <g class="st1">
+                        <path class="st2"
+                            d="M32,41.5c3.3,0,6-2.7,6-6v-18c0-3.3-2.7-6-6-6s-6,2.7-6,6v18C26,38.8,28.7,41.5,32,41.5z" />
+                    </g>
+                    <g class="st1">
+                        <path class="st2" d="M32,48.2c-7.2,0-13-5.8-13-13v-3.8c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v3.8c0,5.5,4.5,10,10,10
                        s10-4.5,10-10v-3.8c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v3.8C45,42.4,39.2,48.2,32,48.2z" />
-                </g>
-            <g class="st1">
-            <path class="st2" d="M32,55c-0.8,0-1.5-0.7-1.5-1.5v-6c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v6C33.5,54.3,32.8,55,32,55z" />
-                 </g>
-            <g class="st1">
-            <path class="st2" d="M37,56H27c-0.8,0-1.5-0.7-1.5-1.5S26.2,53,27,53h10c0.8,0,1.5,0.7,1.5,1.5S37.8,56,37,56z" />
-                </g>
-            <path class="st3" id="mic-color" d="M32,39.5c3.3,0,6-2.7,6-6v-18c0-3.3-2.7-6-6-6s-6,2.7-6,6v18C26,36.8,28.7,39.5,32,39.5z" />
-            <path class="st4" d="M32,46.2c-7.2,0-13-5.8-13-13v-3.8c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v3.8c0,5.5,4.5,10,10,10
+                    </g>
+                    <g class="st1">
+                        <path class="st2"
+                            d="M32,55c-0.8,0-1.5-0.7-1.5-1.5v-6c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v6C33.5,54.3,32.8,55,32,55z" />
+                    </g>
+                    <g class="st1">
+                        <path class="st2"
+                            d="M37,56H27c-0.8,0-1.5-0.7-1.5-1.5S26.2,53,27,53h10c0.8,0,1.5,0.7,1.5,1.5S37.8,56,37,56z" />
+                    </g>
+                    <path class="st3" id="mic-color"
+                        d="M32,39.5c3.3,0,6-2.7,6-6v-18c0-3.3-2.7-6-6-6s-6,2.7-6,6v18C26,36.8,28.7,39.5,32,39.5z" />
+                    <path class="st4" d="M32,46.2c-7.2,0-13-5.8-13-13v-3.8c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v3.8c0,5.5,4.5,10,10,10
                  s10-4.5,10-10v-3.8c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v3.8C45,40.4,39.2,46.2,32,46.2z" />
-            <path class="st4" d="M32,53c-0.8,0-1.5-0.7-1.5-1.5v-6c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v6C33.5,52.3,32.8,53,32,53z" />
-            <path class="st4" d="M37,54H27c-0.8,0-1.5-0.7-1.5-1.5S26.2,51,27,51h10c0.8,0,1.5,0.7,1.5,1.5S37.8,54,37,54z" />
-            </g>
+                    <path class="st4"
+                        d="M32,53c-0.8,0-1.5-0.7-1.5-1.5v-6c0-0.8,0.7-1.5,1.5-1.5s1.5,0.7,1.5,1.5v6C33.5,52.3,32.8,53,32,53z" />
+                    <path class="st4"
+                        d="M37,54H27c-0.8,0-1.5-0.7-1.5-1.5S26.2,51,27,51h10c0.8,0,1.5,0.7,1.5,1.5S37.8,54,37,54z" />
+                </g>
             </svg>
 
 
-            <div class="recognized" style="display: inline; vertical-align: central; top: auto;bottom: auto; width: 600px;" id="transcript"></div>
+            <div class="recognized"
+                style="display: inline; vertical-align: central; top: auto;bottom: auto; width: 600px;" id="transcript">
+            </div>
         </div>
     </div>
 
@@ -234,7 +246,7 @@
                     if (noise >= 0.6) {
                         noiseCount++;
                     }
-                    else if (casa_viva >= 0.6) {
+                    else if (casa_viva >= 0.4) {
                         casa_vivaCount++;
 
                         if (!isOnKWS) {
@@ -268,6 +280,23 @@
         };
         //InitializeKWS();
 
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'k' || event.key === 'K') {
+                console.log(isOnKWS);
+                if (!isOnKWS) {
+                    recognition.start();
+                    circle.animate(20, 0, 'now').attr({ fill: '#00a431' });
+                    transcriptDiv.textContent = "...";
+                    isOnKWS = true;
+                    speechActive = true;
+                } else {
+                    recognition.stop();
+                    circle.animate(20, 0, 'now').attr({ fill: '#000' });
+                    isOnKWS = false;
+                    speechActive = false;
+                }
+            }
+        });
 
         import { interpolateGreens } from "https://cdn.skypack.dev/d3-scale-chromatic@3"
 
@@ -289,9 +318,10 @@
 
 
         recognition.onerror = function (event) {
-            console.error("REC ERROR: " + event.error);
+            console.error("REC ERROR: " + event.error + " -- " + event.message + " -- " + event.type);
             transcriptDiv.innerHTML = firstSent;
             circle.animate(20, 0, 'now').attr({ fill: '#000' });
+            isOnKWS = false;
             //startkws();
         };
 
@@ -316,7 +346,7 @@
                         }*/
                     }
 
-                    if (final_transcript.length > 2) {
+                    if (final_transcript.length > 0) {
                         final_transcript = final_transcript.charAt(0).toUpperCase() + final_transcript.slice(1);
                         transcriptDiv.innerHTML = "<span style='color:#00b44e'><b>" + final_transcript + "</b></span>";
 
@@ -350,23 +380,6 @@
             }
         };
 
-        $(".mic").on('click', function () {
-            if (speechActive) {
-                console.log("stop");
-                recognition.stop();
-                speechActive = false;
-                $(".mic-color").addClass("st001")
-                $(".mic-color").removeClass("st3")
-            }
-            else {
-                console.log("start");
-                recognition.start();
-                speechActive = true;
-                $(".mic-color").addClass("st3")
-                $(".mic-color").removeClass("st001")
-            }
-        })
-
         var vadActive = false;
         var speechActive = true;
 
@@ -380,7 +393,7 @@
                     setTimeout(function () {
                         if (speechActive) recognition.stop();
                         speechActive = false;
-                    }, 5000);
+                    }, 3000);
                 },
                 onSpeechStart: () => {
                     //transcriptDiv.textContent += " ->";
@@ -457,6 +470,11 @@
                     feedback("Ok, não digo mais nada.");
                 }
 
+                if (data.intent.confidence < 0.88) {
+                    feedback("Não percebi nada.");
+                    return;
+                }
+
 
                 // var message = { 'intent': data.intent.name, 'entities': data.entities }
                 var messaget = btoa(unescape(encodeURIComponent(final_transcript)));
@@ -465,9 +483,11 @@
                     console.log(entity);
                     return entity.value.toUpperCase();
                 });
+                console.log(recognized);
                 recognized.unshift("SPEECH", data.intent.name.toUpperCase());
+                console.log(recognized)
 
-                var result = { "recognized": recognized, "text": messaget, "confidence": data.intent.confidence };
+                var result = { "recognized": recognized, "text": messaget, "confidence": data.intent.confidence, "ft": final_transcript };
                 var lce = new LifeCycleEvent("SPEECHIN", "IM", "text-1", "ctx-1").
                     doExtensionNotification(new EMMA("text-", "text", "command", 1, 0).
                         setValue(JSON.stringify(result)));
@@ -561,4 +581,5 @@
         }
     </script>
 </body>
+
 </html>
