@@ -62,8 +62,8 @@
     <h1 style="background-color: darkslategrey; margin: 0; padding: 10px; text-align: center; ">VOICE ACTIVATED POKÉMON
         LEAF GREEN</h1>
 
-    <button class="test-btns">Melhor do mundo</button>
-    <button class="test-btns">SUUUUUUUUIIIIIIIIII</button>
+    <!-- <button class="test-btns">Melhor do mundo</button>
+    <button class="test-btns">SUUUUUUUUIIIIIIIIII</button> -->
 
 
     <div id="response" class="" style=""></div>
@@ -224,7 +224,7 @@
                         switch (intent) {
                             case 'walk':
                                 path = "movement/player_move"
-                                if (!body.unit) body.unit = "1"
+                                if (!body.unit) body.unit = "10"
 
                                 postToAPI(path, body).then(response => {
                                     console.log(response);

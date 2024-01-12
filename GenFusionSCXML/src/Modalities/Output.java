@@ -11,6 +11,11 @@ public enum Output implements IOutput{
     CHANGE_POKEMON_4("[FUSION][SWAP][4]"),
     CHANGE_POKEMON_5("[FUSION][SWAP][5]"),
 
+    MOVE_UP("[FUSION][WALK][UP]"),
+    MOVE_DOWN("[FUSION][WALK][DOWN]"),
+    MOVE_RIGHT("[FUSION][WALK][RIGHT]"),
+    MOVE_LEFT("[FUSION][WALK][LEFT]"),
+    
     MOVE_UP_1("[FUSION][WALK][UP][1]"),
     MOVE_UP_2("[FUSION][WALK][UP][2]"),
     MOVE_UP_3("[FUSION][WALK][UP][3]"),

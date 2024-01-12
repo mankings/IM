@@ -79,6 +79,12 @@ public class GenFusionSCXML {
     fg.Redundancy(Speech.STOP, Touch.STOP, Output.STOP);
     fg.Redundancy(Speech.LIKE, Touch.LIKE, Output.LIKE);
 
+    fg.Single(Touch.MOVE_DOWN, Output.MOVE_DOWN);
+    fg.Single(Touch.MOVE_UP, Output.MOVE_UP);
+    fg.Single(Touch.MOVE_RIGHT, Output.MOVE_RIGHT);
+    fg.Single(Touch.MOVE_LEFT, Output.MOVE_LEFT);
+
+
     fg.Build("fusion.scxml");
   }
 
