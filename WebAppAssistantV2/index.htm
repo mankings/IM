@@ -62,9 +62,10 @@
     <h1 style="background-color: darkslategrey; margin: 0; padding: 10px; text-align: center; ">VOICE ACTIVATED POKÉMON
         LEAF GREEN</h1>
 
-    <!-- <button class="test-btns">Liga o jogo.</button>
+    <!-- <button class="test-btns">Liga o jogo.</button> -->
     <button class="test-btns">Guarda o jogo.</button>
-    <button class="test-btns">Atira uma pokébola.</button>
+    <button class="test-btns">Usa o segundo ataque.</button>
+    <!-- <button class="test-btns">Atira uma pokébola.</button>
     <button class="test-btns">Atira uma great bola.</button>
     <button class="test-btns">Atira uma ultra bola.</button>
     <button class="test-btns">Ataca.</button>
@@ -281,6 +282,7 @@
         //InitializeKWS();
 
         document.addEventListener('keydown', function (event) {
+            var circle = SVG.find('.st0');
             if (event.key === 'k' || event.key === 'K') {
                 console.log(isOnKWS);
                 if (!isOnKWS) {

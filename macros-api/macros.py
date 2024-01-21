@@ -95,6 +95,7 @@ def choose_pokemon(pokemon_number):
 		di.press(KEY_DOWN)
 	if pokemon_number in ['3', "terceiro", "3", 3]:
 		di.press(KEY_DOWN)
+		time.sleep(0.5)
 		di.press(KEY_DOWN)
 		
 	di.press(KEY_A)
